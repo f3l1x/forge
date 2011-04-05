@@ -5,7 +5,7 @@
  * @package #FbTools
  * @copyright Milan Felix Sulx
  * @licence WTFPL - Do What The Fuck You Want To Public License 
- * @version 1.0
+ * @version 1.1
  */
  
 /**
@@ -19,16 +19,16 @@ Facebook Attributes
     header - specifies whether to display the Facebook header at the top of the plugin.
 
  */
-class FbTools_LikeBox extends NControl
+class FbTools_LikeBox extends NControl implements IFbTools
 {
 	// like url
-	public $url = "http://www.facebook.com/netteframework";
+	public $url = null;
 
 	// box width
 	public $width = 292;
 	
 	// box height
-	public $height = 0;
+	public $height = 63;
 	
 	// colorScheme
 	public $colorScheme = "light";	
@@ -51,34 +51,42 @@ class FbTools_LikeBox extends NControl
 	 */
 	public function setUrl($url){
 		$this->url = $url;
+		return $this; //fluent interface
 	}
 	
 	public function setWidth($width){
 		$this->width = (int) $width;
+		return $this; //fluent interface
 	}
 
 	public function setHeight($height){
 		$this->height = (int) $height;
+		return $this; //fluent interface
 	}
 
 	public function setColorScheme($scheme){
 		$this->colorScheme = $scheme;	
+		return $this; //fluent interface
 	}
 
 	public function setShowFaces($showFaces){
 		$this->showFaces = $showFaces;
+		return $this; //fluent interface
 	}
 
 	public function setShowStream($showStream){
 		$this->showStream = $showStream;
+		return $this; //fluent interface
 	}
 
 	public function setShowHeader($showHeader){
 		$this->showHeader = $showHeader;
+		return $this; //fluent interface
 	}
 	
 	public function setCopyright($copyright){
 		$this->copyright = $copyright;	
+		return $this; //fluent interface
 	}
 	
 	/*
@@ -102,22 +110,16 @@ class FbTools_LikeBox extends NControl
 		return $this->colorScheme;	
 	}
 
-	public function getShowFaces($boolean = false){
-		if($boolean)
-			return ($this->showFaces == 1 ? "true" : "false");
-		else return (int) $this->showFaces;	
+	public function getShowFaces(){
+		return (int) $this->showFaces;	
 	}
 
-	public function getShowHeader($boolean = false){
-		if($boolean)
-			return ($this->showHeader == 1 ? "true" : "false");
-		else return (int) $this->showHeader;	
+	public function getShowHeader(){
+		return (int) $this->showHeader;	
 	}
 	
 	public function getShowStream($boolean = false){
-		if($boolean)
-			return ($this->showStream == 1 ? "true" : "false");
-		else return (int) $this->showStream;	
+		return (int) $this->showStream;	
 	}
 	
 	public function writeCopyrightTags(){
@@ -189,14 +191,14 @@ class FbTools_LikeBox extends NControl
 		$output = null;
 
 		// settings
-		$settings = array(
-			'href' => $this->getUrl(),
-			'width' => $this->getWidth(),
-			'colorscheme' => $this->getColorScheme(),
-			'show_faces' => $this->getShowFaces(true),
-			'stream' => $this->getShowStream(true),
-			'header' => $this->getShowHeader(true),
-			'height' => $this->getHeight());
+		$settings = array();
+		$settings['href'] = $this->getUrl();
+		$settings['width'] = $this->getWidth();
+		$settings['colorscheme'] = $this->getColorScheme();
+		$settings['show_faces'] = (bool) $this->getShowFaces();
+		$settings['stream'] = (bool) $this->getShowStream();
+		$settings['header'] = (bool) $this->getShowHeader();
+		$settings['height'] = $this->getHeight();
 			
 		$query = http_build_query($settings, '', '&');
 		
