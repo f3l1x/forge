@@ -5,7 +5,7 @@
  * @package #FbTools
  * @copyright Milan Felix Sulx
  * @licence WTFPL - Do What The Fuck You Want To Public License 
- * @version 1.0
+ * @version 1.1
  */
  
 /**
@@ -28,7 +28,7 @@ Facebook Attributes
 class FbTools_LikeButton extends NControl
 {
 	// like url
-	public $url = "http://www.facebook.com/netteframework";
+	public $url = null;
 	
 	// auto get url
 	public $autoUrl = false;
@@ -78,6 +78,7 @@ class FbTools_LikeButton extends NControl
 	 */
 	public function setUrl($url){
 		$this->url = $url;
+		return $this; //fluent interface
 	}
 	
 	public function setLayout($layout){
@@ -88,14 +89,17 @@ class FbTools_LikeButton extends NControl
 		}else{
 			$this->layout = "standard";
 		}
+		return $this; //fluent interface
 	}
 
 	public function setWidth($width){
 		$this->width = (int) $width;
+		return $this; //fluent interface
 	}
 
 	public function setHeight($height){
 		$this->height = (int) $height;
+		return $this; //fluent interface
 	}
 		
 	public function setType($type){
@@ -104,10 +108,12 @@ class FbTools_LikeButton extends NControl
 		}else{
 			$this->type = "like";
 		}		
+		return $this; //fluent interface
 	}
 	
 	public function setShowFaces($showFaces){
 		$this->showFaces = $showFaces;
+		return $this; //fluent interface
 	}
 
 	public function setFont($font){
@@ -124,22 +130,27 @@ class FbTools_LikeButton extends NControl
 				$this->font = "verdana";break;
 			default: $this->font = "arial";
 		}
+		return $this; //fluent interface
 	}
 
 	public function setColorScheme($scheme){
 		$this->colorScheme = $scheme;	
+		return $this; //fluent interface
 	}
 	
 	public function setXfbml($xfbml){
 		$this->xfbml = $xfbml;	
+		return $this; //fluent interface
 	}
 
 	public function setAutoUrl($autoUrl){
 		$this->autoUrl = $autoUrl;	
+		return $this; //fluent interface
 	}
 	
 	public function setCopyright($copyright){
 		$this->copyright = $copyright;	
+		return $this; //fluent interface
 	}
 	
 	/*
@@ -170,10 +181,8 @@ class FbTools_LikeButton extends NControl
 		return $this->type;	
 	}
 
-	public function getShowFaces($boolean = false){
-		if($boolean)
-			return ($this->showFaces == 1 ? "true" : "false");
-		else return (int) $this->showFaces;	
+	public function getShowFaces(){
+		return (int) $this->showFaces;	
 	}		
 	
 	public function getFont(){
@@ -263,7 +272,7 @@ class FbTools_LikeButton extends NControl
 		$settings = array(
 			'href' => $this->getUrl(),
 			'layout' => $this->getLayout(),
-			'show_faces' => $this->getShowFaces(true),
+			'show_faces' => (bool) $this->getShowFaces(),
 			'width' => $this->getWidth(),
 			'action' => $this->getType(),
 			'font' => $this->getFont(),
