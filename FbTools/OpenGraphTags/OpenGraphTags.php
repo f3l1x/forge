@@ -5,7 +5,7 @@
  * @package #FbTools
  * @copyright Milan Felix Sulx
  * @licence WTFPL - Do What The Fuck You Want To Public License 
- * @version 1.0
+ * @version 1.1
  */
 
 /**
@@ -21,7 +21,7 @@ Facebook Attributes
 class FbTools_OpenGraphTags extends NControl
 {
 	// www url
-	public $url;
+	public $url = null;
 	
 	// auto get url
 	public $autoUrl = false;
@@ -52,46 +52,57 @@ class FbTools_OpenGraphTags extends NControl
 	 */
 	public function setUrl($url){
 		$this->url = $url;
+		return $this; //fluent interface
 	}
 	
 	public function setTitle($title){
 		$this->title = $title;
+		return $this; //fluent interface
 	}
 
 	public function setType($type){
 		$this->type = $type;
+		return $this; //fluent interface
 	}
 
 	public function setImage($image){
 		$this->image = $image;
+		return $this; //fluent interface
 	}
 
 	public function setSiteName($site_name){
 		$this->site_name = $site_name;
+		return $this; //fluent interface
 	}
 
 	public function setAppId($app_id){
 		$this->app_id = $app_id;
+		return $this; //fluent interface
 	}
 
 	public function setAdminId($admin_id){
 		$this->setAppId($admin_id);
+		return $this; //fluent interface
 	}
 	
 	public function setFbId($fb_id){
 		$this->setAppId($fb_id);
+		return $this; //fluent interface
 	}
 
 	public function setAutoUrl($autoUrl){
 		$this->autoUrl = $autoUrl;	
+		return $this; //fluent interface
 	}
 
 	public function setXhtml($xhtml){
 		$this->xhtml = $xhtml;	
+		return $this; //fluent interface
 	}
 
 	public function setCopyright($copyright){
 		$this->copyright = $copyright;	
+		return $this; //fluent interface
 	}
 	
 	/*
@@ -123,15 +134,15 @@ class FbTools_OpenGraphTags extends NControl
 	}
 
 	public function getAppId(){
-		return $this->app_id;	
+		return (int) $this->app_id;	
 	}
 
 	public function getAdminId(){
-		return $this->app_id;	
+		return(int)  $this->app_id;	
 	}
 
 	public function getFbId(){
-		return $this->app_id;	
+		return (int) $this->app_id;	
 	}
 
 	public function isAutoUrl(){
@@ -196,17 +207,17 @@ class FbTools_OpenGraphTags extends NControl
 		
 		// og tags
 		//title
-		$output .= 	$this->generateTitle($this->getTitle());
+		$output .= $this->generateTitle($this->getTitle());
 		//type
-		$output .= 	$this->generateType($this->getType());
+		$output .= $this->generateType($this->getType());
 		//url
-		$output .= 	$this->generateUrl($this->getUrl());
+		$output .= $this->generateUrl($this->getUrl());
 		//image
-		$output .= 	$this->generateImage($this->getImage());
+		$output .= $this->generateImage($this->getImage());
 		//site_name
-		$output .= 	$this->generateSiteName($this->getSiteName());
+		$output .= $this->generateSiteName($this->getSiteName());
 		//admins
-		$output .= 	$this->generateAdmins($this->getAppId());
+		$output .= $this->generateAdmins($this->getAppId());
 		
 		// end tag
 		if($this->writeCopyrightTags()) $output .= "<!-- /@FbTools: OpenGraphTags --!>\n";
