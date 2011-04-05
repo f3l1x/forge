@@ -5,7 +5,7 @@
  * @package #FbTools
  * @copyright Milan Felix Sulx
  * @licence WTFPL - Do What The Fuck You Want To Public License 
- * @version 1.0
+ * @version 1.1
  */
 
 /**
@@ -25,7 +25,7 @@ Facebook Attributes
 class FbTools_ActivityFeed extends NControl
 {
 	// activity feed url
-	public $url = "http://nette.org/";
+	public $url = null;
 		
 	// box width
 	public $width = 300;
@@ -56,22 +56,27 @@ class FbTools_ActivityFeed extends NControl
 	 */
 	public function setUrl($url){
 		$this->url = $url;
+		return $this; //fluent interface
 	}
 	
 	public function setWidth($width){
 		$this->width = (int) $width;
+		return $this; //fluent interface
 	}
 
 	public function setHeight($height){
 		$this->height = (int) $height;
+		return $this; //fluent interface
 	}
 
-	public function setShowHeader($show = 1){
-		$this->showHeader = (boolean) $show;
+	public function setShowHeader($show){
+		$this->showHeader = (int) $show;
+		return $this; //fluent interface
 	}
 
 	public function setColorScheme($colorScheme){
 		$this->colorScheme = $colorScheme;
+		return $this; //fluent interface
 	}
 
 	public function setFont($font){
@@ -88,19 +93,23 @@ class FbTools_ActivityFeed extends NControl
 				$this->font = "verdana";break;
 			default: $this->font = "arial";
 		}
+		return $this; //fluent interface
 	}
 	
 	public function setBorderColor($borderColor){
 		$this->borderColor = $borderColor;
+		return $this; //fluent interface
 	}	
 
 	public function setRecommendations($rec){
-		$this->recommendations = (boolean) $rec;
+		$this->recommendations = (int) $rec;
+		return $this; //fluent interface
 	}
 
 	
 	public function setCopyright($copyright){
 		$this->copyright = $copyright;	
+		return $this; //fluent interface
 	}
 
 	/*
@@ -119,10 +128,8 @@ class FbTools_ActivityFeed extends NControl
 		return (int) $this->height;	
 	}
 	
-	public function getShowHeader($boolean = false){
-		if($boolean)
-			return ($this->showHeader == 1 ? "true" : "false");
-		else return (int) $this->showHeader;	
+	public function getShowHeader(){
+		return (int) $this->showHeader;	
 	}
 
 	public function getColorScheme(){
@@ -137,10 +144,8 @@ class FbTools_ActivityFeed extends NControl
 		return $this->borderColor;	
 	}
 	
-	public function getRecommendations($boolean = false){
-		if($boolean)
-			return ($this->recommendations == 1 ? "true" : "false");
-		else return (int) $this->recommendations;	
+	public function getRecommendations(){
+		return (int) $this->recommendations;	
 	}
 	
 	public function writeCopyrightTags(){
@@ -206,10 +211,10 @@ class FbTools_ActivityFeed extends NControl
 			'site' => $this->getUrl(),
 			'width' => $this->getWidth(),
 			'height' => $this->getHeight(),
-			'header' => $this->getShowHeader(true),
+			'header' => (bool) $this->getShowHeader(),
 			'colorscheme' => $this->getColorScheme(),
 			'border_color' => $this->getBorderColor(),
-			'recommendations' => $this->getRecommendations(true));
+			'recommendations' => (bool) $this->getRecommendations());
 			
 		$query = http_build_query($settings, '', '&');
 		
