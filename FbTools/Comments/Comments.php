@@ -5,7 +5,7 @@
  * @package #FbTools
  * @copyright Milan Felix Sulx
  * @licence WTFPL - Do What The Fuck You Want To Public License 
- * @version 1.0
+ * @version 1.1
  */
 
 /**
@@ -18,7 +18,7 @@ Facebook Attributes
 class FbTools_Comments extends NControl
 {
 	// comment url
-	public $url = "http://nette.org/";
+	public $url = null;
 	
 	// auto get url
 	public $autoUrl = false;
@@ -37,22 +37,27 @@ class FbTools_Comments extends NControl
 	 */
 	public function setUrl($url){
 		$this->url = $url;
+		return $this; //fluent interface
 	}
 	
 	public function setWidth($width){
 		$this->width = (int) $width;
+		return $this; //fluent interface
 	}
 
 	public function setNumPosts($posts){
 		$this->numPosts = (int) $posts;
+		return $this; //fluent interface
 	}
 
 	public function setAutoUrl($autoUrl){
 		$this->autoUrl = $autoUrl;	
+		return $this; //fluent interface
 	}
 	
 	public function setCopyright($copyright){
 		$this->copyright = $copyright;	
+		return $this; //fluent interface
 	}
 
 	/*
