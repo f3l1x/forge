@@ -3,8 +3,6 @@
 class CaptchaField extends NTextBase {
 	
 	public $captcha_element = 'div';
-	public $captcha_hash = 'recaptcha_challenge_field';
-	public $captcha_responce = 'recaptcha_response_field';
 	public $extension;
 	public $hash = null;
 	public $responce = null;
@@ -33,8 +31,8 @@ class CaptchaField extends NTextBase {
 
 	public function loadHttpData()
 	{
-		$this->hash = NArrayTools::get($this->getForm()->getHttpData(), $this->captcha_hash);
-		$this->responce = NArrayTools::get($this->getForm()->getHttpData(), $this->captcha_responce);
+		$this->hash = NArrayTools::get($this->getForm()->getHttpData(), $this->getExtension()->captcha_hash);
+		$this->responce = NArrayTools::get($this->getForm()->getHttpData(), $this->getExtension()->captcha_responce);
 		$this->setValue($this->responce);
 	}
 	

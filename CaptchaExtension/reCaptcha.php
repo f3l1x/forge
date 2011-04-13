@@ -6,6 +6,8 @@ class reCaptcha extends NControl implements ICaptcha
 
 	public $publickey = "";
 	public $privatekey = "";
+	public $captcha_hash = 'recaptcha_challenge_field';
+	public $captcha_responce = 'recaptcha_response_field';
 
 	# the response from reCAPTCHA
 	public $resp = null;
