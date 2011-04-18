@@ -5,11 +5,12 @@ class CaptchaPresenter extends BasePresenter
 
 	protected function startup()
 	{
-			parent::startup();
-		
-			$captcha = new CaptchaBase();
-			$captcha->setExtension(new SeznamCaptcha());
-			NFormContainer::extensionMethod('addCaptcha', array($captcha,'captcha'));
+		parent::startup();
+	
+		$captcha = new CaptchaBase();
+		$captcha->setExtension(new SeznamCaptcha());
+		//$captcha->setExtension(new reCaptcha());
+		NFormContainer::extensionMethod('addCaptcha', array($captcha,'captcha'));
 	}
 
 	public function createComponentReCaptcha(){
