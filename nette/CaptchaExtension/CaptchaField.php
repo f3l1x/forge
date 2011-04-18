@@ -8,6 +8,9 @@ class CaptchaField extends NTextBase {
 	public $responce = null;
 	public $error = null;
 	
+	public $old_label = true;
+	public $show_captcha_error = false;
+	
 	public function __construct($label = NULL)
 	{
 		parent::__construct($label);
@@ -16,7 +19,11 @@ class CaptchaField extends NTextBase {
 	
 	public function getLabel($label = NULL)
 	{
-		return NULL;
+		if($this->old_label){
+			return parent::getLabel();
+		}else{
+			return NULL;
+		}
 	}
 	
 	public function getControl($label = NULL)
@@ -24,10 +31,6 @@ class CaptchaField extends NTextBase {
 		return parent::getControl();
 	}
 		
-	public static function addCaptcha(NForm $form, $name, $label = NULL)
-	{
-		return $form[$name] = new self($label);
-	}
 
 	public function loadHttpData()
 	{
@@ -42,7 +45,13 @@ class CaptchaField extends NTextBase {
 		if($res){
 			return true;
 		}else{
-			$control->error = $control->getExtension()->getError();
+			if($control->show_captcha_error){
+				foreach($control->getExtension()->getErrors() as $error){
+					$control->addError($error);
+				}
+			}
+			
+			$control->error = ($control->getExtension()->getErrors());
 			return false;
 		}
 	}
@@ -53,6 +62,18 @@ class CaptchaField extends NTextBase {
 		return $this;
 	}
 	
+	public function hasError(){
+		if(empty($this->error)){
+			return false;
+		}else{
+			return true;
+		}
+	}
+
+	public function getError(){
+		return $this->error;
+	}
+
 	public function getExtension(){
 		return $this->extension;	
 	}
