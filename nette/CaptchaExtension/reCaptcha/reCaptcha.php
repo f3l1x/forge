@@ -5,7 +5,7 @@ class reCaptcha extends NControl implements ICaptcha
 {
 
 	public $publickey = "";
-	public $privatekey = ""
+	public $privatekey = "";
 	public $captcha_hash = 'recaptcha_challenge_field';
 	public $captcha_responce = 'recaptcha_response_field';
 
@@ -25,7 +25,7 @@ class reCaptcha extends NControl implements ICaptcha
 	}
 
 	public function getControl(){
-		return recaptcha_get_html($this->publickey, $this->error);
+		return recaptcha_get_html($this->publickey, $this->errors);
 	}
 
 	public function validate($hash, $responce){
