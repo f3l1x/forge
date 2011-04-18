@@ -6,5 +6,9 @@ interface ICaptcha{
 	
 	function validate($hash, $responce);	
 	
-	function getError();
+	function getErrors();
+
+	function hasErrors();
+		
+	function addError($error);
 }
