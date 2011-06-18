@@ -1,0 +1,31 @@
+{default constants => array()}
+{default variables => array()}
+{default getters => array()}
+{default setters => array()}
+{default functions => array()}
+{block}
+{!$phpTag}
+class {$className}{if $extends} extends {!$extends}{/if}{if $implements} implements {!$implements}{/if}{l}
+	{if count($constants)>0}/* constants */{/if}
+	{foreach $constants as $c}
+	{!$c}
+	{/foreach}
+	{if count($variables)>0}/* variables */{/if}
+	{foreach $variables as $v}
+	{!$v}
+	{/foreach}	
+	
+	{if count($setters)>0}/* setters */{/if}
+	{foreach $setters as $s}
+	{!$s}
+	{/foreach}	
+	{if count($getters)>0}/* getters */{/if}
+	{foreach $getters as $g}
+	{!$g}
+	{/foreach}
+	{if count($functions)>0}/* functions */{/if}
+	{foreach $functions as $f}
+	{!$f}
+	{/foreach}
+{r}
+{/block}
