@@ -1,0 +1,10 @@
+{block}
+	<a href="{link delete!,$article->id}" data-confirm="Opravdu smazat tento clanek?">SMAZAT</a>
+
+	<form action="{link delete!}">
+    	<input type="hidden" name="id" value="{$article->id}">
+		<input type="submit" data-confirm="Opravdu smazat tento clanek?" name="send" value="Smazat">
+	</form>
+    
+	<input type="button" class="easyconfirm" OnClick="deleteMethod();" data-confirm="Opravdu smazat tento clanek?" value="Smazat">
+{/block}
