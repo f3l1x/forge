@@ -1,8 +1,21 @@
 <?php
-
-/**
- * Smarty plugin fixed like nette helper
- * @autor Milan Felix Sulc
+/*
+ * Smarty plugin fixed for nette (helper)
+ * 
+ * DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+ * Version 2, December 2004
+ * 
+ * Copyright (C) 2011 Milan Felix Sulc <rkfelix@gmail.com>
+ * 
+ * Everyone is permitted to copy and distribute verbatim or modified
+ * copies of this license document, and changing it is allowed as long
+ * as the name is changed.
+ * 
+ * DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+ * TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
+ * 
+ * 0. You just DO WHAT THE FUCK YOU WANT TO.
+ * 
  */
 
 class SmartyMailto {
@@ -14,11 +27,8 @@ class SmartyMailto {
 	 * @version 1.2
 	 * @author Monte Ohrt <monte at ohrt dot com>
 	 * @author credits to Jason Sweat (added cc, bcc and subject functionality)
-	 * @param $email
-	 * @param $encoding
-	 * @param $text
-	 * @return string
 	 */
+
 	public static function helper($email, $encoding = 'none', $text = NULL)
 	{
 		$address = $email;
@@ -38,6 +48,7 @@ class SmartyMailto {
 				return '<script type="text/javascript">eval(unescape(\'' . $js_encode . '\'))</script>';
 				break;
 				
+			/* smarty javascript charcode */
 			case 'javascript_charcode':
 				$string = '<a href="mailto:' . $address . '">' . $address_text . '</a>';
 		
@@ -55,6 +66,7 @@ class SmartyMailto {
 				return $_ret;
 				break;
 				
+			/* smarty hex encoding */
 			case 'hex':
 				preg_match('!^(.*)(\?.*)$!', $address, $match);
 				if (!empty($match[2])) {
@@ -72,8 +84,22 @@ class SmartyMailto {
 		
 				$mailto = "&#109;&#97;&#105;&#108;&#116;&#111;&#58;";
 				return '<a href="' . $mailto . $address_encode . '">' . $address_text . '</a>';
+				break;
+			
+			/* drupal protection */
+			case 'drupal':
+				$address = str_replace('@', '[at]', $address);
+				return '<a href="mailto:' . $address . '">' . $address . '</a>';
+				break;
+				
+			/* texy protection */
+			case 'texy':
+				$address = str_replace('@', '<!-- ANTISPAM -->&#64;<!-- /ANTISPAM -->', $address);
+				return '<a href="mailto:' . $address . '">' . $address . '</a>';
+				break;	
+		
+			/* no encoding */
 			default:
-				// no encoding
 				return '<a href="mailto:' . $address . '">' . $address_text . '</a>';
 				break;
 			}
