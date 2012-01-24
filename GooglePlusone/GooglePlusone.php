@@ -35,7 +35,7 @@ class GooglePlusone extends Nette\Object {
 	public $url;
 	public $html5 = FALSE;
 	public $lang = 'cs';
-	public $assynchronous = FALSE;
+	public $asynchronous = FALSE;
 	
 	public function render() {
 		
@@ -65,7 +65,7 @@ class GooglePlusone extends Nette\Object {
 	
 	public function renderJavascript() {
 		
-		if ($this->assynchronous) {
+		if ($this->asynchronous) {
 			$el = Nette\Utils\Html::el('script type="text/javascript"');
 			$el->add("window.___gcfg = {lang: '".$this->lang."'};");
 			$el->add("(function() {var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;po.src = 'https://apis.google.com/js/plusone.js';var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);})();");
@@ -105,8 +105,8 @@ class GooglePlusone extends Nette\Object {
 		return $this;
 	}
 	
-	public function setAssynchronous($asyn) {
-		$this->assynchronous = (boolean) $asyn;
+	public function setAsynchronous($asyn) {
+		$this->asynchronous = (boolean) $asyn;
 		return $this;
 	}
 	
