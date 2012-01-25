@@ -4,7 +4,7 @@ include "nette.php";
 include "GoogleButton.php";
 
 $gb = new GoogleButton();
-$gb->setAssynchronous(TRUE);
+$gb->setAsynchronous(TRUE);
 $gb->setAnnotation($gb::ANNOTATION_BUBBLE);
 ?>
 
