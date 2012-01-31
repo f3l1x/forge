@@ -20,34 +20,37 @@
 
 namespace FbTools;
 
-class LikeButton extends FbTools
+class LikeBox extends FbTools
 {
 
-    /** @var bool */
-    public $send = true;
-
-    /** @var string */
-    public $layout = "standart";
+    /** @var int */
+    public $height = 100;
 
     /** @var bool */
     public $faces = false;
 
     /** @var string */
-    public $display = "like";
+    public $borderColor = "white";
+
+    /** @var bool */
+    public $stream = true;
+
+    /** @var bool */
+    public $header = true;
 
     public function render($params = array())
     {
         $this->setAll($params);
         // template vars
-        $this->template->setFile(dirname(__FILE__) . '/LikeButton.latte');
+        $this->template->setFile(dirname(__FILE__) . '/LikeBox.latte');
         $this->template->url = $this->getUrl();
-        $this->template->send = ($this->getSend() ? "true" : "false");
-        $this->template->layout = $this->getLayout();
         $this->template->width = $this->getWidth();
+        $this->template->height = $this->getHeight();
         $this->template->scheme = $this->getScheme();
-        $this->template->font = $this->getFont();
-        $this->template->display = $this->getDisplay();
         $this->template->faces = ($this->getFaces() ? "true" : "false");
+        $this->template->borderColor = $this->getBorderColor();
+        $this->template->stream = ($this->getStream() ? "true" : "false");
+        $this->template->header = ($this->getHeader() ? "true" : "false");
         $this->template->html5 = $this->isHtml5();
         $this->template->render();
     }
@@ -58,7 +61,6 @@ class LikeButton extends FbTools
     public function setFaces($faces)
     {
         $this->faces = $faces;
-        return $this;
     }
 
     /**
@@ -69,59 +71,68 @@ class LikeButton extends FbTools
         return $this->faces;
     }
 
-
     /**
-     * @param string $layout
+     * @param string $borderColor
      */
-    public function setLayout($layout)
+    public function setBorderColor($borderColor)
     {
-        $this->layout = $layout;
-        return $this;
+        $this->borderColor = $borderColor;
     }
 
     /**
      * @return string
      */
-    public function getLayout()
+    public function getBorderColor()
     {
-        return $this->layout;
+        return $this->borderColor;
     }
 
-
     /**
-     * @param boolean $send
+     * @param boolean $header
      */
-    public function setSend($send)
+    public function setHeader($header)
     {
-        $this->send = $send;
-        if ($send) { // required!!!
-            $this->setHtml5(true);
-        }
-        return $this;
+        $this->header = $header;
     }
 
     /**
      * @return boolean
      */
-    public function getSend()
+    public function getHeader()
     {
-        return $this->send;
+        return $this->header;
     }
 
     /**
-     * @param string $display
+     * @param int $height
      */
-    public function setDisplay($display)
+    public function setHeight($height)
     {
-        $this->display = $display;
+        $this->height = $height;
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getDisplay()
+    public function getHeight()
     {
-        return $this->display;
+        return $this->height;
+    }
+
+    /**
+     * @param boolean $stream
+     */
+    public function setStream($stream)
+    {
+        $this->stream = $stream;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function getStream()
+    {
+        return $this->stream;
     }
 
 }

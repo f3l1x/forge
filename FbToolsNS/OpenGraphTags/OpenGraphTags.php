@@ -1,10 +1,29 @@
 <?php
+/**
+ * FbTools 2.0 for PHP 5.3
+ *
+ * DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+ * Version 2, December 2004
+ *
+ * Copyright (C) 2011 Milan Felix Sulc <rkfelix[at]gmail.com>
+ *
+ * Everyone is permitted to copy and distribute verbatim or modified
+ * copies of this license document, and changing it is allowed as long
+ * as the name is changed.
+ *
+ * DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+ * TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
+ *
+ * 0. You just DO WHAT THE FUCK YOU WANT TO.
+ *
+ */
 
 namespace FbTools;
 
 use Nette;
 
-class OpenGraphTags extends Nette\Application\UI\Control {
+class OpenGraphTags extends Nette\Application\UI\Control
+{
 
     public $og = array(
         /* COMMON */
@@ -63,7 +82,8 @@ class OpenGraphTags extends Nette\Application\UI\Control {
 
     /* COMMON */
 
-    private function startup() {
+    private function startup()
+    {
 
         // HTML vs XHTML
         if ($this->isXhtml()) {
@@ -72,18 +92,19 @@ class OpenGraphTags extends Nette\Application\UI\Control {
             Nette\Utils\Html::$xhtml = FALSE;
         }
 
-		// Split more admin users
+        // Split more admin users
         if (count($this->fbAdmins) > 0) {
             $this->og['admins'] = implode(', ', $this->fbAdmins);
         }
-		
-		// Check auto url
-		if ($this->isAutoUrl()){
-            $this->og['url'] = $this->presenter->context->httpRequest->getUrl();				
-		}
+
+        // Check auto url
+        if ($this->isAutoUrl()) {
+            $this->og['url'] = $this->presenter->context->httpRequest->getUrl();
+        }
     }
 
-    function __set($name, $val) {
+    function __set($name, $val)
+    {
 
         if (Nette\Utils\Arrays::searchKey($this->og, $name) !== FALSE) {
             $this->og[$name] = Nette\Utils\Strings::normalize($val);
@@ -100,86 +121,97 @@ class OpenGraphTags extends Nette\Application\UI\Control {
 
     /* GETTERS & SETTERS */
 
-    public function isXhtml() {
-        return (bool) $this->xhtml;
+    public function isXhtml()
+    {
+        return (bool)$this->xhtml;
     }
 
-    public function setXhtml($xhtml) {
-        $this->xhtml = (boolean) $xhtml;
+    public function setXhtml($xhtml)
+    {
+        $this->xhtml = (boolean)$xhtml;
         return $this; //fluent interface
     }
 
-    public function isAutoUrl() {
-        return (bool) $this->autoUrl;
+    public function isAutoUrl()
+    {
+        return (bool)$this->autoUrl;
     }
 
-    public function useAutoUrl() {
-		$this->autoUrl = TRUE;
+    public function useAutoUrl()
+    {
+        $this->autoUrl = TRUE;
         return $this; //fluent interface
     }
 
-    public function addAdmin($name) {
+    public function addAdmin($name)
+    {
         $this->fbAdmins[] = Nette\Utils\Strings::normalize($name);
         return $this; //fluent interface
     }
 
     /* RENDERS */
 
-    public function render() {
+    public function render()
+    {
         $this->startup();
-	
+
         echo $this->parse();
         echo $this->parse('fb');
         echo $this->parse('audio');
         echo $this->parse('video');
     }
 
-    public function renderHead() {
+    public function renderHead()
+    {
         $this->startup();
 
         echo $this->html_xmlns;
     }
 
-    public function renderOg() {
+    public function renderOg()
+    {
         $this->startup();
 
         echo $this->parse();
         echo $this->parse('fb');
     }
 
-    public function renderAudio() {
+    public function renderAudio()
+    {
         $this->startup();
 
-		echo $this->parse('audio');
-		echo $this->parse('fb');
+        echo $this->parse('audio');
+        echo $this->parse('fb');
     }
 
-    public function renderVideo() {
+    public function renderVideo()
+    {
         $this->startup();
 
-		echo $this->parse('video');
- 		echo $this->parse('fb');
-   }
+        echo $this->parse('video');
+        echo $this->parse('fb');
+    }
 
     /* PARSER */
 
-    public function parse($section = 'og') {
-        
-		// working..
-		$data = "";
+    public function parse($section = 'og')
+    {
+
+        // working..
+        $data = "";
         $base = $section;
 
-		// add variable base
+        // add variable base
         if ($section == 'video' || $section == 'audio') {
             $base = "og:" . $section;
         }
 
-		// process variables
+        // process variables
         foreach ($this->$section as $key => $val) {
             // skip cycle
-			if (is_null($val)) continue;
-			
-			// html element
+            if (is_null($val)) continue;
+
+            // html element
             $el = Nette\Utils\Html::el("meta");
             $el->property = $base . ":" . $key;
             $el->content = $val;

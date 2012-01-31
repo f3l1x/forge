@@ -30,7 +30,7 @@ class Comments extends FbTools
     {
         $this->setAll($params);
         // template vars
-        $this->template->setFile(dirname(__FILE__) . '/comments.latte');
+        $this->template->setFile(dirname(__FILE__) . '/Comments.latte');
         $this->template->url = $this->getUrl();
         $this->template->posts = $this->getPosts();
         $this->template->width = $this->getWidth();
