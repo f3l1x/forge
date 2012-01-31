@@ -20,7 +20,9 @@
 
 namespace FbTools;
 
-use \Nette\Utils\Arrays;
+use \Nette\DI\Container,
+    \Nette\MemberAccessException,
+    \Nette\Utils\Validators;
 
 class FbTools extends \Nette\Application\UI\Control
 {
@@ -63,7 +65,7 @@ class FbTools extends \Nette\Application\UI\Control
     /**
      * @param \Nette\DI\Container $context
      */
-    public function setContext(\Nette\DI\Container $context)
+    public function setContext(Container $context)
     {
         $this->context = $context;
     }
@@ -201,7 +203,7 @@ class FbTools extends \Nette\Application\UI\Control
             $url = $this->url;
         }
 
-        if (\Nette\Utils\Validators::isUrl($url)) {
+        if (Validators::isUrl($url)) {
             return $url;
         } else {
             trigger_error('Url "' . $url . '" is not valid url address.!', E_USER_WARNING);
@@ -217,7 +219,7 @@ class FbTools extends \Nette\Application\UI\Control
             foreach ($params as $name => $value) {
                 $this->$name = $value;
             }
-        } catch (\Nette\MemberAccessException $e) {
+        } catch (MemberAccessException $e) {
             trigger_error('Unknown setter set' . ucfirst($name) . '() in ' . __CLASS__ . ' package.', E_USER_WARNING);
         }
     }
