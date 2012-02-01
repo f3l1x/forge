@@ -1,0 +1,9 @@
+Usage:
+
+
+$container = $configurator->createContainer();
+
+// ConfiguratorPanel
+\Panel\Configurator::register($container);
+
+That's all!
