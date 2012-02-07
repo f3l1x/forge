@@ -22,7 +22,7 @@ namespace Panel;
 
 use Nette\Utils\Strings;
 
-class Configurator extends \Nette\Object implements \Nette\Diagnostics\IBarPanel
+class Configurator extends Nette\DI\Diagnostics\ContainerPanel implements \Nette\Diagnostics\IBarPanel
 {
     /** @var \Nette\DI\Container */
     private $context;
@@ -38,12 +38,6 @@ class Configurator extends \Nette\Object implements \Nette\Diagnostics\IBarPanel
 
     /** @var array */
     private $netteServices = array();
-
-    public function __construct(\Nette\DI\Container $context)
-    {
-        $this->context = $context;
-        $this->filterMethods();
-    }
 
     /**
      * Renders HTML code for custom tab
