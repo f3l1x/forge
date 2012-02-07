@@ -51,7 +51,26 @@ class LikeButton extends FbTools
         $this->template->html5 = $this->isHtml5();
         $this->template->render();
     }
-
+	
+	public function renderFaces($params = array()) 
+	{
+		$this->setLayout('standart'); // required!
+		$this->setFaces(true);
+		$this->render($params);
+	}
+	
+	public function renderButton($params = array()) 
+	{
+		$this->setLayout('button_count');
+		$this->render($params);
+	}
+	
+	public function renderBox($params = array()) 
+	{
+		$this->setLayout('box_count');
+		$this->render($params);
+	}	
+	
     /**
      * @param boolean $faces
      */
