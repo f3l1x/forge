@@ -76,12 +76,6 @@ class FbTools extends \Nette\Application\UI\Control
         $this->template->render();
     }
 
-    public function renderScript()
-    {
-        $this->template->setFile(dirname(__FILE__) . '/script.latte');
-        $this->template->render();
-    }
-
     /**
      * @param int $appId
      */
