@@ -40,6 +40,7 @@ class MarkupControl extends Nette\Forms\Controls\BaseControl
     public function __construct($label, $content)
     {
         parent::__construct($label);
+        $this->setDisabled(true);
         $this->setContent($content);
     }
 
