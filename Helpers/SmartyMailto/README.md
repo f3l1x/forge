@@ -1,21 +1,27 @@
-Presenter:
+## SmartyMailto
 
-public function beforeRender(){
-	$this->template->registerHelper('email', 'SmartyMailto::helper');	
-}
+Small Latte helper based on Smarty idea for protect your email address.
 
 
----------------------------------------------
+Presenter
+===========
 
 
-Latte:
+	public function beforeRender(){
+		$this->template->registerHelper('email', 'SmartyMailto::helper');	
+	}
 
-{var $mail = "my@email.net"}
 
-{!$mail|email:"javascript"}
-{!$mail|email:"javascript_charcode"}
-{!$mail|email:"hex"}
-{!$mail|email:"javascript":"link to my email here"}
 
-'!' is necessary for not escaping html/javascript code
+Latte
+========
+
+	{var $mail = "my@email.net"}
+	
+	{!$mail|email:"javascript"}
+	{!$mail|email:"javascript_charcode"}
+	{!$mail|email:"hex"}
+	{!$mail|email:"javascript":"link to my email here"}
+
+<div style="color: red; font-weight: bold;">'!' is necessary for not escaping html/javascript code</div>
 
