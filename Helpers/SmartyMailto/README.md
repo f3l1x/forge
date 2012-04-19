@@ -23,5 +23,5 @@ Latte
 	{!$mail|email:"hex"}
 	{!$mail|email:"javascript":"link to my email here"}
 
-<div style="color: red; font-weight: bold;">'!' is necessary for not escaping html/javascript code</div>
+* '!' is necessary for not escaping html/javascript code
 
