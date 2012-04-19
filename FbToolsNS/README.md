@@ -1,6 +1,11 @@
-Usage:
+#FbTools (for >= 5.3 namespaces) 
+
+Collection of facebook components override for Nette 2.0
+
+##Usage
 
 1) Config (DI)
+===============
 
 	factories:
 		FbToolsScript:
@@ -20,19 +25,21 @@ Usage:
 					])
 
 2) Presenter
+===============
 
-protected function createComponentLikeButton()
-{
-	$fb = $this->context->createFbToolsLikeButton();
-	$fb->setUrl('http://www.g00gl.c0m');
-	return $fb;
-}
+	protected function createComponentLikeButton()
+	{
+		$fb = $this->context->createFbToolsLikeButton();
+		$fb->setUrl('http://www.g00gl.c0m');
+		return $fb;
+	}
 
-protected function createComponentFbToolsScript()
-{
-	return $this->context->createFbToolsScript();
-}
+	protected function createComponentFbToolsScript()
+	{
+		return $this->context->createFbToolsScript();
+	}
 
 3) Template
+==============
 
-{control likeButton, url => "http://www.anypage.com", send => false}
+	{control likeButton, url => "http://www.anypage.com", send => false}
