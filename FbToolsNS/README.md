@@ -8,10 +8,10 @@ Collection of facebook components override for Nette 2.0
 ===============
 
 	factories:
-		FbToolsScript:
+		fbToolsScript:
 			class: \FbTools\Script
 
-		FbToolsLikeButton:
+		fbToolsLikeButton:
 			class: \FbTools\LikeButton
 			setup:
 				- setContext(...)
