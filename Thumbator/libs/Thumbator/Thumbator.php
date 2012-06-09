@@ -70,10 +70,10 @@ class Thumbator extends \Nette\Object
 
         if (count($this->errors) > 0) {
             // Fire error handlers..
-            $this->onError($this);
+            $this->onError($this, $this->errors);
         } else {
             // Fire sucess handlers..
-            $this->onSuccess($this);
+            $this->onSuccess($this, $this->images);
         }
     }
 
@@ -161,5 +161,12 @@ class Thumbator extends \Nette\Object
         return $this->images;
     }
 
+    /**
+     * @return bool
+     */
+    public function isOK()
+    {
+        return count($this->errors) == 0;
+    }
 
 }
