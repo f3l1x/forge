@@ -17,6 +17,7 @@ class Thumb extends \Nette\Object
 
     /** Original sanitized filename */
     const FILENAME_FORMAT_ORIGINAL = 01000;
+
     /** *************************************** */
 
     /** @var  */
@@ -110,7 +111,7 @@ class Thumb extends \Nette\Object
 
         // ORIGINAL NAME
         if ($this->flags & self::FILENAME_FORMAT_ORIGINAL) {
-            $filename .= Utils::sanitized(strstr$this->originalName);
+            $filename .= Utils::sanitized($this->originalName);
         }
         // UNIQNAME
         if ($this->flags & self::FILENAME_FORMAT_UNIQNAME) {
@@ -147,7 +148,7 @@ class Thumb extends \Nette\Object
      */
     public function setOriginalName($originalName)
     {
-        $this->originalName = $originalName;
+        $this->originalName = substr($originalName, 0, strripos($originalName, '.'));
     }
 
     /**
