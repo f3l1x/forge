@@ -14,6 +14,9 @@ class Thumbator extends \Nette\Object
     /** @var array */
     private $errors = array();
 
+    /** @var array */
+    private $images = array();
+
     /**
      * Process handler
      * @var array
@@ -76,8 +79,6 @@ class Thumbator extends \Nette\Object
 
     public function thumbate(\Nette\Http\FileUpload $file, Thumb $thumb)
     {
-        \Nette\Diagnostics\Debugger::barDump('Thumbate start..');
-
         /** @var $image \Nette\Image */
         $image = $file->toImage();
 
@@ -86,15 +87,26 @@ class Thumbator extends \Nette\Object
         // Resize to thumb dimension
         $image->resize($dimension->getWidth(), $dimension->getHeight(), $dimension->getFlag());
 
-        // Filename
-        $filename = $thumb->getImagename();
+        // Image name
+        $imagename = $thumb->getImagename();
+
+        // File name
+        $filename =  $imagename . '.' . Utils::ext($file->name);
 
         // Gets properly directory
-        $path = Utils::dirs($this->repository, $thumb->getPath(), $filename . Utils::ext($file->name));
+        $path = Utils::dirs($this->repository, $thumb->getPath(), $filename);
+
+        // Store image data
+        $this->images[] = \Nette\ArrayHash::from(array(
+            'path' => Utils::dirs($this->repository, $thumb->getPath()),
+            'fullpath' => $path,
+            'filename' => $filename,
+            'name' => $imagename,
+            'ext' => Utils::ext($file->name),
+        ));
 
         // Save to file
         $image->save($path);
-
     }
 
     /**
@@ -116,7 +128,8 @@ class Thumbator extends \Nette\Object
     /**
      * @param Thumb $thumb
      */
-    public function addThumb(Thumb $thumb) {
+    public function addThumb(Thumb $thumb)
+    {
         $this->thumbs[] = $thumb;
     }
 
@@ -138,6 +151,14 @@ class Thumbator extends \Nette\Object
     public function getThumbs()
     {
         return $this->thumbs;
+    }
+
+    /**
+     * @return array
+     */
+    public function getImages()
+    {
+        return $this->images;
     }
 
 

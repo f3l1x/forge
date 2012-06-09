@@ -20,7 +20,7 @@ class Thumb extends \Nette\Object
 
     /** *************************************** */
 
-    /** @var  */
+    /** @var string */
     private $path;
 
     /** @var Dimension */
@@ -68,7 +68,7 @@ class Thumb extends \Nette\Object
     }
 
     /**
-     * @param  $path
+     * @param string $path
      */
     public function setPath($path)
     {
@@ -76,7 +76,7 @@ class Thumb extends \Nette\Object
     }
 
     /**
-     * @return
+     * @return string
      */
     public function getPath()
     {
@@ -115,14 +115,13 @@ class Thumb extends \Nette\Object
         }
         // UNIQNAME
         if ($this->flags & self::FILENAME_FORMAT_UNIQNAME) {
-            $filename .= md5($this->dimension->getWidth() . $this->dimension->getHeight(). $this->path . time());
+            $filename .= md5($this->dimension->getWidth() . $this->dimension->getHeight() . $this->path . time());
         }
 
         // DIMENSIONS
         if ($this->flags & self::FILENAME_FORMAT_DIMENSION) {
             $filename .= $this->dimension->getWidth() . 'x' . $this->dimension->getHeight();
         }
-
 
         return $filename;
     }
