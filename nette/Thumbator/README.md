@@ -65,7 +65,7 @@
 
 ## Handlers
 
-- onProcess($thumbator, $thumb)
-- onComplete($thumbator)
-- onError($thumbator, $errors)
-- onSucess($thumbator, $images)
+- onProcess ($thumbator, $thumb)
+- onComplete ($thumbator)
+- onError ($thumbator, $errors)
+- onSucess ($thumbator, $images)
