@@ -14,6 +14,11 @@ class Dimension extends \Nette\Object
     /** @var int */
     private $flag = \Nette\Image::FILL;
 
+    /**
+     * @param int $width
+     * @param int $height
+     * @param int $flag
+     */
     public function __construct($width, $height, $flag = \Nette\Image::FILL)
     {
         if ($width > 0 && $height > 0) {

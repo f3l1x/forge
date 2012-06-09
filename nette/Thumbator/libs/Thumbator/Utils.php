@@ -2,7 +2,8 @@
 
 namespace Thumbator;
 
-class Utils extends \Nette\Utils\Strings {
+class Utils extends \Nette\Utils\Strings
+{
 
     /**
      * Join and transfer more / to only 1
@@ -10,10 +11,19 @@ class Utils extends \Nette\Utils\Strings {
      * @static
      * @return array|mixed|string
      */
-    public static function dirs(/** $dir1, $dir2, .. */) {
+    public static function dirs(/** $dir1, $dir2, .. */)
+    {
         $dirs = func_get_args();
+
+        // join to 1 dir
         $dirs = implode('/', $dirs);
+
+        // replace dopple / to only 1
         $dirs = preg_replace('#[\/]{2,}#', '/', $dirs);
+
+        // replace table
+        $dirs = str_replace(array('./'), array(''), $dirs);
+
         return $dirs;
     }
 
@@ -26,7 +36,7 @@ class Utils extends \Nette\Utils\Strings {
      */
     public static function ext($str)
     {
-        return self::lower(substr($str, strripos($str, '.')));
+        return self::lower(substr($str, strripos($str, '.') + 1));
     }
 
     /**
@@ -36,7 +46,8 @@ class Utils extends \Nette\Utils\Strings {
      * @param $name
      * @return string
      */
-    public static function sanitized($name) {
+    public static function sanitized($name)
+    {
         return trim(self::webalize($name, '.', FALSE), '.-');
     }
 }
