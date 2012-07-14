@@ -1,0 +1,10 @@
+{block content}
+    {ifCurrentIn "Page:default", "Homepage:default"}
+    Ahojda
+    {/ifCurrentIn}
+
+
+<div n:ifCurrentIn="'Homepage:*'">
+    Cau
+</div>
+{/block}
