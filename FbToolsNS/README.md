@@ -7,16 +7,16 @@ Collection of facebook components override for Nette 2.0
 ### 1) Config (DI)
 
 
-- list style
-	factories:
+**list style**
 
+	factories:
 		fbToolsLikeButton:
 			class: \FbTools\LikeButton
 			setup:
 				- setUrl('http://www.mojestranka.cz')
 				- setWidth(150)
 		
-- 1 array style
+**1 array style**
 
 	factories:
 		fbToolsLikeButton:
@@ -28,7 +28,8 @@ Collection of facebook components override for Nette 2.0
 					send: false,
 					])	
 		
-- facebook script (you can place it by yourself)
+**facebook script (you can place it by yourself)**
+
 	factories:
 		fbToolsScript:
 			class: \FbTools\Script
@@ -49,8 +50,10 @@ Collection of facebook components override for Nette 2.0
 
 ### 3) Template
 
-- all configured
+**all configured**
+
 	{control likeButton}
 	
-- custom settings
+**custom settings**
+
 	{control likeButton, url => "http://www.anypage.com", send => false}
