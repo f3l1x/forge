@@ -2,9 +2,18 @@
 
 Add HTML to your form
 
+Version
+-----
+**1.1**
+# phpDocs
+# better manual
+
+**1.0**
+# base concept
+
 Scheme
 -----
-	$form->addMarkup(NAME, LABEL, DATA);
+		$form->addMarkup(NAME, LABEL, DATA);
 
 Use case
 -----
@@ -28,3 +37,7 @@ Use case
 		$tpl = $this->getTemplate();
 		$tpl->setFile(__DIR__ . '/template.latte');
 		$form->addMarkup('myHtmlInput4', 'Nette\Templating\FileTemplate', $tpl);
+
+* 5) File path
+
+		$form->addMarkup('myHtmlInput5', 'File path', 'home/dir/filetemplate.latte');

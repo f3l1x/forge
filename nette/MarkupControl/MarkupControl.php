@@ -26,16 +26,23 @@
  *
  * @author Milan Felix Sulc
  * @author Petr Stuchl4n3k Stuchlik
+ *
+ * @version 1.1
  */
 class MarkupControl extends Nette\Forms\Controls\BaseControl
 {
 
-    /** @var string|\Nette\Templating\Template */
+    /** @var string|\Nette\Templating\Template|\Nette\Templating\FileTemplate */
     private $content;
 
+    /** @var string */
+    private $wrapper = "div";
+
     /**
+     * Constructor
+     *
      * @param string $label
-     * @param array $options
+     * @param string|\Nette\Templating\Template|\Nette\Templating\FileTemplate $content
      */
     public function __construct($label, $content)
     {
@@ -45,7 +52,10 @@ class MarkupControl extends Nette\Forms\Controls\BaseControl
     }
 
     /**
-     * @param  $content
+     * Sets html content
+     *
+     * @param string|\Nette\Templating\Template|\Nette\Templating\FileTemplate $content
+     * @return void
      */
     public function setContent($content)
     {
@@ -53,7 +63,9 @@ class MarkupControl extends Nette\Forms\Controls\BaseControl
     }
 
     /**
-     * Return html content
+     * Gets html content
+     *
+     * @return Nette\Templating\FileTemplate|Nette\Templating\Template|string
      */
     public function getContent()
     {
@@ -77,14 +89,17 @@ class MarkupControl extends Nette\Forms\Controls\BaseControl
     public function getControl()
     {
         $parentControl = parent::getControl();
-        $control = \Nette\Utils\Html::el("div")->setId($parentControl->getId());
+        $control = \Nette\Utils\Html::el($this->wrapper)->setId($parentControl->getId());
         $control->setHtml($this->getContent());
         return $control;
     }
 
     /**
-     * @static
      * Register input to \Nette\Forms\Container
+     *
+     * @static
+     * @param string $method
+     * @return void
      */
     public static function register($method = 'addMarkup')
     {
