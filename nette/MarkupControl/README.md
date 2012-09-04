@@ -2,6 +2,10 @@
 
 Add HTML to your form
 
+Scheme
+-----
+	$form->addMarkup(NAME, LABEL, DATA);
+
 Use case
 -----
 
