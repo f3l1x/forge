@@ -5,11 +5,11 @@ Add HTML to your form
 Version
 -----
 **1.1**
-# phpDocs
-# better manual
+- phpDocs
+- better manual
 
 **1.0**
-# base concept
+- base concept
 
 Scheme
 -----
