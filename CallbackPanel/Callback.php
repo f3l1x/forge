@@ -55,8 +55,12 @@ class Callback extends \Nette\Object implements \Nette\Diagnostics\IBarPanel
         $this->callbacks = array_merge($this->callbacks, $callbacks);
 
         // Check signal receiver
-        if ($request->getQuery("callback-do", false)) {
-            $this->processSignal($request->getQuery("callback-do"));
+        if (($cb = $request->getQuery("callback-do", false))) {
+            if ($cb = "all") {
+                $this->invokeCallbacks();
+            } else {
+                $this->invokeCallback($request->getQuery("callback-do"));
+            }
         }
     }
 
@@ -67,12 +71,21 @@ class Callback extends \Nette\Object implements \Nette\Diagnostics\IBarPanel
      * @throws \InvalidArgumentException
      * @return void
      */
-    protected function processSignal($name)
+    private function invokeCallback($name)
     {
         if (strlen($name) > 0 && array_key_exists($name, $this->callbacks)) {
             $this->callbacks[$name]['callback']->invokeArgs($this->callbacks[$name]['args']);
         } else {
             throw new \InvalidArgumentException("Callback '" . $name . "' doesn't exist.");
+        }
+    }
+
+    /**
+     * Invoke all callbacks
+     */
+    private function invokeCallbacks() {
+        foreach ($this->callbacks as $callback) {
+            $callback['callback']->invokeArgs($callback['args']);
         }
     }
 
@@ -97,9 +110,14 @@ class Callback extends \Nette\Object implements \Nette\Diagnostics\IBarPanel
      */
     public function clearSession($args = array())
     {
+        /** @var $session \Nette\Http\Session */
         $session = $this->container->getService("session");
-        $session->destroy();
-        $session->start();
+        if (!$session->isStarted()) {
+            $session->clean();
+        } else {
+            $session->destroy();
+            $session->start();
+        }
     }
 
     /**
