@@ -19,7 +19,7 @@ class Callback extends \Nette\Object implements \Nette\Diagnostics\IBarPanel
     /** @var \Nette\DI\Container */
     private $container;
 
-    /** @var array[name => string, callback => calleble, args => array()] */
+    /** @var array[name => string, callback => callable, args => array()] */
     private $callbacks;
 
     /**
@@ -116,9 +116,9 @@ class Callback extends \Nette\Object implements \Nette\Diagnostics\IBarPanel
         }
         foreach (\Nette\Utils\Finder::findFiles('*')->exclude(".*")->from($folder)->childFirst() as $entry) {
             if (is_dir($entry)) {
-                @rmdir($entry); // safty
+                @rmdir($entry); // safety
             } else if (is_file($entry)) {
-                @unlink($entry); // safty
+                @unlink($entry); // safety
             }
         }
     }
