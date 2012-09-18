@@ -338,7 +338,7 @@ class FbTools_ActivityFeed extends NControl
         $query = http_build_query($settings, '', '&');
 
         // start tag
-        if ($this->writeCopyrightTags()) $output .= "<!-- @FbTools: ActivityFeed --!>\n";
+        if ($this->copyright) $output .= "<!-- @FbTools: ActivityFeed --!>\n";
 
         // iframe tag
         $el = NHtml::el("iframe");
@@ -354,7 +354,7 @@ class FbTools_ActivityFeed extends NControl
         $output .= $el;
 
         // end tag
-        if ($this->writeCopyrightTags()) $output .= "\n<!-- /@FbTools: ActivityFeed --!>\n";
+        if ($this->copyright) $output .= "\n<!-- /@FbTools: ActivityFeed --!>\n";
 
         echo $output;
     }
