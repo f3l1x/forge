@@ -176,7 +176,7 @@ class FbTools_Comments extends NControl
         $output = null;
 
         // start tag
-        if ($this->copyright) $output .= "<!-- @FbTools: Comments --!>\n";
+        if ($this->copyright) $output .= "<!-- @FbTools: Comments -->\n";
 
         // div tag
         $div = NHtml::el("div");
@@ -196,7 +196,7 @@ class FbTools_Comments extends NControl
         $output .= $fb;
 
         // end tag
-        if ($this->copyright) $output .= "\n<!-- /@FbTools: Comments --!>\n";
+        if ($this->copyright) $output .= "\n<!-- /@FbTools: Comments -->\n";
 
         echo $output;
     }
