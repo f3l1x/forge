@@ -1,145 +1,203 @@
 <?php
 /**
- * Comments control
+ * Comments Control
  *
- * @package #FbTools
- * @copyright Milan Felix Sulx
- * @licence WTFPL - Do What The Fuck You Want To Public License 
- * @version 1.1
+ * @package FbTools
+ * @copyright Milan Felix Sulc <rkfelix@gmail.com>
+ * @licence WTFPL - Do What The Fuck You Want To Public License
+ * @version 1.2
  */
-
-/**
-Facebook Attributes
-    href - the URL for this Comments plugin. News feed stories on Facebook will link to this URL.
-    width - the width of the plugin in pixels. Minimum width: 350px.
-    num_posts - the number of comments to show by default. Default: 10.
-*/
 
 class FbTools_Comments extends NControl
 {
-	// comment url
-	public $url = null;
-	
-	// auto get url
-	public $autoUrl = false;
-	
-	// box width
-	public $width = 450;
-	
-	// number of posts
-	public $numPosts = 10;
-	
-	// copyright
-	public $copyright = true;
-	
-	/*
-	 * Setters
-	 */
-	public function setUrl($url){
-		$this->url = $url;
-		return $this; //fluent interface
-	}
-	
-	public function setWidth($width){
-		$this->width = (int) $width;
-		return $this; //fluent interface
-	}
+    /**
+     * Comment url
+     * @var string
+     */
+    public $url = null;
 
-	public function setNumPosts($posts){
-		$this->numPosts = (int) $posts;
-		return $this; //fluent interface
-	}
+    /**
+     * Auto get url
+     * @var bool
+     */
+    public $autoUrl = false;
 
-	public function setAutoUrl($autoUrl){
-		$this->autoUrl = $autoUrl;	
-		return $this; //fluent interface
-	}
-	
-	public function setCopyright($copyright){
-		$this->copyright = $copyright;	
-		return $this; //fluent interface
-	}
+    /**
+     * Box width
+     * @var int
+     */
+    public $width = 450;
 
-	/*
-	 *Getters
-	 */
-		
-	public function getUrl(){
-		if($this->isAutoUrl()){
-			return (string) NEnvironment::getHttpRequest()->getUri();	
-		}else{
-			return $this->url;	
-		}
-	}
+    /**
+     * Number of posts
+     * @var int
+     */
+    public $numPosts = 10;
 
-	public function getWidth(){
-		return (int) $this->width;	
-	}
+    /**
+     * Show copyright
+     * @var bool
+     */
+    public $copyright = true;
 
-	public function getNumPosts(){
-		return (int) $this->numPosts;	
-	}
-	
-	public function isAutoUrl(){
-		return $this->autoUrl;	
-	}
-	
-	public function writeCopyrightTags(){
-		return $this->copyright;	
-	}
+    /** ************************************** SETTERS/GETTERS ************************************** */
 
-	/*
-	 * Render
-	 */
-	public function render($args = array()){
-		$this->parseParams($args);
-		$this->generate();	
-	}
-		
-	/* parse control config from template */
-	public function parseParams($params = array()){
-		// set up url
-		if(array_key_exists('url', $params))
-			$this->setUrl($params['url']);	
-		// set up width
-		if(array_key_exists('width', $params))
-			$this->setWidth($params['width']);	
-		// set up height
-		if(array_key_exists('posts', $params))
-			$this->setNumPosts($params['posts']);	
-	}
+    /**
+     * @param boolean $autoUrl
+     * @return FbTools_Comments
+     */
+    public function setAutoUrl($autoUrl)
+    {
+        $this->autoUrl = $autoUrl;
+        return $this;
+    }
 
-	/*
-	 * Generating
-	 */
-	public function generate(){
-		
-		// inic
-		$output = null;
-		
-		// start tag
-		if($this->writeCopyrightTags()) $output .= "<!-- @FbTools: Comments --!>\n";
+    /**
+     * @return boolean
+     */
+    public function getAutoUrl()
+    {
+        return $this->autoUrl;
+    }
 
-		// div tag
-		$div = NHtml::el("div");
-		$div->id = "fb-root";     
-		$output .= $div;
-        
-		// script tag
-		$script = NHtml::el("script");
-		$script->src = "http://connect.facebook.net/en_US/all.js#appId=186670371343644&xfbml=1";     
-		$output .= $script;		
-		
-		// facebook tag
-		$fb = NHtml::el("fb:comments");
-		$fb->href = $this->getUrl();
-		$fb->num_posts = $this->getNumPosts();
-		$fb->width = $this->getWidth();
-		$output .= $fb;		
-		
-		// end tag
-		if($this->writeCopyrightTags()) $output .= "\n<!-- /@FbTools: Comments --!>\n";
-		
-		echo $output;
-	}
+    /**
+     * @param boolean $copyright
+     * @return FbTools_Comments
+     */
+    public function setCopyright($copyright)
+    {
+        $this->copyright = $copyright;
+        return $this;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function getCopyright()
+    {
+        return $this->copyright;
+    }
+
+    /**
+     * @param int $numPosts
+     * @return FbTools_Comments
+     */
+    public function setNumPosts($numPosts)
+    {
+        $this->numPosts = $numPosts;
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getNumPosts()
+    {
+        return $this->numPosts;
+    }
+
+    /**
+     * @param string $url
+     * @return FbTools_Comments
+     */
+    public function setUrl($url)
+    {
+        $this->url = $url;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUrl()
+    {
+        if ($this->autoUrl) {
+            return (string)NEnvironment::getHttpRequest()->getUrl();
+        } else {
+            return $this->url;
+        }
+    }
+
+    /**
+     * @param int $width
+     * @return FbTools_Comments
+     */
+    public function setWidth($width)
+    {
+        $this->width = $width;
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getWidth()
+    {
+        return $this->width;
+    }
+
+    /** ************************************** RENDERS ************************************** */
+
+    /**
+     * @param array $args
+     */
+    public function render($args = array())
+    {
+        $this->parseParams($args);
+        $this->generate();
+    }
+
+    /**
+     * Parse control config from template
+     * @param array $params
+     */
+    public function parseParams($params = array())
+    {
+        // Sets url
+        if (array_key_exists('url', $params)) {
+            $this->setUrl($params['url']);
+        }
+        // Sets width
+        if (array_key_exists('width', $params)) {
+            $this->setWidth($params['width']);
+        }
+        // Sets height
+        if (array_key_exists('posts', $params)) {
+            $this->setNumPosts($params['posts']);
+        }
+    }
+
+    /**
+     * Generating
+     */
+    public function generate()
+    {
+        // inic
+        $output = null;
+
+        // start tag
+        if ($this->copyright) $output .= "<!-- @FbTools: Comments --!>\n";
+
+        // div tag
+        $div = NHtml::el("div");
+        $div->id = "fb-root";
+        $output .= $div;
+
+        // script tag
+        $script = NHtml::el("script");
+        $script->src = "http://connect.facebook.net/en_US/all.js#appId=186670371343644&xfbml=1";
+        $output .= $script;
+
+        // facebook tag
+        $fb = NHtml::el("fb:comments");
+        $fb->href = $this->getUrl();
+        $fb->num_posts = $this->getNumPosts();
+        $fb->width = $this->getWidth();
+        $output .= $fb;
+
+        // end tag
+        if ($this->copyright) $output .= "\n<!-- /@FbTools: Comments --!>\n";
+
+        echo $output;
+    }
 }
