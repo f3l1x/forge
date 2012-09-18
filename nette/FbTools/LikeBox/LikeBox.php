@@ -1,226 +1,332 @@
 ﻿<?php
 /**
- * LikeBox control
+ * LikeBox Control
  *
- * @package #FbTools
- * @copyright Milan Felix Sulx
- * @licence WTFPL - Do What The Fuck You Want To Public License 
- * @version 1.1
+ * @package FbTools
+ * @copyright Milan Felix Sulc <rkfelix@gmail.com>
+ * @licence WTFPL - Do What The Fuck You Want To Public License
+ * @version 1.2
  */
- 
-/**
-Facebook Attributes
-    href - the URL of the Facebook Page for this Like Box
-    width - the width of the plugin in pixels. Default width: 300px.
-    height - the height of the plugin in pixels. The default height varies based on number of faces to display, and whether the stream is displayed. With the stream displayed, and 10 faces the default height is 556px. With no faces, and no stream the default height is 63px.
-    colorscheme - the color scheme for the plugin. Options: 'light', 'dark'
-    show_faces - specifies whether or not to display profile photos in the plugin. Default value: true.
-    stream - specifies whether to display a stream of the latest posts from the Page's wall
-    header - specifies whether to display the Facebook header at the top of the plugin.
 
- */
-class FbTools_LikeBox extends NControl implements IFbTools
+class FbTools_LikeBox extends NControl
 {
-	// like url
-	public $url = null;
+    /**
+     * Like url
+     * @var string
+     */
+    public $url = null;
 
-	// box width
-	public $width = 292;
-	
-	// box height
-	public $height = 63;
-	
-	// colorScheme
-	public $colorScheme = "light";	
-	
-	// showFaces
-	public $showFaces = false;
+    /**
+     * Box width
+     * @var int
+     */
+    public $width = 292;
 
-	// showStream
-	public $showStream = false;
+    /**
+     * Box height
+     * @var int
+     */
+    public $height = 63;
 
-	// showHeader
-	public $showHeader = false;
-	
-	// copyright
-	public $copyright = true;
-	
+    /**
+     * Color scheme
+     * @var string
+     */
+    public $colorScheme = "light";
 
-	/*
-	 * Setters
-	 */
-	public function setUrl($url){
-		$this->url = $url;
-		return $this; //fluent interface
-	}
-	
-	public function setWidth($width){
-		$this->width = (int) $width;
-		return $this; //fluent interface
-	}
+    /**
+     * Show faces
+     * @var bool
+     */
+    public $showFaces = false;
 
-	public function setHeight($height){
-		$this->height = (int) $height;
-		return $this; //fluent interface
-	}
+    /**
+     * Show stream
+     * @var bool
+     */
+    public $showStream = false;
 
-	public function setColorScheme($scheme){
-		$this->colorScheme = $scheme;	
-		return $this; //fluent interface
-	}
+    /**
+     * Show header
+     * @var bool
+     */
+    public $showHeader = false;
 
-	public function setShowFaces($showFaces){
-		$this->showFaces = $showFaces;
-		return $this; //fluent interface
-	}
+    /**
+     * Show copyright
+     * @var bool
+     */
+    public $copyright = true;
 
-	public function setShowStream($showStream){
-		$this->showStream = $showStream;
-		return $this; //fluent interface
-	}
+    /** ************************************** SETTERS/GETTERS ************************************** */
 
-	public function setShowHeader($showHeader){
-		$this->showHeader = $showHeader;
-		return $this; //fluent interface
-	}
-	
-	public function setCopyright($copyright){
-		$this->copyright = $copyright;	
-		return $this; //fluent interface
-	}
-	
-	/*
-	 *Getters
-	 */
-		
-	public function getUrl(){
-		return $this->url;	
-	}
-		
-	public function getWidth(){
-		return (int) $this->width;	
-	}
+    /**
+     * @param string $colorScheme
+     * @return FbTools_LikeBox
+     */
+    public function setColorScheme($colorScheme)
+    {
+        $this->colorScheme = $colorScheme;
+        return $this;
+    }
 
-	public function getHeight(){
-		if((int) $this->height == 0) $this->autoHeight();
-		return (int) $this->height;	
-	}
-	
-	public function getColorScheme(){
-		return $this->colorScheme;	
-	}
+    /**
+     * @return string
+     */
+    public function getColorScheme()
+    {
+        return $this->colorScheme;
+    }
 
-	public function getShowFaces(){
-		return (int) $this->showFaces;	
-	}
+    /**
+     * @param boolean $copyright
+     * @return FbTools_LikeBox
+     */
+    public function setCopyright($copyright)
+    {
+        $this->copyright = $copyright;
+        return $this;
+    }
 
-	public function getShowHeader(){
-		return (int) $this->showHeader;	
-	}
-	
-	public function getShowStream($boolean = false){
-		return (int) $this->showStream;	
-	}
-	
-	public function writeCopyrightTags(){
-		return $this->copyright;	
-	}
-	
-	public function autoHeight(){
-		$height = 62;
-		if($this->getShowFaces() == 1) $height += 194;
-		if($this->getShowHeader() == 1) $height += 32;
-		if($this->getShowStream() == 1) $height += 331;
+    /**
+     * @return boolean
+     */
+    public function getCopyright()
+    {
+        return $this->copyright;
+    }
 
-		$this->setHeight($height);
-	}
+    /**
+     * @param int $height
+     * @return FbTools_LikeBox
+     */
+    public function setHeight($height)
+    {
+        $this->height = $height;
+        return $this;
+    }
 
-	/*
-	 * Renders
-	 */
-	public function render($args = array()){
-		$this->parseParams($args);
-		$this->generate();	
-	}
-	
-	public function renderFull($args = array()){
-		$this->parseParams($args);
-		$this->setShowFaces(true);
-		$this->setShowHeader(true);
-		$this->setShowStream(true);
-		$this->generate();	
-	}
-	
-	public function renderStream($args = array()){
-		$this->parseParams($args);
-		$this->setShowStream(true);
-		$this->generate();	
-	}
+    /**
+     * @return int
+     */
+    public function getHeight()
+    {
+        return $this->height;
+    }
 
-	/* parse control config from template */
-	public function parseParams($params = array()){
-		// set up url
-		if(array_key_exists('url', $params))
-			$this->setUrl($params['url']);	
-		// set up width
-		if(array_key_exists('width', $params))
-			$this->setWidth($params['width']);	
-		// set up height
-		if(array_key_exists('height', $params))
-			$this->setHeight($params['height']);	
-		// set up colorScheme
-		if(array_key_exists('colorScheme', $params))
-			$this->setColorScheme($params['colorScheme']);	
-		// set up showFaces
-		if(array_key_exists('showFaces', $params))
-			$this->setShowFaces($params['showFaces']);	
-		// set up showHeader
-		if(array_key_exists('showHeader', $params))
-			$this->setShowHeader($params['showHeader']);	
-		// set up showStream
-		if(array_key_exists('showStream', $params))
-			$this->setShowStream($params['showStream']);		
-	}
+    /**
+     * @param boolean $showFaces
+     * @return FbTools_LikeBox
+     */
+    public function setShowFaces($showFaces)
+    {
+        $this->showFaces = $showFaces;
+        return $this;
+    }
 
-	/*
-	 * Generating
-	 */
-	public function generate(){
+    /**
+     * @return boolean
+     */
+    public function getShowFaces()
+    {
+        return $this->showFaces;
+    }
 
-		// inic
-		$output = null;
+    /**
+     * @param boolean $showHeader
+     * @return FbTools_LikeBox
+     */
+    public function setShowHeader($showHeader)
+    {
+        $this->showHeader = $showHeader;
+        return $this;
+    }
 
-		// settings
-		$settings = array();
-		$settings['href'] = $this->getUrl();
-		$settings['width'] = $this->getWidth();
-		$settings['colorscheme'] = $this->getColorScheme();
-		$settings['show_faces'] = (bool) $this->getShowFaces();
-		$settings['stream'] = (bool) $this->getShowStream();
-		$settings['header'] = (bool) $this->getShowHeader();
-		$settings['height'] = $this->getHeight();
-			
-		$query = http_build_query($settings, '', '&');
-		
-		// start tag
-		if($this->writeCopyrightTags()) $output .= "<!-- @FbTools: LikeBox --!>\n";
-		
-		// iframe tag
-		$el = NHtml::el("iframe");
-		$el->src = "http://www.facebook.com/plugins/likebox.php?" . $query;
-		$el->scrolling = "no";
-		$el->frameborder = 0;
-		$el->allowTransparency = "true";
-			$el->style['border'] = "none";
-			$el->style['overflow'] = "hidden";
-			$el->style['width'] = $this->getWidth() . "px";
-			$el->style['height'] = $this->getHeight() . "px";
-		
-		$output .= $el;
-		
-		// end tag
-		if($this->writeCopyrightTags()) $output .= "\n<!-- /@FbTools: LikeBox --!>\n";
-		
-		echo $output;
-	}
+    /**
+     * @return boolean
+     */
+    public function getShowHeader()
+    {
+        return $this->showHeader;
+    }
+
+    /**
+     * @param boolean $showStream
+     * @return FbTools_LikeBox
+     */
+    public function setShowStream($showStream)
+    {
+        $this->showStream = $showStream;
+        return $this;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function getShowStream()
+    {
+        return $this->showStream;
+    }
+
+    /**
+     * @param string $url
+     * @return FbTools_LikeBox
+     */
+    public function setUrl($url)
+    {
+        $this->url = $url;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUrl()
+    {
+        return $this->url;
+    }
+
+    /**
+     * @param int $width
+     * @return FbTools_LikeBox
+     */
+    public function setWidth($width)
+    {
+        $this->width = $width;
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getWidth()
+    {
+        if ($this->width <= 0) $this->autoHeight();
+        return $this->width;
+    }
+
+    /**
+     * Sets default height
+     */
+    public function autoHeight()
+    {
+        $height = 62;
+        if ($this->getShowFaces() == 1) $height += 194;
+        if ($this->getShowHeader() == 1) $height += 32;
+        if ($this->getShowStream() == 1) $height += 331;
+
+        $this->setHeight($height);
+    }
+
+    /** ************************************** RENDERS ************************************** */
+
+    /**
+     * @param array $args
+     */
+    public function render($args = array())
+    {
+        $this->parseParams($args);
+        $this->generate();
+    }
+
+    /**
+     * @param array $args
+     */
+    public function renderFull($args = array())
+    {
+        $this->parseParams($args);
+        $this->setShowFaces(true);
+        $this->setShowHeader(true);
+        $this->setShowStream(true);
+        $this->generate();
+    }
+
+    /**
+     * @param array $args
+     */
+    public function renderStream($args = array())
+    {
+        $this->parseParams($args);
+        $this->setShowStream(true);
+        $this->generate();
+    }
+
+    /**
+     * Parse control config from template
+     * @param array $params
+     */
+    public function parseParams($params = array())
+    {
+        // Sets url
+        if (array_key_exists('url', $params)) {
+            $this->setUrl($params['url']);
+        }
+        // Sets width
+        if (array_key_exists('width', $params)) {
+            $this->setWidth($params['width']);
+        }
+        // Sets height
+        if (array_key_exists('height', $params)) {
+            $this->setHeight($params['height']);
+        }
+        // Sets colorScheme
+        if (array_key_exists('colorScheme', $params)) {
+            $this->setColorScheme($params['colorScheme']);
+        }
+        // Sets showFaces
+        if (array_key_exists('showFaces', $params)) {
+            $this->setShowFaces($params['showFaces']);
+        }
+        // Sets showHeader
+        if (array_key_exists('showHeader', $params)) {
+            $this->setShowHeader($params['showHeader']);
+        }
+        // Sets showStream
+        if (array_key_exists('showStream', $params)) {
+            $this->setShowStream($params['showStream']);
+        }
+    }
+
+    /**
+     * Generating
+     */
+    public function generate()
+    {
+
+        // inic
+        $output = null;
+
+        // settings
+        $settings = array();
+        $settings['href'] = $this->getUrl();
+        $settings['width'] = $this->getWidth();
+        $settings['colorscheme'] = $this->getColorScheme();
+        $settings['show_faces'] = (bool)$this->getShowFaces();
+        $settings['stream'] = (bool)$this->getShowStream();
+        $settings['header'] = (bool)$this->getShowHeader();
+        $settings['height'] = $this->getHeight();
+
+        $query = http_build_query($settings, '', '&');
+
+        // start tag
+        if ($this->copyright) $output .= "<!-- @FbTools: LikeBox -->\n";
+
+        // iframe tag
+        $el = NHtml::el("iframe");
+        $el->src = "http://www.facebook.com/plugins/likebox.php?" . $query;
+        $el->scrolling = "no";
+        $el->frameborder = 0;
+        $el->allowTransparency = "true";
+        $el->style['border'] = "none";
+        $el->style['overflow'] = "hidden";
+        $el->style['width'] = $this->getWidth() . "px";
+        $el->style['height'] = $this->getHeight() . "px";
+
+        $output .= $el;
+
+        // end tag
+        if ($this->copyright) $output .= "\n<!-- /@FbTools: LikeBox -->\n";
+
+        echo $output;
+    }
 }
