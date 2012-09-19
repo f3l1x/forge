@@ -1,4 +1,6 @@
-#FbTools (PHP >= 5.3 namespaces) 
+#FbTools 2.0
+
+![FbTools](https://raw.github.com/f3l1x/nette-plugins/master/FbToolsNS/logo.png)
 
 Collection of facebook components override for Nette 2.0
 
