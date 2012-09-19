@@ -1,5 +1,7 @@
 <?php
 /*
+ * Google +1
+ *
  * DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
  * Version 2, December 2004
  * 
@@ -16,116 +18,53 @@
  * 
  */
 
-class GooglePlusone extends Nette\Object { 
+/**
+ * Show G+1 button on your page
+ *
+ * @author Milan Felix Sulc
+ * @author Petr Stuchl4n3k Stuchlik
+ *
+ * @version 1.1
+ */
+class GooglePlusone extends \Nette\Application\UI\Control
+{
 
-    /**
-     * Size constants
-     */
+    /** Size constants */
+    const SIZE_SMALL = "small";
+    const SIZE_MEDIUM = "medium";
+    const SIZE_STANDART = "standart";
+    const SIZE_TALL = "tall";
 
-	const SIZE_SMALL = "small";
-	const SIZE_MEDIUM = "medium";
-	const SIZE_STANDART = "standart";
-	const SIZE_TALL = "tall";
+    /** Annotation constants */
+    const ANNOTATION_INLINE = "inline";
+    const ANNOTATION_BUBBLE = "bubble";
+    const ANNOTATION_NONE = "none";
 
-    /**
-     * Annotation constants
-     */
-	const ANNOTATION_INLINE = "inline";
-	const ANNOTATION_BUBBLE = "bubble";
-	const ANNOTATION_NONE = "none";
+    /** Google URL */
+    const GOOGLE_PLUSONE_URL = 'https://apis.google.com/js/plusone.js';
 
-    /**
-     * Google url
-     */
-	const GOOGLE_PLUSONE_URL = 'https://apis.google.com/js/plusone.js';
+    /** @var string */
+    public $size = self::SIZE_STANDART;
 
-    /**
-     * @var string
-     */
-	public $size = self::SIZE_STANDART;
+    /** @var string */
+    public $annotation = self::ANNOTATION_INLINE;
 
-    /**
-     * @var string
-     */
-	public $annotation = self::ANNOTATION_INLINE;
-
-    /**
-     * @var string|null
-     */
+    /** @var string|null */
     private $callback = null;
 
-    /**
-     * @var string
-     */
+    /** @var  */
     private $url;
 
-    /**
-     * @var bool
-     */
+    /** @var bool */
     private $html5 = FALSE;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $lang = 'cs';
 
-    /**
-     * @var bool
-     */
-	private $asynchronous = FALSE;
+    /** @var bool */
+    private $asynchronous = FALSE;
 
-    /**
-     * Renders Google +1 button
-     */
-    public function render() {
-
-        // Checks for html5 way..
-		if ($this->html5) {
-			$el = Nette\Utils\Html::el('div class=g-plusone');
-		} else {
-			$el = Nette\Utils\Html::el('g:plusone');
-		}
-		
-		$el->size = $this->size;
-		$el->annotation = $this->annotation;
-		
-		if (!is_null($this->callback)) {
-			$el->callback = $this->callback;
-		}
-		
-		if ($this->url) {
-			$el->href = $this->url;
-		}
-		
-		echo $el;
-	}
-
-    /**
-     * Alias for renderJavascript
-     */
-    public function renderJs() {
-		$this->renderJavascript();
-	}
-
-    /**
-     * Renders important google script
-     */
-    public function renderJavascript() {
-		
-		if ($this->asynchronous) {
-			$el = Nette\Utils\Html::el('script type="text/javascript"');
-			$el->add("window.___gcfg = {lang: '".$this->lang."'};");
-			$el->add("(function() {var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;po.src = 'https://apis.google.com/js/plusone.js';var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);})();");
-					
-			echo $el;
-		} else {
-			$el = Nette\Utils\Html::el('script type="text/javascript"');
-			$el->src = self::GOOGLE_PLUSONE_URL;
-			$el->add("{lang: '".$this->lang."'}");
-			
-			echo $el;
-		} 
-	}
+    /** ************************************** SETTERS/GETTERS ************************************** */
 
     /**
      * @param $annotation
@@ -253,5 +192,64 @@ class GooglePlusone extends Nette\Object {
         return $this->url;
     }
 
+    /** ************************************** RENDERS ************************************** */
+
+    /**
+     * Renders Google +1 button
+     * @return Nette\Utils\Html
+     */
+    public function render()
+    {
+        // Checks for html5 way..
+        if ($this->html5) {
+            $el = Nette\Utils\Html::el('div class=g-plusone');
+        } else {
+            $el = Nette\Utils\Html::el('g:plusone');
+        }
+
+        $el->size = $this->size;
+        $el->annotation = $this->annotation;
+
+        if (!is_null($this->callback)) {
+            $el->callback = $this->callback;
+        }
+
+        if ($this->url) {
+            $el->href = $this->url;
+        }
+
+        return $el;
+    }
+
+    /**
+     * Alias for renderJavascript
+     * @return Nette\Utils\Html
+     */
+    public function renderJs()
+    {
+        return $this->renderJavascript();
+    }
+
+    /**
+     * Renders important google script
+     * @return Nette\Utils\Html
+     */
+    public function renderJavascript()
+    {
+        // Checks for asynchronous or classic
+        if ($this->asynchronous) {
+            $el = Nette\Utils\Html::el('script type="text/javascript"');
+            $el->add("window.___gcfg = {lang: '" . $this->lang . "'};");
+            $el->add("(function() {var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;po.src = 'https://apis.google.com/js/plusone.js';var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);})();");
+
+            return $el;
+        } else {
+            $el = Nette\Utils\Html::el('script type="text/javascript"');
+            $el->src = self::GOOGLE_PLUSONE_URL;
+            $el->add("{lang: '" . $this->lang . "'}");
+
+            return $el;
+        }
+    }
 
 }
