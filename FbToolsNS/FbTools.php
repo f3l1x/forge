@@ -29,8 +29,8 @@ class FbTools extends \Nette\Application\UI\Control
     /** @var \Nette\Templating\Template */
     protected $template;
 
-    /** @var SystemContainer */
-    protected $context;
+    /** @var \Nette\Http\Request */
+    protected $request;
 
     /** @var int */
     public $appId = 123456789;
@@ -53,21 +53,25 @@ class FbTools extends \Nette\Application\UI\Control
     /** @var string */
     public $font = "arial";
 
-    function __construct($parent = NULL, $name = NULL)
+    /**
+     * @param \Nette\Http\Request $request
+     */
+    function __construct(\Nette\Http\Request $request = null)
     {
-        parent::__construct($parent, $name);
+        parent::__construct();
 
+        $this->request = $request;
         $this->template = $this->createTemplate();
         $this->template->html5 = $this->html5;
         $this->template->appId = $this->appId;
     }
 
     /**
-     * @param \Nette\DI\Container $context
+     * @param \Nette\Http\Request $request
      */
-    public function setContext(Container $context)
+    public function injectRequest(\Nette\Http\Request $request)
     {
-        $this->context = $context;
+        $this->request = $request;
     }
 
     public function render()
@@ -191,8 +195,8 @@ class FbTools extends \Nette\Application\UI\Control
      */
     public function getUrl()
     {
-        if ($this->isAutoUrl()) {
-            $url = $this->context->httpRequest->url;
+        if ($this->isAutoUrl() && isset($this->request)) {
+            $url = $this->request->url;
         } else {
             $url = $this->url;
         }
