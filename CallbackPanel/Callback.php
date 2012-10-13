@@ -59,7 +59,7 @@ class Callback extends \Nette\Object implements \Nette\Diagnostics\IBarPanel
             if ($cb === "all") {
                 $this->invokeCallbacks();
             } else {
-                $this->invokeCallback($request->getQuery("callback-do"));
+                $this->invokeCallback($cb);
             }
         }
     }
