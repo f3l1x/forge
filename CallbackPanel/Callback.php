@@ -56,10 +56,10 @@ class Callback extends \Nette\Object implements \Nette\Diagnostics\IBarPanel
 
         // Check signal receiver
         if (($cb = $request->getQuery("callback-do", false))) {
-            if ($cb = "all") {
+            if ($cb === "all") {
                 $this->invokeCallbacks();
             } else {
-                $this->invokeCallback($request->getQuery("callback-do"));
+                $this->invokeCallback($cb);
             }
         }
     }
