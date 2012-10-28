@@ -11,7 +11,7 @@ namespace Addons\Panels;
  */
 class Callback extends \Nette\Object implements \Nette\Diagnostics\IBarPanel
 {
-    const VERSION = "2.0";
+    const VERSION = "2.1";
 
     /** @var bool */
     private static $registered = FALSE;
@@ -132,7 +132,7 @@ class Callback extends \Nette\Object implements \Nette\Diagnostics\IBarPanel
         if (!is_dir($folder)) {
             throw new \InvalidArgumentException("'" . $folder . "' is not folder or can't read/write");
         }
-        foreach (\Nette\Utils\Finder::findFiles('*')->exclude(".*")->from($folder)->childFirst() as $entry) {
+        foreach (\Nette\Utils\Finder::findFiles('*')->exclude(".*")->from($folder)->exclude('.svn', '.git')->childFirst() as $entry) {
             if (is_dir($entry)) {
                 @rmdir($entry); // safety
             } else if (is_file($entry)) {

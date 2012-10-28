@@ -1,16 +1,55 @@
 <h1>Callback actions</h1>
-
+<style type="text/css">
+#nette-debug #callback-panel-content td {
+    text-align: center;
+    padding-right: 0;
+    padding-left: 0;
+}
+#nette-debug #callback-panel-content a {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    color: #050505;
+    padding: 1px 10px;
+    background: -moz-linear-gradient(
+        top,
+        #ffbf00 0%,
+        #ff5900);
+    background: -webkit-gradient(
+        linear, left top, left bottom,
+        from(#ffbf00),
+        to(#ff5900));
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    border: 2px solid #ffffff;
+    -moz-box-shadow:
+        0px 1px 3px rgba(043,043,043,0.5),
+        inset 0px 0px 1px rgba(255,255,255,0.7);
+    -webkit-box-shadow:
+        0px 1px 3px rgba(043,043,043,0.5),
+        inset 0px 0px 1px rgba(255,255,255,0.7);
+    box-shadow:
+        0px 1px 3px rgba(043,043,043,0.5),
+        inset 0px 0px 1px rgba(255,255,255,0.7);
+    text-shadow:
+        0px -1px 0px rgba(000,000,000,0.4),
+        0px 1px 0px rgba(255,255,255,0.3);
+}
+#nette-debug #callback-panel-content a:HOVER {
+    color: white;
+}
+</style>
 <div class="nette-inner" id="callback-panel-content">
 	<table style="width: 100%">
 	<?php foreach ($items as $key => $item): ?>
 	<tr>
 		<th><?php echo $item['name'] ?></th>
-		<td><a href="?callback-do=<?php echo $key;?>">DO</a></td>
+		<td><a href="?callback-do=<?php echo $key;?>">run</a></td>
 	</tr>
 	<?php endforeach ?>
     <tr>
         <th>ALL</th>
-        <td><a href="?callback-do=all">DO</a></td>
+        <td><a href="?callback-do=all">run</a></td>
     </tr>
 	</table>
 </div>
