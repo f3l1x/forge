@@ -125,8 +125,7 @@ class MultiUploadControl extends UploadControl
     public static function validateRange(UploadControl $control, $range)
     {
         $files = count($control->getValue());
-        list($min, $max) = $range;
-        return $files >= $min && $files <= $max;
+        return \Nette\Utils\Validators::isInRange($files, $range);
     }
 
     /**
