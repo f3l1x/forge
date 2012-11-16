@@ -11,7 +11,7 @@ namespace Addons\Panels;
  */
 class Callback extends \Nette\Object implements \Nette\Diagnostics\IBarPanel
 {
-    const VERSION = "2.1";
+    const VERSION = "2.1.1";
 
     /** @var bool */
     private static $registered = FALSE;
@@ -22,28 +22,36 @@ class Callback extends \Nette\Object implements \Nette\Diagnostics\IBarPanel
     /** @var array[name => string, callback => callable, args => array()] */
     private $callbacks;
 
+    /** @var bool */
+    private $active = true;
+
     /**
      * @param \Nette\DI\Container $container
      */
     public function __construct(\Nette\DI\Container $container, $callbacks = array())
     {
         $this->container = $container;
+
         /** @var $httpRequest \Nette\Http\Request */
         $request = $container->getService("httpRequest");
 
-        // Prepared callbacks
+        // Determine production/development mode
+        $this->active = !\Nette\Diagnostics\Debugger::$productionMode;
+
         // # Clean cache
         $this->callbacks["cache"] = array(
             'name' => "Clear cache",
             'callback' => callback($this, "clearCache"),
             'args' => array(array(\Nette\Caching\Cache::ALL => TRUE)),
         );
+
         // # Clean session
         $this->callbacks["session"] = array(
             'name' => "Clear session",
             'callback' => callback($this, "clearSession"),
             'args' => array(),
         );
+
         // # Clean logs
         $this->callbacks["logs"] = array(
             'name' => "Clear logs",
@@ -55,7 +63,7 @@ class Callback extends \Nette\Object implements \Nette\Diagnostics\IBarPanel
         $this->callbacks = array_merge($this->callbacks, $callbacks);
 
         // Check signal receiver
-        if (($cb = $request->getQuery("callback-do", false))) {
+        if ($this->active && ($cb = $request->getQuery("callback-do", false))) {
             if ($cb === "all") {
                 $this->invokeCallbacks();
             } else {
@@ -82,14 +90,16 @@ class Callback extends \Nette\Object implements \Nette\Diagnostics\IBarPanel
 
     /**
      * Invoke all callbacks
+     * @return void
      */
-    private function invokeCallbacks() {
+    private function invokeCallbacks()
+    {
         foreach ($this->callbacks as $callback) {
             $callback['callback']->invokeArgs($callback['args']);
         }
     }
 
-    /** *********************************** PREPARED CALLBACK *********************************** */
+    /** PREPARED CALLBACKS ********************************************************************************************/
 
     /**
      * Clear cache storage (temp/cache)
@@ -141,13 +151,23 @@ class Callback extends \Nette\Object implements \Nette\Diagnostics\IBarPanel
         }
     }
 
-    /** *********************************** INTERFACE *********************************** */
+    /** INTERFACE *****************************************************************************************************/
+
+    /**
+     * Returns if activated
+     *
+     * @return bool
+     */
+    public function isActive()
+    {
+        return $this->active;
+    }
 
     /**
      * Renders HTML code for custom tab.
      *
-     * @return string
      * @see \Nette\Diagnostics\IBarPanel::getTab()
+     * @return string
      */
     public function getTab()
     {
@@ -157,8 +177,8 @@ class Callback extends \Nette\Object implements \Nette\Diagnostics\IBarPanel
     /**
      * Renders HTML code for custom panel.
      *
-     * @return string
      * @see \Nette\Diagnostics\IBarPanel::getPanel()
+     * @return string
      */
     public function getPanel()
     {
@@ -171,7 +191,9 @@ class Callback extends \Nette\Object implements \Nette\Diagnostics\IBarPanel
     /**
      * Register this panel
      *
-     * @param array items for add to pannel
+     * @param \Nette\DI\Container $container
+     * @param array $callbacks
+     * @throws \Nette\InvalidStateException
      * @return void
      */
     public static function register(\Nette\DI\Container $container, $callbacks = array())
