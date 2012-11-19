@@ -31,22 +31,22 @@ class MoneyControl extends TextInput
     private $prefix = '';
 
     /** @var int */
-    private $max_decimals = 4;
+    private $maxDecimals = 4;
 
     /** @var array */
-    private $decimals_count = array(0, 2, 3, 4);
+    private $decimalsCount = array(0, 2, 3, 4);
 
     /** @var string */
-    private $decimals_separator = ',';
+    private $decimalsSeparator = ',';
 
     /** @var string */
-    private $thousands_separator = ' ';
+    private $thousandsSeparator = ' ';
 
     /** @var bool */
-    private $removeTralingZeros = true;
+    private $removeTralingZeros = TRUE;
 
     /** @var bool */
-    private $removeLeadingZeros = true;
+    private $removeLeadingZeros = TRUE;
 
     /**
      * @param string|null $label
@@ -91,11 +91,11 @@ class MoneyControl extends TextInput
     /** GETTERS/SETTERS ********************************************************************************************** */
 
     /**
-     * @param array $decimals_count
+     * @param array $decimalsCount
      */
-    public function setDecimalsCount($decimals_count)
+    public function setDecimalsCount($decimalsCount)
     {
-        $this->decimals_count = $decimals_count;
+        $this->decimalsCount = $decimalsCount;
     }
 
     /**
@@ -103,15 +103,15 @@ class MoneyControl extends TextInput
      */
     public function getDecimalsCount()
     {
-        return $this->decimals_count;
+        return $this->decimalsCount;
     }
 
     /**
-     * @param string $decimals_separator
+     * @param string $decimalsSeparator
      */
-    public function setDecimalsSeparator($decimals_separator)
+    public function setDecimalsSeparator($decimalsSeparator)
     {
-        $this->decimals_separator = $decimals_separator;
+        $this->decimalsSeparator = $decimalsSeparator;
     }
 
     /**
@@ -119,15 +119,15 @@ class MoneyControl extends TextInput
      */
     public function getDecimalsSeparator()
     {
-        return $this->decimals_separator;
+        return $this->decimalsSeparator;
     }
 
     /**
-     * @param int $max_decimals
+     * @param int $maxDecimals
      */
-    public function setMaxDecimals($max_decimals)
+    public function setMaxDecimals($maxDecimals)
     {
-        $this->max_decimals = $max_decimals;
+        $this->maxDecimals = $maxDecimals;
     }
 
     /**
@@ -135,7 +135,7 @@ class MoneyControl extends TextInput
      */
     public function getMaxDecimals()
     {
-        return $this->max_decimals;
+        return $this->maxDecimals;
     }
 
     /**
@@ -203,11 +203,11 @@ class MoneyControl extends TextInput
     }
 
     /**
-     * @param string $thousands_separator
+     * @param string $thousandsSeparator
      */
-    public function setThousandsSeparator($thousands_separator)
+    public function setThousandsSeparator($thousandsSeparator)
     {
-        $this->thousands_separator = $thousands_separator;
+        $this->thousandsSeparator = $thousandsSeparator;
     }
 
     /**
@@ -215,7 +215,7 @@ class MoneyControl extends TextInput
      */
     public function getThousandsSeparator()
     {
-        return $this->thousands_separator;
+        return $this->thousandsSeparator;
     }
 
     /** FILTERS ***************************************************************************************************** */
@@ -276,12 +276,12 @@ class MoneyControl extends TextInput
         $value = Strings::replace($value, "/[^0-9\.,]/", "");
 
         // check data
-        if ($value == null || strlen($value) == 0) {
+        if ($value == NULL || strlen($value) == 0) {
             return $value;
         }
 
         // exists ',' and '.'?
-        if (strpos($value, ',') !== false && strpos($value, '.') !== false) {
+        if (strpos($value, ',') !== FALSE && strpos($value, '.') !== FALSE) {
             $value = str_replace(',', '', $value);
         } else {
             $value = str_replace(',', '.', $value);
@@ -301,8 +301,11 @@ class MoneyControl extends TextInput
     }
 
     /**
+     *
      * Filter: format decimals
      * @param $value
+     * @return string
+     * @throws \Nette\NotSupportedException
      */
     public function formatDecimals($value)
     {
@@ -320,7 +323,7 @@ class MoneyControl extends TextInput
             }
         }
 
-        return number_format($value, $decimals, $this->decimals_separator, $this->thousands_separator);
+        throw new \Nette\NotSupportedException();
     }
 
     /**
