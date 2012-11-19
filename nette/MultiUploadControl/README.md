@@ -14,7 +14,7 @@ Anywhere.
 
 	\Nette\Forms\Controls\MultiUploadControl::register();
 
-## Use
+## Usecase
 
     public function createComponentForm() {
         $form = new \Nette\Application\UI\Form();

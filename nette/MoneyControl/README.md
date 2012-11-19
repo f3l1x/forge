@@ -74,6 +74,7 @@ Anywhere. (e.q. before you used in a form)
 ## Callbacks
 
     $input = $form->addMoney('money', 'Your cashflow:');
+
     $input->filterIn[] = $this->myFilterIn; 
     // fired on $input->setData(), $input->setDefaultData();
 

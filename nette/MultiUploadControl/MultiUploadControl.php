@@ -1,18 +1,21 @@
 <?php
-
+/**
+ * Multi file upload component for Nette Forms
+ *
+ * @see http://forum.nette.org/cs/12717-upload-vice-souboru-file
+ * @copyright Copyright (c) 2012 netrunner
+ * @copyright Copyright (c) 2012 Milan Felix Sulc <rkfelix@gmail.com>
+ *
+ */
 namespace Nette\Forms\Controls;
 
 use Nette;
 use Nette\Http;
 
 /**
- * Multi file upload component for Nette forms
- *
- * @author netrunner
- * @see http://forum.nette.org/cs/12717-upload-vice-souboru-file
- *
- * @edited Milan Felix Sulc
+ * @author Milan Felix Sulc
  * @license MIT
+ * @version 1.0
  */
 class MultiUploadControl extends UploadControl
 {
