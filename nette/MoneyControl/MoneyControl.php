@@ -240,6 +240,11 @@ class MoneyControl extends TextInput
      */
     public function format($value)
     {
+        // check data
+        if ($value == NULL || strlen($value) == 0) {
+            return $value;
+        }
+        
         // call common formater
         $value = $this->_format($value);
 
