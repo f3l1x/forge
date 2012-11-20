@@ -1,38 +1,25 @@
 <?php
-/*
- * MarkupControl
- *
- * DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
- * Version 2, December 2004
- *
- * Copyright (C) 2012:
- * @ Milan Felix Sulc <rkfelix@gmail.com>
- * @ Petr Stuchl4n3k Stuchlik <stuchl4n3k@gmail.com>
- *
- * Everyone is permitted to copy and distribute verbatim or modified
- * copies of this license document, and changing it is allowed as long
- * as the name is changed.
- *
- * DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
- * TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
- *
- * 0. You just DO WHAT THE FUCK YOU WANT TO.
- *
+/**
+ * Copyright (c) 2012 Milan Felix Sulc <rkfelix@gmail.com>
  */
 
+namespace Nette\Forms\Controls;
+
+use \Nette\Utils\Html;
+use \Nette\Forms\Container;
+use Nette\Templating\IFileTemplate;
+use Nette\Templating\ITemplate;
 
 /**
- * Add HTML to form
- *
- * @author Milan Felix Sulc
- * @author Petr Stuchl4n3k Stuchlik
- *
- * @version 1.1
+ * @author Milan Felix Sulc <rkfelix@gmail.com>
+ * @author Petr Stuchl4n3k Stuchlik <stuchl4n3k@gmail.com>
+ * @licence MIT
+ * @version 1.2
  */
-class MarkupControl extends Nette\Forms\Controls\BaseControl
+class MarkupControl extends BaseControl
 {
 
-    /** @var string|\Nette\Templating\Template|\Nette\Templating\FileTemplate */
+    /** @var string|IFileTemplate|ITemplate */
     private $content;
 
     /** @var string */
@@ -42,7 +29,7 @@ class MarkupControl extends Nette\Forms\Controls\BaseControl
      * Constructor
      *
      * @param string $label
-     * @param string|\Nette\Templating\Template|\Nette\Templating\FileTemplate $content
+     * @param string|IFileTemplate|IFileTemplate $content
      */
     public function __construct($label, $content)
     {
@@ -54,7 +41,7 @@ class MarkupControl extends Nette\Forms\Controls\BaseControl
     /**
      * Sets html content
      *
-     * @param string|\Nette\Templating\Template|\Nette\Templating\FileTemplate $content
+     * @param string|IFileTemplate|IFileTemplate $content
      * @return void
      */
     public function setContent($content)
@@ -65,7 +52,7 @@ class MarkupControl extends Nette\Forms\Controls\BaseControl
     /**
      * Gets html content
      *
-     * @return Nette\Templating\FileTemplate|Nette\Templating\Template|string
+     * @return string|IFileTemplate|IFileTemplate
      */
     public function getContent()
     {
@@ -84,12 +71,12 @@ class MarkupControl extends Nette\Forms\Controls\BaseControl
     /**
      * Generates control's HTML element.
      *
-     * @return Nette\Utils\Html
+     * @return Html
      */
     public function getControl()
     {
         $parentControl = parent::getControl();
-        $control = \Nette\Utils\Html::el($this->wrapper)->setId($parentControl->getId());
+        $control = Html::el($this->wrapper)->setId($parentControl->getId());
         $control->setHtml($this->getContent());
         return $control;
     }
@@ -103,9 +90,9 @@ class MarkupControl extends Nette\Forms\Controls\BaseControl
      */
     public static function register($method = 'addMarkup')
     {
-        \Nette\Forms\Container::extensionMethod($method, function($form, $name, $label, $content)
+        Container::extensionMethod($method, function(Container $container, $name, $label, $content)
         {
-            return $form[$name] = new self($label, $content);
+            return $container[$name] = new MarkupControl($label, $content);
         });
     }
 }
