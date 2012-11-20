@@ -305,25 +305,25 @@ class MoneyControl extends TextInput
      * Filter: format decimals
      * @param $value
      * @return string
-     * @throws \Nette\NotSupportedException
      */
     public function formatDecimals($value)
     {
         $match = Strings::match($value, "/.*[\.|,](.*)/");
         if (!$match || strlen($match[1]) == 0) {
             $decimals = 0;
-        } else if (strlen($match[1]) >= $this->max_decimals) {
-            $decimals = strlen($match[1]);
+        } else if (strlen($match[1]) >= $this->maxDecimals) {
+            $decimals = $this->maxDecimals;
         } else {
             $decimals = strlen($match[1]);
-            foreach ($this->decimals_count as $d) {
+            foreach ($this->decimalsCount as $d) {
                 if ($d >= $decimals) {
-                    return number_format($value, $d, $this->decimals_separator, $this->thousands_separator);
+                    $decimals = $d;
+                    break;
                 }
             }
         }
 
-        throw new \Nette\NotSupportedException();
+        return number_format($value, $decimals, $this->decimalsSeparator, $this->thousandsSeparator);
     }
 
     /**
@@ -342,8 +342,8 @@ class MoneyControl extends TextInput
      */
     public static function register($methodName = "addMoney")
     {
-        Container::extensionMethod($methodName, function (Container $_this, $name, $label) {
-            return $_this[$name] = new MoneyControl($label);
+        Container::extensionMethod($methodName, function (Container $container, $name, $label) {
+            return $container[$name] = new MoneyControl($label);
         });
     }
 }
