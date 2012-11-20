@@ -57,7 +57,7 @@ class MoneyControl extends TextInput
         $this->filtersOut[] = $this->sanitize;
         $this->filtersOut[] = $this->unformat;
         $this->filtersIn[] = $this->format;
-        $this->value = 0;
+        $this->value = NULL;
     }
 
     /**
@@ -222,8 +222,8 @@ class MoneyControl extends TextInput
 
     /**
      * Filter: format number to defined scheme
-     * @param string $value
-     * @return string
+     * @param mixed $value
+     * @return float|int|null
      */
     public function unformat($value)
     {
@@ -235,18 +235,18 @@ class MoneyControl extends TextInput
 
     /**
      * Filter: format number to defined scheme
-     * @param string $value
-     * @return string
+     * @param mixed $value
+     * @return float|int|null
      */
     public function format($value)
     {
-        // check data
-        if ($value == NULL || strlen($value) == 0) {
-            return $value;
-        }
-        
         // call common formater
         $value = $this->_format($value);
+
+        // check data
+        if ($value == NULL || strlen($value) == 0) {
+            return NULL;
+        }
 
         // convert , -> .
         $value = Strings::replace($value, "/,/", ".");
@@ -269,8 +269,8 @@ class MoneyControl extends TextInput
 
     /**
      * Common formater
-     * @param $value
-     * @return string
+     * @param mixed $value
+     * @return float|int|null
      */
     private function _format($value)
     {
@@ -279,11 +279,6 @@ class MoneyControl extends TextInput
 
         // remove all characters except [0-9.,]
         $value = Strings::replace($value, "/[^0-9\.,]/", "");
-
-        // check data
-        if ($value == NULL || strlen($value) == 0) {
-            return $value;
-        }
 
         // exists ',' and '.'?
         if (strpos($value, ',') !== FALSE && strpos($value, '.') !== FALSE) {
@@ -294,7 +289,7 @@ class MoneyControl extends TextInput
 
         // remove leading decimals zeros
         if ($this->removeLeadingZeros) {
-            $value = Strings::replace($value, '/^0*([0-9]*)$/', '${1}');
+            $value = Strings::replace($value, '/^0*([0-9]+)$/', '${1}');
         }
 
         // remove trailing decimals zeros
