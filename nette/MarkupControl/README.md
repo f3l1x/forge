@@ -13,35 +13,40 @@ Add HTML to your form.
 
 ## Use case
 
-* 1) Pure html 
+1) Pure html
     
-		$form->addMarkup('myHtmlInput1', 'Pure html', '\<div id="myInput" class="anyClass"></div>');
+    $form->addMarkup('myHtmlInput1', 'Pure html', '\<div id="myInput" class="anyClass"></div>');
 
-* 2) Nette\Utils\Html
+2) Nette\Utils\Html
 
-		$form->addMarkup('myHtmlInput2', 'Nette\Utils\Html', Nette\Utils\Html::el('img')->src('image.jpg')->alt('photo'));
+    $form->addMarkup('myHtmlInput2', 'Nette\Utils\Html', Nette\Utils\Html::el('img')->src('image.jpg')->alt('photo'));
 
-* 3) Nette\Templating\Template
+3) Nette\Templating\Template
 
-		$tpl = new \Nette\Templating\Template();
-		$tpl->setSource('xxx');
-		$form->addMarkup('myHtmlInput3', 'Nette\Templating\Template', $tpl);
+    $tpl = new \Nette\Templating\Template();
+    $tpl->setSource('xxx');
+    $form->addMarkup('myHtmlInput3', 'Nette\Templating\Template', $tpl);
 
-* 4) Nette\Templating\FileTemplate
+4) Nette\Templating\FileTemplate
 
-		$tpl = $this->getTemplate();
-		$tpl->setFile(__DIR__ . '/template.latte');
-		$form->addMarkup('myHtmlInput4', 'Nette\Templating\FileTemplate', $tpl);
+    $tpl = $this->getTemplate();
+    $tpl->setFile(__DIR__ . '/template.latte');
+    $form->addMarkup('myHtmlInput4', 'Nette\Templating\FileTemplate', $tpl);
 
-* 5) File path
+5) File path
 
-		$form->addMarkup('myHtmlInput5', 'File path', 'home/dir/filetemplate.latte');
+    $form->addMarkup('myHtmlInput5', 'File path', 'home/dir/filetemplate.latte');
 
 
 ## Changelog
+
+**1.2**
+- Fixed bugs
+- Licence
+
 **1.1**
 - phpDocs
-- better manual
+- Added manual
 
 **1.0**
-- base concept
+- Base idea
