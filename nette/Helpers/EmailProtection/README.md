@@ -1,20 +1,21 @@
-## EmailProtection
+# EmailProtection
 
-Small Latte helper based on Smarty idea for protect your email address.
+Small Latte helper based on Smarty idea to protect your email address.
 
+## Info
 
-Presenter
-===========
+* @version 1.2
+* @author Milan Felix Sulc
+* @license MIT
 
+## Presenter
 
 	public function beforeRender(){
 		$this->template->registerHelper('email', 'EmailProtection::helper');	
 	}
 
 
-
-Latte
-========
+## Template
 
 	{var $mail = "my@email.net"}
 	

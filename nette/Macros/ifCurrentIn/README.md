@@ -1,6 +1,6 @@
 # ifCurrentIn
 
-- Nette macro
+Extend macro ifCurrent to accept more arguments.
 
 ## Usage
 
@@ -22,12 +22,12 @@
     {block content}
     # classic macro
     {ifCurrentIn "Page:default", "Homepage:default"}
-      Ahojda
+      Example 1
     {/ifCurrentIn}
 
     # n:macro
     <div n:ifCurrentIn="'Homepage:*', 'Page:default', 'X:y'">
-      Cau
+      Example 2
     </div>
     {/block}
   

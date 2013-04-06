@@ -1,4 +1,4 @@
-# BadRequestPresenter
+# Bad Request Presenter
 
 Shortcut for throwing default error exceptions (403, 404, 405, 410, 500).
 

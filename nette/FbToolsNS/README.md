@@ -2,26 +2,25 @@
 
 ![FbTools](https://raw.github.com/f3l1x/nette-plugins/master/FbToolsNS/logo.png)
 
-Collection of facebook components override for Nette 2.0
+Collection of facebook components override for Nette 2.0.
 
 ##Usage
 
 ### 1) Config (DI)
 
-
-**list style**
+#### Simple factory
 
 	factories:
-		fbToolsLikeButton:
+		likebutton:
 			class: \FbTools\LikeButton
 			setup:
 				- setUrl('http://www.mojestranka.cz')
 				- setWidth(150)
-		
-**1 array style**
+
+#### Simple factory (setAll)
 
 	factories:
-		fbToolsLikeButton:
+		likebutton:
 			class: \FbTools\LikeButton
 			setup:
 				- setAll([
@@ -30,32 +29,32 @@ Collection of facebook components override for Nette 2.0
 					send: false,
 					])	
 		
-**facebook script (you can place it by yourself)**
+#### Facebook script (you can place it manual)
 
 	factories:
-		fbToolsScript:
+		fbscript:
 			class: \FbTools\Script
 
-#### 2) Presenter
+### 2) Presenter
 
 	protected function createComponentLikeButton()
 	{
-		$fb = $this->context->createFbToolsLikeButton();
+		$fb = $this->context->createLikebutton();
 		$fb->setUrl('http://www.g00gl.c0m');
 		return $fb;
 	}
 
-	protected function createComponentFbToolsScript()
+	protected function createComponentFbScript()
 	{
-		return $this->context->createFbToolsScript();
+		return $this->context->createFbscript();
 	}
 
 ### 3) Template
 
-**all configured**
+#### Simple control
 
-	{control likeButton}
+	{control likebutton}
 	
-**custom settings**
+#### Custom settings in template
 
-	{control likeButton, url => "http://www.anypage.com", send => false}
+	{control likebutton, url => "http://www.anypage.com", send => false}

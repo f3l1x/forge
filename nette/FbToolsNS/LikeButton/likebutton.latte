@@ -1,7 +1,0 @@
-{block}
-	{if $html5}
-		<div class="fb-like" data-href="{$url|url}" data-colorscheme={$scheme} data-send="{$send}" data-layout="{$layout}" data-width="{$width}" data-font="{$font}" data-action="{$display}" data-show-faces="{$faces}"></div>
-	{else}
-		<iframe src="//www.facebook.com/plugins/like.php?href={$url|url}&amp;send={$send}&amp;layout={$layout}&amp;width={$width}&amp;show_faces={$faces}&amp;action={$display}&amp;colorscheme={$scheme}&amp;font={$font}&amp;height=80&amp;appId={$appId}" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:{$width}px; height:80px;" allowTransparency="true"></iframe>
-	{/if}
-{/block}

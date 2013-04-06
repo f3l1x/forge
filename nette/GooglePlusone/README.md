@@ -1,7 +1,12 @@
-# Google +1 [Nette addon]
+# Google +1
 
-Factory in presenter
-======================
+## Info
+
+* @version 1.2
+* @author Milan Felix Sulc
+* @license MIT
+
+## Factory
 
     public function createComponentGoogleButton() {
         $button = new GooglePlusone();
@@ -12,9 +17,9 @@ Factory in presenter
     }
 
 
-In latte template
-===========================
+## Template
 
+    Script in <head /> or before </body>
     {googleButton:javascript}
 
-    Tohle je super {googleButton}
+    Button: {googleButton}

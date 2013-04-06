@@ -1,6 +1,13 @@
-## MobileDetection
+## Mobile Detection
 
 For checking mobile devices.
+
+## Info
+
+* @author Milan Felix Sulc
+* @license MIT
+
+## Usage
 
 	if( MobileDetection::isMobile() ) {
 		// mobile routing

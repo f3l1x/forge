@@ -1,4 +1,4 @@
-# Cron based on annotation
+# Annotation Cron [deprecated]
 
 ## Usage
 

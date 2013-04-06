@@ -1,22 +1,17 @@
-## MarkupControl
+## Markup Control
 
-Add HTML to your form
+Add HTML to your form.
 
-Version
------
-**1.1**
-- phpDocs
-- better manual
+## Info
 
-**1.0**
-- base concept
+* @version 1.2
+* @author Milan Felix Sulc
+* @license MIT
 
-Scheme
------
-		$form->addMarkup(NAME, LABEL, DATA);
+## Scheme
+    $form->addMarkup(NAME, LABEL, DATA);
 
-Use case
------
+## Use case
 
 * 1) Pure html 
     
@@ -41,3 +36,12 @@ Use case
 * 5) File path
 
 		$form->addMarkup('myHtmlInput5', 'File path', 'home/dir/filetemplate.latte');
+
+
+## Changelog
+**1.1**
+- phpDocs
+- better manual
+
+**1.0**
+- base concept

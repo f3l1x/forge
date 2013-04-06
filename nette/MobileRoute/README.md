@@ -5,7 +5,7 @@
 * @author Milan Felix Sulc
 * @license MIT
 
-## Usecase
+## Usage
 
     // Setup router
     $container->router[] = new Route('index.php', 'Homepage:default', Route::ONE_WAY);

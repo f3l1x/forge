@@ -1,7 +1,0 @@
-{block}
-	{if $html5}
-		<div class="fb-like-box" data-href="{$url|url}" data-border-color="{$borderColor}" data-colorscheme="{$scheme}" data-width="{$width}" data-show-faces="{$faces}" data-stream="{$stream}" data-header="{$header}"></div>
-	{else}
-		<iframe src="//www.facebook.com/plugins/likebox.php?href={$url|url}&amp;width={$width}&amp;height={$height}&amp;colorscheme={$scheme}&amp;show_faces={$faces}&amp;border_color={$borderColor}&amp;stream={$stream}&amp;header={$header}&amp;appId={$appId}" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:{$width}px; height:{$height}px;" allowTransparency="true"></iframe>
-	{/if}
-{/block}

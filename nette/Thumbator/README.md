@@ -1,5 +1,6 @@
 # Thumbator
 
+Component for making
 
 ## Usage
 

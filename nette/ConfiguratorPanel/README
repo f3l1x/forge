@@ -1,9 +1,12 @@
-Usage:
+# Configurator Panel [deprecated]
 
+Forerunner of Nette\DI\Diagnostics\ContainerPanel.
 
-$container = $configurator->createContainer();
+## Usage
+    // Create container
+    $container = $configurator->createContainer();
 
-// ConfiguratorPanel
-\Panel\Configurator::register($container);
+    // Register panel
+    \Panel\Configurator::register($container);
 
 That's all!
