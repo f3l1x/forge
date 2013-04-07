@@ -31,6 +31,7 @@ Welcome in my humble repository of nette plugins / tools / stuff.
 * GooglePlus
 * MultiUploadControl
 * Thumbator
+* GACampaign
 
 ## Other
 
