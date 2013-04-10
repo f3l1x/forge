@@ -75,7 +75,7 @@ class GACampaign extends Object
         if (strlen($medium) == 0) {
             throw new \Nette\InvalidStateException("GA: UTM parameter medium is not filled correctly!");
         }
-        if (strlen(campaign) == 0) {
+        if (strlen($campaign) == 0) {
             throw new \Nette\InvalidStateException("GA: UTM parameter campaign is not filled correctly!");
         }
 
