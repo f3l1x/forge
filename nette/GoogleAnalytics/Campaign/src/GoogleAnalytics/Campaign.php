@@ -5,14 +5,16 @@
  * @see http://support.google.com/bin/answer.py?hl=cs&answer=1033867&rd=1
  */
 
-use Nette\Object;
+namespace GoogleAnalytics;
+
+use \Nette\Object;
 
 /**
  * @author Milan Felix Sulc <rkfelix@gmail.com>
  * @licence MIT
- * @version 1.0
+ * @version 1.1
  */
-class GACampaign extends Object
+class Campaign extends Object
 {
 	/** GA UTM FIELDS  */
 	const UTM_SOURCE = 'utm_source';
@@ -175,7 +177,7 @@ class GACampaign extends Object
 
 	/**
 	 * @return array UTM arguments
-	 * @throws Nette\InvalidStateException
+	 * @throws \Nette\InvalidStateException
 	 */
 	public function build()
 	{
@@ -201,10 +203,11 @@ class GACampaign extends Object
 	 * @param string $campaign required
 	 * @param string|null $term optional
 	 * @param string|null $content optional
+	 * @return array UTM arguments
 	 */
 	public static function create($source, $medium, $campaign, $term = NULL, $content = NULL)
 	{
-		$app = new GACampaign($source, $medium, $campaign, $term, $content);
+		$app = new Campaign($source, $medium, $campaign, $term, $content);
 		return $app->build();
 	}
 }
