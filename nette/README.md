@@ -31,7 +31,7 @@ Welcome in my humble repository of nette plugins / tools / stuff.
 * GooglePlus
 * MultiUploadControl
 * Thumbator
-* GACampaign
+* GoogleAnalytics/Campaign
 
 ## Other
 
@@ -44,3 +44,4 @@ Welcome in my humble repository of nette plugins / tools / stuff.
 * ConfiguratorPanel
 * FbTools
 * EasyJsConfirm
+* Thumbnailer
