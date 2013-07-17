@@ -2,14 +2,14 @@
 /**
  * Copyright (c) 2012 Milan Felix Sulc <rkfelix@gmail.com>
  */
-namespace Thumbator;
+namespace Thumbnailer;
 
 /**
  * @author Milan Felix Sulc <rkfelix@gmail.com>
  * @licence MIT
  * @version 1.0
  */
-class Thumbator extends \Nette\Object
+class Thumbnailer extends \Nette\Object
 {
 
     /** @var Thumb[] */

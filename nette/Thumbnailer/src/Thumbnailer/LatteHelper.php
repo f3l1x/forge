@@ -2,7 +2,7 @@
 /**
  * Copyright (c) 2012 Milan Felix Sulc <rkfelix@gmail.com>
  */
-namespace Thumbator;
+namespace Thumbnailer;
 
 /**
  * @author Milan Felix Sulc <rkfelix@gmail.com>
