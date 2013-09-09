@@ -3,20 +3,32 @@
  * Copyright (c) 2013 Milan Felix Sulc <rkfelix@gmail.com>
  */
 
+use Nette\Object;
 use Nette\Image;
+use Nette\Utils\Strings;
+use Nette\InvalidArgumentException;
+use Nette\UnknownImageFileException;
+use Nette\InvalidStateException;
 
 /**
  * Thumbator - easy-use util for resizing images on website
  *
  * @author Milan Felix Sulc <rkfelix@gmail.com>
  * @licence MIT
- * @version 1.0
+ * @version 1.1
  */
-class Thumbator extends \Nette\Object
+class Thumbator extends Object
 {
+
+    /** Thumbator modes */
+    const MODE_STRICT = 1;
+    const MODE_SILENT = 2;
 
     /** @var \Nette\Http\Request */
     private $httpRequest;
+
+    /** @var string */
+    private $wwwDir;
 
     /** @var string */
     private $thumbDir;
@@ -25,16 +37,28 @@ class Thumbator extends \Nette\Object
     private $storageDir;
 
     /** @var string */
-    private $wwwDir;
+    private $placeholder = "http://placehold.it/%ux%u";
 
-    /** @var array */
-    private static $methods = array('shrink', 'exact');
+    /** @var int */
+    private $mode = self::MODE_STRICT;
 
     /** @var string */
-    private $placeholditUrl = "http://placehold.it/%ux%u";
+    private $mask = "%width%x%height%/%method%/%filename%.%ext%";
+
+    /** @var array */
+    private $maskHolders = array('%width%', '%height%', '%filename%', '%ext%', '%method%');
 
     /** @var bool */
-    private $silentMode = TRUE;
+    private $overwrite = FALSE;
+
+    /** @var array of function(string $image) */
+    public $onCreate;
+
+    /** @var array of function(Image $original, string $image, int $width, int $height, int $method) */
+    public $onResize;
+
+    /** @var array of function(string $image, int $width, int $height, int $method) */
+    public $onPlacehold;
 
     /**
      * @param \Nette\Http\Request $httpRequest
@@ -45,6 +69,70 @@ class Thumbator extends \Nette\Object
     }
 
     /** GETTERS/SETTERS ********************************************************************************************* */
+
+    /**
+     * @param string $mask
+     */
+    public function setMask($mask)
+    {
+        $this->mask = $mask;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMask()
+    {
+        return $this->mask;
+    }
+
+    /**
+     * @param int $mode
+     */
+    public function setMode($mode)
+    {
+        $this->mode = $mode;
+    }
+
+    /**
+     * @return int
+     */
+    public function getMode()
+    {
+        return $this->mode;
+    }
+
+    /**
+     * @param boolean $overwrite
+     */
+    public function setOverwrite($overwrite)
+    {
+        $this->overwrite = $overwrite;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function getOverwrite()
+    {
+        return $this->overwrite;
+    }
+
+    /**
+     * @param string $placeholder
+     */
+    public function setPlaceholder($placeholder)
+    {
+        $this->placeholder = $placeholder;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPlaceholder()
+    {
+        return $this->placeholder;
+    }
 
     /**
      * @param string $storageDir
@@ -94,134 +182,158 @@ class Thumbator extends \Nette\Object
         return $this->wwwDir;
     }
 
-    /**
-     * @param boolean $silentMode
-     */
-    public function setSilentMode($silentMode)
-    {
-        $this->silentMode = $silentMode;
-    }
-
-    /**
-     * @return boolean
-     */
-    public function getSilentMode()
-    {
-        return $this->silentMode;
-    }
-
     /** HELPERS ***************************************************************************************************** */
 
     /**
      * @return string
      */
-    private function getBasePath()
+    protected function getBasePath()
     {
         return $this->httpRequest->url->basePath;
     }
 
     /**
-     * @param $width
-     * @param $height
+     * @param string $original
+     * @param int $width
+     * @param int $height
+     * @param null $filename
+     * @param null $method
      * @return string
      */
-    private function placeholdit($width, $height)
+    protected function placehold($original, $width, $height, $filename = NULL, $method = NULL)
     {
-        return sprintf($this->placeholditUrl, $width, $height);
+        try {
+            $data = @file_get_contents(sprintf($this->placeholder, $width, $height, $filename, $method));
+            if ($data) {
+                $image = Image::fromString($data);
+                $image->save($this->getStorageDir() . '/' . $original);
+                return $this->create($filename, $width, $height, $method);
+            }
+        } catch (Exception $e) {
+            // Silent..
+        }
+
+        return sprintf($this->placeholder, $width, $height, $filename, $method);
     }
 
     /**
      * @param $path
      */
-    private static function mkdir($path)
+    protected static function mkdir($path)
     {
         @mkdir($path, 0777, TRUE);
     }
 
+    /**
+     * @param string $file
+     * @param int $width
+     * @param int $height
+     * @param int $method
+     * @return string
+     */
+    protected function mask($file, $width, $height, $method)
+    {
+        $pathinfo = pathinfo($file);
+        $normalize = function ($n) {
+            return intval($n);
+        };
+        $replacements = array($normalize($width), $normalize($height), $pathinfo['filename'], $pathinfo['extension'], $this->method2name($method));
+        return str_replace($this->maskHolders, $replacements, $this->mask);
+    }
+
+    /**
+     * @param int $method
+     * @return string
+     */
+    protected static function method2name($method)
+    {
+        switch ($method) {
+            case Image::SHRINK_ONLY:
+                return 'shrink';
+            case Image::FILL:
+                return 'fill';
+            case Image::FIT:
+                return 'fit';
+            case Image::STRETCH:
+                return 'stretch';
+            case Image::EXACT:
+                return 'exact';
+            default:
+                return 'mix';
+        }
+    }
+
     /** API ********************************************************************************************************* */
 
-    public function create($file, $width = NULL, $height = NULL, $method = 'shrink')
+    /**
+     * @param string $file
+     * @param int $width
+     * @param int $height
+     * @param int $method
+     * @return string
+     * @throws Nette\InvalidStateException
+     * @throws Nette\InvalidArgumentException
+     */
+    public function create($file, $width = NULL, $height = NULL, $method = Image::SHRINK_ONLY)
     {
         // Validate given file
         if ($file == NULL || !$file) {
-            throw new \Nette\InvalidStateException("Invalid file given!");
+            throw new InvalidArgumentException("Invalid file given!");
         }
 
         // Validate height and width
         if (!$height && !$width) {
-            throw new \Nette\InvalidStateException("Both params height and width can't be empty!");
-        }
-
-        // Validate method
-        if (!in_array($method, self::$methods)) {
-            throw new \Nette\InvalidStateException("Unknown resize method!");
+            throw new InvalidArgumentException("Both params height and width can't be empty!");
         }
 
         // Absolute path to original file
         $original = $this->getStorageDir() . '/' . $file;
-        // Generated thumb path
-        $path = $this->getThumbDir() . '/' . $width . 'h_' . $height . "w/$method/";
-        // Relative path to thumb
-        $thumb = $path . $file;
+
+        // Webalize filename
+        $filename = Strings::webalize($file, '.');
+
+        // Generate mask
+        $mask = $this->getThumbDir() . '/' . $this->mask($filename, $width, $height, $method);
+
         // Absolute path to thumb
-        $thumbabs = $this->getWwwDir() . '/' . $thumb;
+        $thumb = $this->getWwwDir() . '/' . $mask;
 
         // Exist original file?
         if (!file_exists($original)) {
-            if ($this->silentMode) {
-                return $this->placeholdit($width, $height);
+            if ($this->mode == self::MODE_SILENT) {
+                $this->onPlacehold($file, $width, $height, $method);
+                return $this->placehold($file, $width, $height, $filename, $method);
             } else {
-                throw new \Nette\InvalidStateException("Original file does not exist!");
+                throw new InvalidStateException("Original file does not exist!");
             }
         }
 
         // Exist thumb?
-        if (!file_exists($thumbabs)) {
+        if (!file_exists($thumb) || (filemtime($original) < filemtime($thumb))) {
             try {
                 /** @var $image Image */
+                $this->onCreate($original);
                 $image = Image::fromFile($original);
-            } catch (\Nette\UnknownImageFileException $e) {
-                throw new \Nette\InvalidStateException("Image: loading image error, original file probably does not exist!");
+            } catch (UnknownImageFileException $e) {
+                throw new InvalidStateException("Image: loading image error!");
             }
 
             // Create dirs
-            self::mkdir(dirname($thumbabs));
+            self::mkdir(dirname($thumb));
 
-            // Resize image
-            switch ($method) {
-                case 'shrink':
-                    $this->resizeShrink($image, $width, $height);
-                    break;
-                case 'exact':
-                    $this->resizeExact($image, $width, $height);
-                    break;
-            }
+            // Resize image to thumb
+            $this->onResize($image, $thumb, $width, $height, $method);
+            $image->resize($width, $height, $method);
 
-            $image->save($thumbabs);
+            // Save thumb
+            $image->save($thumb);
+
+            // Clear pointers, variables, stats..
             unset($image);
+            clearstatcache();
         }
 
-        return $this->getBasePath() . $thumb;
-    }
-
-    /**
-     * @param Image $image
-     * @param $width
-     * @param $height
-     */
-    private function resizeShrink(Image &$image, $width, $height)
-    {
-        $image->resize($width, $height, Image::SHRINK_ONLY);
-    }
-
-    /**
-     * @param Image $image
-     * @param $width
-     * @param $height
-     */
-    private function resizeExact(Image &$image, $width, $height)
-    {
-        $image->resize($width, $height, Image::EXACT);
+        return $this->getBasePath() . $mask;
     }
 
 }
