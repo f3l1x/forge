@@ -21,26 +21,21 @@ final class ThumbatorFactory extends Object implements IThumbatorFactory
     private $httpRequest;
 
     /** @var string */
-    private $wwwDir;
-
-    /** @var string */
-    private $storageDir;
+    private $wwwPath;
 
     /** @var string */
     private $thumbDir;
 
     /**
      * @param \Nette\Http\Request $request
-     * @param $wwwDir
-     * @param $storageDir
-     * @param $thumbDir
+     * @param string $wwwPath
+     * @param string $thumbDir
      * @return Thumbator
      */
-    function __construct(\Nette\Http\Request $request, $wwwDir, $storageDir, $thumbDir)
+    function __construct(\Nette\Http\Request $request, $wwwPath, $thumbDir = 'temp')
     {
         $this->httpRequest = $request;
-        $this->wwwDir = $wwwDir;
-        $this->storageDir = $storageDir;
+        $this->wwwPath = $wwwPath;
         $this->thumbDir = $thumbDir;
     }
 
@@ -50,9 +45,8 @@ final class ThumbatorFactory extends Object implements IThumbatorFactory
     public function create()
     {
         $t = new Thumbator($this->httpRequest);
-        $t->setWwwDir($this->wwwDir);
+        $t->setWwwPath($this->wwwPath);
         $t->setThumbDir($this->thumbDir);
-        $t->setStorageDir($this->storageDir);
         return $t;
     }
 }

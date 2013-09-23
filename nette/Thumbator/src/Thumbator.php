@@ -28,13 +28,10 @@ class Thumbator extends Object
     private $httpRequest;
 
     /** @var string */
-    private $wwwDir;
+    private $wwwPath;
 
     /** @var string */
     private $thumbDir;
-
-    /** @var string */
-    private $storageDir;
 
     /** @var string */
     private $placeholder = "http://placehold.it/%ux%u";
@@ -135,22 +132,6 @@ class Thumbator extends Object
     }
 
     /**
-     * @param string $storageDir
-     */
-    public function setStorageDir($storageDir)
-    {
-        $this->storageDir = $storageDir;
-    }
-
-    /**
-     * @return string
-     */
-    public function getStorageDir()
-    {
-        return $this->storageDir;
-    }
-
-    /**
      * @param string $thumbDir
      */
     public function setThumbDir($thumbDir)
@@ -167,19 +148,19 @@ class Thumbator extends Object
     }
 
     /**
-     * @param string $wwwDir
+     * @param string $wwwPath
      */
-    public function setWwwDir($wwwDir)
+    public function setWwwPath($wwwPath)
     {
-        $this->wwwDir = $wwwDir;
+        $this->wwwPath = $wwwPath;
     }
 
     /**
      * @return string
      */
-    public function getWwwDir()
+    public function getWwwPath()
     {
-        return $this->wwwDir;
+        return $this->wwwPath;
     }
 
     /** HELPERS ***************************************************************************************************** */
@@ -206,7 +187,7 @@ class Thumbator extends Object
             $data = @file_get_contents(sprintf($this->placeholder, $width, $height, $filename, $method));
             if ($data) {
                 $image = Image::fromString($data);
-                $image->save($this->getStorageDir() . '/' . $original);
+                $image->save($this->getWwwPath() . '/' . $original);
                 return $this->create($filename, $width, $height, $method);
             }
         } catch (Exception $e) {
@@ -274,7 +255,7 @@ class Thumbator extends Object
      * @throws Nette\InvalidStateException
      * @throws Nette\InvalidArgumentException
      */
-    public function create($file, $width = NULL, $height = NULL, $method = Image::SHRINK_ONLY)
+    public function create($file, $width = NULL, $height = NULL, $method = Image::EXACT)
     {
         // Validate given file
         if ($file == NULL || !$file) {
@@ -287,7 +268,7 @@ class Thumbator extends Object
         }
 
         // Absolute path to original file
-        $original = $this->getStorageDir() . '/' . $file;
+        $original = $this->getWwwPath() . '/' . $file;
 
         // Webalize filename
         $filename = Strings::webalize($file, '.');
@@ -296,7 +277,7 @@ class Thumbator extends Object
         $mask = $this->getThumbDir() . '/' . $this->mask($filename, $width, $height, $method);
 
         // Absolute path to thumb
-        $thumb = $this->getWwwDir() . '/' . $mask;
+        $thumb = $this->getWwwPath() . '/' . $mask;
 
         // Exist original file?
         if (!file_exists($original)) {
