@@ -285,7 +285,7 @@ class Thumbator extends Object
                 $this->onPlacehold($file, $width, $height, $method);
                 return $this->placehold($file, $width, $height, $filename, $method);
             } else {
-                throw new InvalidStateException("Original file does not exist!");
+                throw new InvalidStateException("Original file ($original) does not exist!");
             }
         }
 
