@@ -2,7 +2,7 @@
 
 ## Info
 
-* @version 1.2
+* @version 1.3
 * @author Milan Felix Sulc
 * @license MIT
 

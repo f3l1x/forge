@@ -2,17 +2,20 @@
 /**
  * Copyright (c) 2012 Milan Felix Sulc <rkfelix@gmail.com>
  */
+
+namespace Social\Google\PlusOne;
+
 use Nette\Application\UI\Control;
 use Nette\Utils\Html;
 
 /**
- * GooglePlusone component
+ * Google +1 component
  *
  * @author Milan Felix Sulc
  * @author Petr Stuchl4n3k Stuchlik
- * @version 1.2
+ * @version 1.3
  */
-class GooglePlusone extends Control
+class PlusOne extends Control
 {
 
     /** Size constants */
@@ -25,6 +28,10 @@ class GooglePlusone extends Control
     const ANNOTATION_INLINE = "inline";
     const ANNOTATION_BUBBLE = "bubble";
     const ANNOTATION_NONE = "none";
+
+    /** Render modes */
+    const MODE_NORMAL = 1;
+    const MODE_HTML5 = 2;
 
     /** Google URL */
     const GOOGLE_PLUSONE_URL = 'https://apis.google.com/js/plusone.js';
@@ -41,8 +48,8 @@ class GooglePlusone extends Control
     /** @var */
     private $url;
 
-    /** @var bool */
-    private $html5 = FALSE;
+    /** @var int */
+    private $mode = self::MODE_NORMAL;
 
     /** @var string */
     private $lang = 'cs';
@@ -110,18 +117,18 @@ class GooglePlusone extends Control
      * @param $html5
      * @return GooglePlusone
      */
-    public function setHtml5($html5)
+    public function setMode($html5)
     {
-        $this->html5 = $html5;
+        $this->mode = $html5;
         return $this;
     }
 
     /**
      * @return boolean
      */
-    public function isHtml5()
+    public function isMode()
     {
-        return $this->html5;
+        return $this->mode;
     }
 
     /**
@@ -183,15 +190,15 @@ class GooglePlusone extends Control
     /**
      * Render Google +1 button
      *
-     * @return Nette\Utils\Html
+     * @return Html
      */
     public function render()
     {
         // Checks for html5 way..
-        if ($this->html5) {
-            $el = Nette\Utils\Html::el('div class=g-plusone');
+        if ($this->mode == self::HTML5) {
+            $el = Html::el('div class=g-plusone');
         } else {
-            $el = Nette\Utils\Html::el('g:plusone');
+            $el = Html::el('g:plusone');
         }
 
         $el->size = $this->size;
@@ -209,21 +216,11 @@ class GooglePlusone extends Control
     }
 
     /**
-     * Alias for renderJavascript
-     *
-     * @return Nette\Utils\Html
-     */
-    public function renderJs()
-    {
-        return $this->renderJavascript();
-    }
-
-    /**
      * Render important google script
      *
-     * @return Nette\Utils\Html
+     * @return Html
      */
-    public function renderJavascript()
+    public function renderJs()
     {
         // Checks for asynchronous or classic
         if ($this->asynchronous) {
