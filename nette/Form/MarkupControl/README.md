@@ -5,7 +5,7 @@ Add HTML to your form.
 ## Info
 
 * @version 1.2
-* @author Milan Felix Sulc  <rkfelix@gmail.com>
+* @author Milan Felix Sulc <rkfelix@gmail.com>
 * @license MIT
 
 ## Register
