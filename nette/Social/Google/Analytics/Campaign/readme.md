@@ -12,20 +12,22 @@ Small utility for creating GA accepted parameters to url.
 
 ## Info
 
-* @author Milan Felix Sulc
+* @version 1.2
+* @author Milan Felix Sulc <rkfelix@gmail.com>
 * @license MIT
-* @version 1.1
 
 ## Usage
 
+```php
     // Source, medium, campaign
-    $campaign = new GoogleAnalytics\Campaign('newsletter', 'website', 'april13');
+    $campaign = new Social\GoogleAnalytics\Campaign\Campaign('newsletter', 'website', 'april13');
     $this->link('Card:detail', $campaign->build());
 
     // Source, medium, campaign, term, content
-    $campaign = new GoogleAnalytics\Campaign('newsletter', 'website', 'april13', 'term1', 'content');
+    $campaign = new Social\GoogleAnalytics\Campaign\('newsletter', 'website', 'april13', 'term1', 'content');
     $this->link('Product:detail', $campaign->build());
 
     // Factory (same args as previous)
-    $link = GoogleAnalytics\Campaign::create('newsletter', 'website', 'april13');
+    $link = Social\GoogleAnalytics\Campaign\Campaign::create('newsletter', 'website', 'april13');
     $this->link('Foto:detail', $link);
+```
