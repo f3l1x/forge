@@ -3,6 +3,8 @@
  * Copyright (c) 2012-2014 Milan Felix Sulc <rkfelix@gmail.com>
  */
 
+namespace NettePlugins\Presenter;
+
 use Nette\Application\BadRequestException;
 use Nette\Application\UI\Presenter;
 use Nette\InvalidStateException;
