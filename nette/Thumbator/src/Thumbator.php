@@ -3,12 +3,15 @@
  * Copyright (c) 2013 Milan Felix Sulc <rkfelix@gmail.com>
  */
 
-use Nette\Object;
-use Nette\Image;
-use Nette\Utils\Strings;
+namespace NettePlugins\Thumbator;
+
+use Nette\Http\Request;
 use Nette\InvalidArgumentException;
-use Nette\UnknownImageFileException;
 use Nette\InvalidStateException;
+use Nette\Object;
+use Nette\Utils\Image;
+use Nette\Utils\Strings;
+use Nette\Utils\UnknownImageFileException;
 
 /**
  * Thumbator - easy-use util for resizing images on website
@@ -58,9 +61,9 @@ class Thumbator extends Object
     public $onPlacehold;
 
     /**
-     * @param \Nette\Http\Request $httpRequest
+     * @param Request $httpRequest
      */
-    function __construct(\Nette\Http\Request $httpRequest)
+    function __construct(Request $httpRequest)
     {
         $this->httpRequest = $httpRequest;
     }
@@ -190,7 +193,7 @@ class Thumbator extends Object
                 $image->save($this->getWwwPath() . '/' . $original);
                 return $this->create($filename, $width, $height, $method);
             }
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             // Silent..
         }
 
@@ -252,8 +255,8 @@ class Thumbator extends Object
      * @param int $height
      * @param int $method
      * @return string
-     * @throws Nette\InvalidStateException
-     * @throws Nette\InvalidArgumentException
+     * @throws InvalidStateException
+     * @throws InvalidArgumentException
      */
     public function create($file, $width = NULL, $height = NULL, $method = Image::EXACT)
     {

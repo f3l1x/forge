@@ -3,7 +3,7 @@
  * Copyright (c) 2013 Milan Felix Sulc <rkfelix@gmail.com>
  */
 
-use Nette\Object;
+namespace NettePlugins\Thumbator;
 
 /**
  * Thumbator factory interface
@@ -12,7 +12,6 @@ use Nette\Object;
  * @licence MIT
  * @version 1.0
  */
-
 interface IThumbatorFactory
 {
 

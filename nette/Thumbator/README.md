@@ -18,7 +18,7 @@ Easy-use util for resizing images on website.
 ## Usage
 
     // Setup factory
-    $factory = new ThumbatorFactory($httpRequest, $wwwDir, $wwwDir . '/uploads', 'temp');
+    $factory = new NettePlugins\Thumbator\ThumbatorFactory($httpRequest, $wwwDir, $wwwDir . '/uploads', 'temp');
 
     // Create thumbator
     $thumbator = $factory->create();

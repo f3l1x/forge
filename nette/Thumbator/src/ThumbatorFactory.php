@@ -3,8 +3,10 @@
  * Copyright (c) 2013 Milan Felix Sulc <rkfelix@gmail.com>
  */
 
-use Nette\Object;
+namespace NettePlugins\Thumbator;
+
 use Nette\Http\Request;
+use Nette\Object;
 
 /**
  * Thumbator factory - creates Thumbator
@@ -13,7 +15,6 @@ use Nette\Http\Request;
  * @licence MIT
  * @version 1.1
  */
-
 final class ThumbatorFactory extends Object implements IThumbatorFactory
 {
 
@@ -27,12 +28,12 @@ final class ThumbatorFactory extends Object implements IThumbatorFactory
     private $thumbDir;
 
     /**
-     * @param \Nette\Http\Request $request
+     * @param Request $request
      * @param string $wwwPath
      * @param string $thumbDir
      * @return Thumbator
      */
-    function __construct(\Nette\Http\Request $request, $wwwPath, $thumbDir = 'temp')
+    function __construct(Request $request, $wwwPath, $thumbDir = 'temp')
     {
         $this->httpRequest = $request;
         $this->wwwPath = $wwwPath;

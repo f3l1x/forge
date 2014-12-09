@@ -3,8 +3,10 @@
  * Copyright (c) 2013 Milan Felix Sulc <rkfelix@gmail.com>
  */
 
+namespace NettePlugins\Thumbator;
+
 use Nette\Object;
-use Nette\Image;
+use Nette\Utils\Image;
 
 /**
  * Thumbator helper - prepare helper for Latte
@@ -13,7 +15,6 @@ use Nette\Image;
  * @licence MIT
  * @version 1.1
  */
-
 class ThumbatorHelper extends Object
 {
 
