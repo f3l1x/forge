@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Like Button Control
  *
@@ -7,68 +8,77 @@
  * @licence WTFPL - Do What The Fuck You Want To Public License
  * @version 1.2
  */
-
 class FbTools_LikeButton extends NControl
 {
     /**
      * Like url
+     *
      * @var string
      */
-    public $url = null;
+    public $url = NULL;
 
     /**
      * Auto get url
+     *
      * @var bool
      */
-    public $autoUrl = false;
+    public $autoUrl = FALSE;
 
     /**
      * Layout style [standart, button, button_count, box, box_count]
+     *
      * @var string
      */
     public $layout = "standard";
 
     /**
      * Box width
+     *
      * @var int
      */
     public $width = 450;
 
     /**
      * Box height
+     *
      * @var int
      */
     public $height = 80;
 
     /**
      * Verb to display [like, recommended]
+     *
      * @var string
      */
     public $type = "like";
 
     /**
      * Show faces
+     *
      * @var bool
      */
-    public $showFaces = false;
+    public $showFaces = FALSE;
 
     /**
      * Text fonts [arial, lucida grande, segoe ui, tahoma, trebuchet ms, verdana]
+     *
      * @var string
      */
     public $font = "arial";
 
     /**
      * Color scheme [light, dark]
+     *
      * @var string
      */
     public $colorScheme = "light";
 
     /**
      * Show copyright
+     *
      * @var bool
      */
-    public $copyright = true;
+    public $copyright = TRUE;
 
     /** ************************************** SETTERS/GETTERS ************************************** */
 
@@ -286,7 +296,7 @@ class FbTools_LikeButton extends NControl
     {
         $this->parseParams($args);
         $this->setLayout(1);
-        $this->setShowFaces(true);
+        $this->setShowFaces(TRUE);
         $this->generate();
     }
 
@@ -358,7 +368,7 @@ class FbTools_LikeButton extends NControl
     {
 
         // inic
-        $output = null;
+        $output = NULL;
 
         // settings
         $settings = array(

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * OGT - Open Graph Tags Control
  *
@@ -7,41 +8,46 @@
  * @licence WTFPL - Do What The Fuck You Want To Public License
  * @version 1.2
  */
-
 class FbTools_OpenGraphTags extends NControl
 {
     /**
      * Www url
+     *
      * @var string
      */
-    public $url = null;
+    public $url = NULL;
 
     /**
      * Auto get url
+     *
      * @var bool
      */
-    public $autoUrl = false;
+    public $autoUrl = FALSE;
 
     /**
      * Www title
+     *
      * @var string
      */
     public $title;
 
     /**
      * Www category
+     *
      * @var string
      */
     public $type = "website";
 
     /**
      * Www image
+     *
      * @var string
      */
     public $image;
 
     /**
      * Www sitename
+     *
      * @var string
      */
     public $site_name;
@@ -49,21 +55,24 @@ class FbTools_OpenGraphTags extends NControl
     /**
      * Facebook user ID
      * Facebook Platform application ID
+     *
      * @var int
      */
     public $app_id = 0;
 
     /**
      * Xhtml|Html
+     *
      * @var bool
      */
-    public $xhtml = false;
+    public $xhtml = FALSE;
 
     /**
      * Show copyright
+     *
      * @var bool
      */
-    public $copyright = true;
+    public $copyright = TRUE;
 
     /** ************************************** SETTERS/GETTERS ************************************** */
 
@@ -309,13 +318,13 @@ class FbTools_OpenGraphTags extends NControl
     {
         // Sets Xhtml or Html
         if ($this->isXhtml()) {
-            NHtml::$xhtml = true;
+            NHtml::$xhtml = TRUE;
         } else {
-            NHtml::$xhtml = false;
+            NHtml::$xhtml = FALSE;
         }
 
         // inic
-        $output = null;
+        $output = NULL;
 
         // start tag
         if ($this->copyright()) $output .= "<!-- @FbTools: OpenGraphTags -->\n";
@@ -341,7 +350,7 @@ class FbTools_OpenGraphTags extends NControl
      */
     public function makeTag($key, $value)
     {
-        if (empty($value) || empty($key)) return null;
+        if (empty($value) || empty($key)) return NULL;
         $el = NHtml::el("meta");
         $el->property = $key;
         $el->content = $value;

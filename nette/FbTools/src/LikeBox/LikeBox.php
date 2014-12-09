@@ -1,4 +1,5 @@
 ﻿<?php
+
 /**
  * LikeBox Control
  *
@@ -7,56 +8,63 @@
  * @licence WTFPL - Do What The Fuck You Want To Public License
  * @version 1.2
  */
-
 class FbTools_LikeBox extends NControl
 {
     /**
      * Like url
+     *
      * @var string
      */
-    public $url = null;
+    public $url = NULL;
 
     /**
      * Box width
+     *
      * @var int
      */
     public $width = 292;
 
     /**
      * Box height
+     *
      * @var int
      */
     public $height = 63;
 
     /**
      * Color scheme
+     *
      * @var string
      */
     public $colorScheme = "light";
 
     /**
      * Show faces
+     *
      * @var bool
      */
-    public $showFaces = false;
+    public $showFaces = FALSE;
 
     /**
      * Show stream
+     *
      * @var bool
      */
-    public $showStream = false;
+    public $showStream = FALSE;
 
     /**
      * Show header
+     *
      * @var bool
      */
-    public $showHeader = false;
+    public $showHeader = FALSE;
 
     /**
      * Show copyright
+     *
      * @var bool
      */
-    public $copyright = true;
+    public $copyright = TRUE;
 
     /** ************************************** SETTERS/GETTERS ************************************** */
 
@@ -235,9 +243,9 @@ class FbTools_LikeBox extends NControl
     public function renderFull($args = array())
     {
         $this->parseParams($args);
-        $this->setShowFaces(true);
-        $this->setShowHeader(true);
-        $this->setShowStream(true);
+        $this->setShowFaces(TRUE);
+        $this->setShowHeader(TRUE);
+        $this->setShowStream(TRUE);
         $this->generate();
     }
 
@@ -247,12 +255,13 @@ class FbTools_LikeBox extends NControl
     public function renderStream($args = array())
     {
         $this->parseParams($args);
-        $this->setShowStream(true);
+        $this->setShowStream(TRUE);
         $this->generate();
     }
 
     /**
      * Parse control config from template
+     *
      * @param array $params
      */
     public function parseParams($params = array())
@@ -294,7 +303,7 @@ class FbTools_LikeBox extends NControl
     {
 
         // inic
-        $output = null;
+        $output = NULL;
 
         // settings
         $settings = array();

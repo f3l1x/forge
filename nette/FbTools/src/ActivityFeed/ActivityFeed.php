@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Activity Feed Control
  *
@@ -7,62 +8,70 @@
  * @licence WTFPL - Do What The Fuck You Want To Public License
  * @version 1.2
  */
-
 class FbTools_ActivityFeed extends NControl
 {
     /**
      * Activity feed url
+     *
      * @var string
      */
-    public $url = null;
+    public $url = NULL;
 
     /**
      * Box width
+     *
      * @var int
      */
     public $width = 300;
 
     /**
      * Box height
+     *
      * @var int
      */
     public $height = 300;
 
     /**
      * Show header
+     *
      * @var bool
      */
-    public $showHeader = true;
+    public $showHeader = TRUE;
 
     /**
      * Color scheme
+     *
      * @var string
      */
     public $colorScheme = "light";
 
     /**
      * Font
+     *
      * @var string
      */
     public $font = "arial";
 
     /**
      * Border color
+     *
      * @var string
      */
-    public $borderColor = null;
+    public $borderColor = NULL;
 
     /**
      * Recommendations
+     *
      * @var int
      */
     public $recommendations = 0;
 
     /**
      * Show copyright
+     *
      * @var bool
      */
-    public $copyright = true;
+    public $copyright = TRUE;
 
     /** ************************************** SETTERS/GETTERS ************************************** */
 
@@ -323,7 +332,7 @@ class FbTools_ActivityFeed extends NControl
     {
 
         // inic
-        $output = null;
+        $output = NULL;
 
         // settings
         $settings = array(

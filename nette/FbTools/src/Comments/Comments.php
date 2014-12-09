@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Comments Control
  *
@@ -7,38 +8,42 @@
  * @licence WTFPL - Do What The Fuck You Want To Public License
  * @version 1.2
  */
-
 class FbTools_Comments extends NControl
 {
     /**
      * Comment url
+     *
      * @var string
      */
-    public $url = null;
+    public $url = NULL;
 
     /**
      * Auto get url
+     *
      * @var bool
      */
-    public $autoUrl = false;
+    public $autoUrl = FALSE;
 
     /**
      * Box width
+     *
      * @var int
      */
     public $width = 450;
 
     /**
      * Number of posts
+     *
      * @var int
      */
     public $numPosts = 10;
 
     /**
      * Show copyright
+     *
      * @var bool
      */
-    public $copyright = true;
+    public $copyright = TRUE;
 
     /** ************************************** SETTERS/GETTERS ************************************** */
 
@@ -149,6 +154,7 @@ class FbTools_Comments extends NControl
 
     /**
      * Parse control config from template
+     *
      * @param array $params
      */
     public function parseParams($params = array())
@@ -173,7 +179,7 @@ class FbTools_Comments extends NControl
     public function generate()
     {
         // inic
-        $output = null;
+        $output = NULL;
 
         // start tag
         if ($this->copyright) $output .= "<!-- @FbTools: Comments -->\n";
