@@ -1,72 +1,96 @@
 <?php
 
-namespace Addons\Panels;
+namespace NettePlugins\Panels\CallbackPanel;
+
+use Nette\Caching\Cache;
+use Nette\DI\Container;
+use Nette\Http\Request;
+use Nette\Http\Session;
+use Nette\InvalidArgumentException;
+use Nette\InvalidStateException;
+use Nette\Object;
+use Nette\Utils\Callback;
+use Nette\Utils\Finder;
+use Tracy\Debugger;
+use Tracy\IBarPanel;
 
 /**
- * Callback panel for nette debugbar
+ * Callback panel for Nette Debugger Bar
  *
- * @copyright Copyright (c) 2010, 2011 Patrik Votoček (Vrtak-CZ)
- * @copyright Copyright (c) 2012 Milan Šulc
+ * @copyright Copyright (c) 2010-2011 Patrik Votoček (Vrtak-CZ)
+ * @copyright Copyright (c) 2012-2014 Milan Šulc (f3l1x)
  * @license MIT
+ *
+ * @method onCallbacksCall
+ * @method onCallbackCall($callback)
  */
-class Callback extends \Nette\Object implements \Nette\Diagnostics\IBarPanel
+class CallbackPanel extends Object implements IBarPanel
 {
-    const VERSION = "2.1.1";
+    const VERSION = "2.2.0";
+
+    /** @var array */
+    public $onCallbackCall = [];
+
+    /** @var array */
+    public $onCallbacksCall = [];
 
     /** @var bool */
     private static $registered = FALSE;
 
-    /** @var \Nette\DI\Container */
+    /** @var Container */
     private $container;
 
     /** @var array[name => string, callback => callable, args => array()] */
     private $callbacks;
 
     /** @var bool */
-    private $active = true;
+    private $active = TRUE;
 
     /**
-     * @param \Nette\DI\Container $container
+     * @param Container $container
+     * @param array $callbacks [optional]
      */
-    public function __construct(\Nette\DI\Container $container, $callbacks = array())
+    public function __construct(Container $container, $callbacks = array())
     {
         $this->container = $container;
 
-        /** @var $httpRequest \Nette\Http\Request */
+        /** @var $httpRequest Request */
         $request = $container->getService("httpRequest");
 
         // Determine production/development mode
-        $this->active = !\Nette\Diagnostics\Debugger::$productionMode;
+        $this->active = !Debugger::$productionMode;
 
         // # Clean cache
         $this->callbacks["cache"] = array(
             'name' => "Clear cache",
-            'callback' => callback($this, "clearCache"),
-            'args' => array(array(\Nette\Caching\Cache::ALL => TRUE)),
+            'callback' => Callback::closure($this, "clearCache"),
+            'args' => array(array(Cache::ALL => TRUE)),
         );
 
         // # Clean session
         $this->callbacks["session"] = array(
             'name' => "Clear session",
-            'callback' => callback($this, "clearSession"),
+            'callback' => Callback::closure($this, "clearSession"),
             'args' => array(),
         );
 
         // # Clean logs
         $this->callbacks["logs"] = array(
             'name' => "Clear logs",
-            'callback' => callback($this, "clearLogs"),
-            'args' => array(array(\Nette\Caching\Cache::ALL => TRUE)),
+            'callback' => Callback::closure($this, "clearLogs"),
+            'args' => array(array(Cache::ALL => TRUE)),
         );
 
         // Merge custom callbacks
         $this->callbacks = array_merge($this->callbacks, $callbacks);
 
         // Check signal receiver
-        if ($this->active && ($cb = $request->getQuery("callback-do", false))) {
+        if ($this->active && ($cb = $request->getQuery("callback-do", FALSE))) {
             if ($cb === "all") {
+                $this->onCallbacksCall();
                 $this->invokeCallbacks();
             } else {
+                $this->onCallbackCall($cb);
                 $this->invokeCallback($cb);
             }
         }
@@ -75,8 +99,8 @@ class Callback extends \Nette\Object implements \Nette\Diagnostics\IBarPanel
     /**
      * Process signal and invoke callback
      *
-     * @param $name
-     * @throws \InvalidArgumentException
+     * @param string $name
+     * @throws InvalidArgumentException
      * @return void
      */
     private function invokeCallback($name)
@@ -84,12 +108,13 @@ class Callback extends \Nette\Object implements \Nette\Diagnostics\IBarPanel
         if (strlen($name) > 0 && array_key_exists($name, $this->callbacks)) {
             $this->callbacks[$name]['callback']->invokeArgs($this->callbacks[$name]['args']);
         } else {
-            throw new \InvalidArgumentException("Callback '" . $name . "' doesn't exist.");
+            throw new InvalidArgumentException("Callback '" . $name . "' doesn't exist.");
         }
     }
 
     /**
      * Invoke all callbacks
+     *
      * @return void
      */
     private function invokeCallbacks()
@@ -120,7 +145,7 @@ class Callback extends \Nette\Object implements \Nette\Diagnostics\IBarPanel
      */
     public function clearSession($args = array())
     {
-        /** @var $session \Nette\Http\Session */
+        /** @var $session Session */
         $session = $this->container->getService("session");
         if (!$session->isStarted()) {
             $session->clean();
@@ -134,15 +159,16 @@ class Callback extends \Nette\Object implements \Nette\Diagnostics\IBarPanel
      * Clear logs folder
      *
      * @param array $args
+     * @throws InvalidArgumentException
      * @return void
      */
     public function clearLogs($args = array())
     {
         $folder = $this->container->parameters["logDir"];
         if (!is_dir($folder)) {
-            throw new \InvalidArgumentException("'" . $folder . "' is not folder or can't read/write");
+            throw new InvalidArgumentException("'" . $folder . "' is not folder or can't read/write");
         }
-        foreach (\Nette\Utils\Finder::findFiles('*')->exclude(".*")->from($folder)->exclude('.svn', '.git')->childFirst() as $entry) {
+        foreach (Finder::findFiles('*')->exclude(".*")->from($folder)->exclude('.svn', '.git')->childFirst() as $entry) {
             if (is_dir($entry)) {
                 @rmdir($entry); // safety
             } else if (is_file($entry)) {
@@ -166,7 +192,7 @@ class Callback extends \Nette\Object implements \Nette\Diagnostics\IBarPanel
     /**
      * Renders HTML code for custom tab.
      *
-     * @see \Nette\Diagnostics\IBarPanel::getTab()
+     * @see IBarPanel::getTab()
      * @return string
      */
     public function getTab()
@@ -177,32 +203,32 @@ class Callback extends \Nette\Object implements \Nette\Diagnostics\IBarPanel
     /**
      * Renders HTML code for custom panel.
      *
-     * @see \Nette\Diagnostics\IBarPanel::getPanel()
+     * @see IBarPanel::getPanel()
      * @return string
      */
     public function getPanel()
     {
         $items = $this->callbacks;
         ob_start();
-        require_once __DIR__ . "/Callback.phtml";
+        require_once __DIR__ . "/CallbackPanel.phtml";
         return ob_get_clean();
     }
 
     /**
      * Register this panel
      *
-     * @param \Nette\DI\Container $container
+     * @param Container $container
      * @param array $callbacks
-     * @throws \Nette\InvalidStateException
+     * @throws InvalidStateException
      * @return void
      */
-    public static function register(\Nette\DI\Container $container, $callbacks = array())
+    public static function register(Container $container, $callbacks = array())
     {
         if (self::$registered) {
-            throw new \Nette\InvalidStateException("Callback panel is already registered");
+            throw new InvalidStateException("Callback panel is already registered");
         }
 
-        \Nette\Diagnostics\Debugger::$bar->addPanel(new static($container, $callbacks));
+        Debugger::getBar()->addPanel(new static($container, $callbacks));
         self::$registered = TRUE;
     }
 }

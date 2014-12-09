@@ -4,13 +4,13 @@
 
 ## Info
 
-* Version: 2.1
+* Version: 2.2
 * See: http://addons.nette.org/cs/callbackpanel
-* Copyright (c) 2010, 2011 Patrik Votocek (Vrtak-CZ)
-* Copyright (c) 2012 Milan Sulc 
+* Copyright (c) 2010-2011 Patrik Votocek (Vrtak-CZ)
+* Copyright (c) 2012-2014 Milan Sulc
 
 ## Register
 
 In bootstrap.php
 
-	\Addons\Panels\Callback::register($container);
+* NettePlugins\Panels\CallbackPanel\CallbackPanel::register($container);
