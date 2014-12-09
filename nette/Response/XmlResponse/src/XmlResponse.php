@@ -1,30 +1,27 @@
 <?php
-
 /**
- * This file is part of the Nette Framework (http://nette.org)
- *
- * Copyright (c) 2004 David Grudl (http://davidgrudl.com)
- *
- * For the full copyright and license information, please view
- * the file license.txt that was distributed with this source code.
+ * Copyright (c) 2012-2014 Milan Felix Sulc <rkfelix@gmail.com>
  */
-
-namespace Nette\Application\Responses;
+namespace NettePlugins\Response\XmlResponse;
 
 use Nette;
-
-
+use Nette\Application\IResponse;
+use Nette\Http\IRequest;
+use Nette\InvalidArgumentException;
 
 /**
- * XML response.
+ * XML response
  *
- * @author     Milan Sulc
+ * @author Milan Felix Sulc <rkfelix@gmail.com>
+ * @licence MIT
+ * @version 1.0
  *
  * @property-read array|\stdClass $payload
  * @property-read string $contentType
  */
-class XmlResponse extends Nette\Object implements Nette\Application\IResponse
+class XmlResponse implements IResponse
 {
+
     /** @var array|\stdClass */
     private $payload;
 
@@ -34,23 +31,20 @@ class XmlResponse extends Nette\Object implements Nette\Application\IResponse
     /** @var string */
     private $rootElement;
 
-
-
     /**
-     * @param  array|\stdClass  payload
-     * @param  string  xml root element
-     * @param  string    MIME content type
+     * @param array|\stdClass $payload
+     * @param string $rootElement root element
+     * @param string $contentType content type
+     * @throws InvalidArgumentException
      */
     public function __construct($payload, $rootElement = 'data', $contentType = NULL)
     {
         if (!is_array($payload) && !is_object($payload)) {
-            throw new Nette\InvalidArgumentException("Payload must be array or object class, " . gettype($payload) . " given.");
+            throw new InvalidArgumentException("Payload must be array or object class, " . gettype($payload) . " given.");
         }
         $this->payload = $payload;
         $this->contentType = $contentType ? $contentType : 'text/xml';
     }
-
-
 
     /**
      * @return array|\stdClass
@@ -60,10 +54,9 @@ class XmlResponse extends Nette\Object implements Nette\Application\IResponse
         return $this->payload;
     }
 
-
-
     /**
      * Returns the MIME content type of a downloaded file.
+     *
      * @return string
      */
     final public function getContentType()
@@ -71,10 +64,9 @@ class XmlResponse extends Nette\Object implements Nette\Application\IResponse
         return $this->contentType;
     }
 
-
-
     /**
      * Returns the XML root element.
+     *
      * @return string
      */
     final public function getRootElement()
@@ -82,10 +74,11 @@ class XmlResponse extends Nette\Object implements Nette\Application\IResponse
         return $this->rootElement;
     }
 
-
-
     /**
      * Sends response to output.
+     *
+     * @param IRequest $httpRequest
+     * @param IResponse $httpResponse
      * @return void
      */
     public function send(Nette\Http\IRequest $httpRequest, Nette\Http\IResponse $httpResponse)
@@ -95,20 +88,18 @@ class XmlResponse extends Nette\Object implements Nette\Application\IResponse
         echo $this->encode($this->payload, $this->rootElement);
     }
 
-
-
     /**
      * @param array $array the array to be converted
-     * @param string? $rootElement if specified will be taken as root element, otherwise defaults to
-     *                <root>
-     * @param SimpleXMLElement? if specified content will be appended, used for recursion
+     * @param string ? $rootElement if specified will be taken as root element, otherwise defaults to <root>
+     * @param SimpleXMLElement ? if specified content will be appended, used for recursion
      * @return string XML version of $array
      */
-    private function encode($array, $rootElement = null, $xml = null) {
+    private function encode($array, $rootElement = NULL, $xml = NULL)
+    {
         $_xml = $xml;
 
-        if ($_xml === null) {
-            $_xml = new \SimpleXMLElement($rootElement !== null ? $rootElement : '<root/>');
+        if ($_xml === NULL) {
+            $_xml = new \SimpleXMLElement($rootElement !== NULL ? $rootElement : '<root/>');
         }
 
         foreach ($array as $k => $v) {
