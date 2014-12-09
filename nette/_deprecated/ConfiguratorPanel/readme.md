@@ -3,10 +3,12 @@
 Forerunner of Nette\DI\Diagnostics\ContainerPanel.
 
 ## Usage
-    // Create container
-    $container = $configurator->createContainer();
+```php
+// Create container
+$container = $configurator->createContainer();
 
-    // Register panel
-    \Panel\Configurator::register($container);
+// Register panel
+\Panel\Configurator::register($container);
+```
 
 That's all!

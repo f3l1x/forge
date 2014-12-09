@@ -13,4 +13,6 @@
 
 In bootstrap.php
 
-* NettePlugins\Panels\CallbackPanel\CallbackPanel::register($container);
+```php
+NettePlugins\Panels\CallbackPanel\CallbackPanel::register($container);
+```

@@ -16,16 +16,17 @@ Easy-use util for resizing images on website.
 * ThumbatorHelper
 
 ## Usage
+```php
+// Setup factory
+$factory = new NettePlugins\Thumbator\ThumbatorFactory($httpRequest, $wwwDir, $wwwDir . '/uploads', 'temp');
 
-    // Setup factory
-    $factory = new NettePlugins\Thumbator\ThumbatorFactory($httpRequest, $wwwDir, $wwwDir . '/uploads', 'temp');
+// Create thumbator
+$thumbator = $factory->create();
 
-    // Create thumbator
-    $thumbator = $factory->create();
-
-    // Create thumbs
-    $thumbator->create('my-image.png', 100, 200);
-    $thumbator->create('my-image.png', '50%', '50%');
-    $thumbator->create('my-image.png', NULL, '50%');
+// Create thumbs
+$thumbator->create('my-image.png', 100, 200);
+$thumbator->create('my-image.png', '50%', '50%');
+$thumbator->create('my-image.png', NULL, '50%');
+```
 
 More you can find in phpDoc.

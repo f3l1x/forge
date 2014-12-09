@@ -6,12 +6,14 @@ Small extension for Nette Framework to register your macros.
 
 ### 1) Bootstrap
 
-    $configurator->onCompile[] = function ($configurator, $compiler) {
-        $compiler->addExtension('latte', new LatteExtension());
-
-    };
+```php
+$configurator->onCompile[] = function ($configurator, $compiler) {
+    $compiler->addExtension('latte', new LatteExtension());
+};
+```
 
 ### 2) Extension list (Nette 2.x-dev)
-
+```neon
     extension:
         - LatteExtension
+```

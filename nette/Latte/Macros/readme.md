@@ -15,35 +15,35 @@
 ### NEON
 
 ```neon
-    nette.latteFactory:
-            macros:
-                - NettePlugins\Macros\Macros::install
+nette.latteFactory:
+        macros:
+            - NettePlugins\Macros\Macros::install
 ```
 
 ```neon
-    nette.latteFactory:
-        setup:
-            - '?->onCompile[] = (function($engine) { NettePlugins\Macros\Macros::install($engine->geCompiler());})'(@self)
+nette.latteFactory:
+    setup:
+        - '?->onCompile[] = (function($engine) { NettePlugins\Macros\Macros::install($engine->geCompiler());})'(@self)
 ```
 
 ### TemplateFactory
 
 ```php
-    /**
-     * @param UI\Control $control
-     * @return Template
-     */
-    public function createTemplate(UI\Control $control)
-    {
-        // ...
+/**
+ * @param UI\Control $control
+ * @return Template
+ */
+public function createTemplate(UI\Control $control)
+{
+    // ...
 
-        $latte = $this->latteFactory->creat();
-        $latte->onCompile[] = function(Engine $latte) {
-            NettePlugins\Macros\Macros::install($latte->getCompiler());
-        };
+    $latte = $this->latteFactory->creat();
+    $latte->onCompile[] = function(Engine $latte) {
+        NettePlugins\Macros\Macros::install($latte->getCompiler());
+    };
 
-        // ...
+    // ...
 
-        return $template;
-    }
+    return $template;
+}
 ```

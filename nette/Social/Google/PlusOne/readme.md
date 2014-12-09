@@ -9,18 +9,18 @@
 ## Factory
 
 ```php
-    protected function createComponentPlusone() {
-        $button = new NettePlugins\Social\Google\PlusOne();
-        $button->setMode($button::MODE_HTML5);
-        $button->setUrl('www.nette.org');
+protected function createComponentPlusone() {
+    $button = new NettePlugins\Social\Google\PlusOne();
+    $button->setMode($button::MODE_HTML5);
+    $button->setUrl('www.nette.org');
 
-        return $button;
-    }
+    return $button;
+}
 ```
 
 ## Template
 
-    Script in <head /> or before </body>
-    {plusone:javascript}
+Script in <head /> or before </body>
+{plusone:javascript}
 
-    Button: {plusone}
+Button: {plusone}

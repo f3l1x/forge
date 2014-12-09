@@ -13,19 +13,21 @@ Add money control.
 Anywhere. (e.q. before you used in a form)
 
 ```php
-	Nette\Forms\Controls\MoneyControl::register();
+Nette\Forms\Controls\MoneyControl::register();
 ```
 
 ## Usecase
 
 ```php
-    public function createComponentForm() {
-        $form = new Nette\Application\UI\Form();
-        $form->addMoney('money', 'Your cashflow:');
-        $form->addSubmit('Merge');
-        $form->onSuccess[] = callback($this, 'process');
-        return $form;
-    }
+protected function createComponentForm() {
+    $form = new Nette\Application\UI\Form();
+    
+    $form->addMoney('money', 'Your cashflow:');
+    $form->addSubmit('Merge');
+    $form->onSuccess[] = callback($this, 'process');
+    
+    return $form;
+}
 ```
 
 ## Configuration
@@ -81,13 +83,13 @@ Anywhere. (e.q. before you used in a form)
 ## Callbacks
 
 ```php
-    $input = $form->addMoney('money', 'Your cashflow:');
+$input = $form->addMoney('money', 'Your cashflow:');
 
-    $input->filterIn[] = $this->myFilterIn; 
-    // fired on $input->setData(), $input->setDefaultData();
+$input->filterIn[] = $this->myFilterIn; 
+// fired on $input->setData(), $input->setDefaultData();
 
-    $input->filterOut[] = $this->myFilterOut; 
-    // fired on $input->getData()
+$input->filterOut[] = $this->myFilterOut; 
+// fired on $input->getData()
 ```php
 
 ## Transfer table

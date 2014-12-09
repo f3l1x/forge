@@ -13,27 +13,27 @@ Custom helpers for your templates.
 ### NEON
 
 ```neon
-    nette.latteFactory:
-            setup:
-                - addFilter(mailto, NettePlugins\Helpers\Helpers::mailto)
+nette.latteFactory:
+        setup:
+            - addFilter(mailto, NettePlugins\Helpers\Helpers::mailto)
 ```
 
 ### TemplateFactory
 
 ```php
-    /**
-     * @param UI\Control $control
-     * @return Template
-     */
-    public function createTemplate(UI\Control $control)
-    {
-        // ...
+/**
+ * @param UI\Control $control
+ * @return Template
+ */
+public function createTemplate(UI\Control $control)
+{
+    // ...
 
-        $latte = $this->latteFactory->creat();
-        $latte->addFilter('mailto', ['NettePlugins\Helpers\Helpers', 'mailto']);
+    $latte = $this->latteFactory->creat();
+    $latte->addFilter('mailto', ['NettePlugins\Helpers\Helpers', 'mailto']);
 
-        // ...
+    // ...
 
-        return $template;
-    }
+    return $template;
+}
 ```
