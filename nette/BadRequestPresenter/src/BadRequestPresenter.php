@@ -14,7 +14,7 @@ use Nette\InvalidStateException;
  */
 class BadRequestPresenter extends Presenter
 {
-    
+
     /** @var int */
     protected $code;
 
