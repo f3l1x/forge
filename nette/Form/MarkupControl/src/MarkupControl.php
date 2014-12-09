@@ -1,47 +1,49 @@
 <?php
 /**
- * Copyright (c) 2012 Milan Felix Sulc <rkfelix@gmail.com>
+ * Copyright (c) 2012-2014 Milan Felix Sulc <rkfelix@gmail.com>
  */
 
-namespace Nette\Forms\Controls;
+namespace NettePlugins\Forms\Controls;
 
-use \Nette\Utils\Html;
-use \Nette\Forms\Container;
-use Nette\Templating\IFileTemplate;
-use Nette\Templating\ITemplate;
+use Latte\Engine;
+use Nette\Bridges\ApplicationLatte\Template;
+use Nette\Forms\Container;
+use Nette\Forms\Controls\BaseControl;
+use Nette\Utils\Html;
 
 /**
  * @author Milan Felix Sulc <rkfelix@gmail.com>
  * @author Petr Stuchl4n3k Stuchlik <stuchl4n3k@gmail.com>
  * @licence MIT
- * @version 1.2
+ * @version 1.3
  */
 class MarkupControl extends BaseControl
 {
 
-    /** @var string|IFileTemplate|ITemplate */
+    /** @var string|Template */
     private $content;
 
-    /** @var string */
-    private $wrapper = "div";
+    /** @var Html */
+    private $wrapper;
 
     /**
      * Constructor
      *
      * @param string $label
-     * @param string|IFileTemplate|IFileTemplate $content
+     * @param string|Template $content
      */
     public function __construct($label, $content)
     {
         parent::__construct($label);
-        $this->setDisabled(true);
+        $this->setDisabled(TRUE);
+        $this->setOmitted(TRUE);
         $this->setContent($content);
     }
 
     /**
      * Sets html content
      *
-     * @param string|IFileTemplate|IFileTemplate $content
+     * @param string|Template $content
      * @return void
      */
     public function setContent($content)
@@ -52,20 +54,20 @@ class MarkupControl extends BaseControl
     /**
      * Gets html content
      *
-     * @return string|IFileTemplate|IFileTemplate
+     * @return string|Template
      */
     public function getContent()
     {
-        if ($this->content instanceof \Nette\Templating\ITemplate) {
+        if ($this->content instanceof Template) {
             // if is it template
-            return $this->content->__toString();
+            return $this->content->render();
         } else if (file_exists($this->content)) {
             // if is it file
-            $t = new \Nette\Templating\FileTemplate($this->content);
-            return $t->__toString();
+            $l = new Engine();
+            return $l->renderToString($this->content);
         }
 
-        return $this->content;
+        return (string)$this->content;
     }
 
     /**
@@ -76,13 +78,28 @@ class MarkupControl extends BaseControl
     public function getControl()
     {
         $parentControl = parent::getControl();
-        $control = Html::el($this->wrapper)->setId($parentControl->getId());
+
+        $control = $this->getWrapperPrototype();
+        $control->setId($parentControl->getId());
         $control->setHtml($this->getContent());
+
         return $control;
     }
 
     /**
-     * Register input to \Nette\Forms\Container
+     * @return Html
+     */
+    protected function getWrapperPrototype()
+    {
+        if ($this->wrapper == NULL) {
+            $this->wrapper = Html::el("div");
+        }
+
+        return $this->wrapper;
+    }
+
+    /**
+     * Register input to Form Container
      *
      * @static
      * @param string $method
@@ -90,8 +107,7 @@ class MarkupControl extends BaseControl
      */
     public static function register($method = 'addMarkup')
     {
-        Container::extensionMethod($method, function(Container $container, $name, $label, $content)
-        {
+        Container::extensionMethod($method, function (Container $container, $name, $label, $content) {
             return $container[$name] = new MarkupControl($label, $content);
         });
     }
