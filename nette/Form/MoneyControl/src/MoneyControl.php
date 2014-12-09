@@ -3,15 +3,16 @@
  * Copyright (c) 2012 Milan Felix Sulc <rkfelix@gmail.com>
  */
 
-namespace Nette\Forms\Controls;
+namespace NettePlugins\Forms\Controls;
 
-use \Nette\Utils\Strings;
-use \Nette\Forms\Container;
+use Nette\Forms\Container;
+use Nette\Forms\Controls\TextInput;
+use Nette\Utils\Strings;
 
 /**
  * @author Milan Felix Sulc <rkfelix@gmail.com>
  * @licence MIT
- * @version 1.0
+ * @version 1.1
  */
 class MoneyControl extends TextInput
 {
@@ -62,6 +63,7 @@ class MoneyControl extends TextInput
 
     /**
      * Returns control's value.
+     *
      * @return string
      * @override
      */
@@ -76,6 +78,7 @@ class MoneyControl extends TextInput
 
     /**
      * Sets control's value.
+     *
      * @param $value
      * @return MoneyControl
      * @override
@@ -222,6 +225,7 @@ class MoneyControl extends TextInput
 
     /**
      * Filter: format number to defined scheme
+     *
      * @param mixed $value
      * @return float|int|null
      */
@@ -235,6 +239,7 @@ class MoneyControl extends TextInput
 
     /**
      * Filter: format number to defined scheme
+     *
      * @param mixed $value
      * @return float|int|null
      */
@@ -269,6 +274,7 @@ class MoneyControl extends TextInput
 
     /**
      * Common formater
+     *
      * @param mixed $value
      * @return float|int|null
      */
@@ -303,6 +309,7 @@ class MoneyControl extends TextInput
     /**
      *
      * Filter: format decimals
+     *
      * @param $value
      * @return string
      */
@@ -328,6 +335,7 @@ class MoneyControl extends TextInput
 
     /**
      * Filter: removes unnecessary whitespace
+     *
      * @return string
      */
     public function sanitize($value)
@@ -337,6 +345,7 @@ class MoneyControl extends TextInput
 
     /**
      * Register MoneyControl method
+     *
      * @param string $methodName
      * @return void
      */
@@ -347,5 +356,3 @@ class MoneyControl extends TextInput
         });
     }
 }
-
-MoneyControl::register();

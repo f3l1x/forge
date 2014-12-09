@@ -1,25 +1,32 @@
 # Money Control for Nette Forms
 
+Add money control.
+
 ## Info
 
-* @author Milan Felix Sulc
+* @version 1.1
+* @author Milan Felix Sulc <rkfelix@gmail.com>
 * @license MIT
 
 ## Register
 
 Anywhere. (e.q. before you used in a form)
 
-	\Nette\Forms\Controls\MoneyControl::register();
+```php
+	Nette\Forms\Controls\MoneyControl::register();
+```
 
 ## Usecase
 
+```php
     public function createComponentForm() {
-        $form = new \Nette\Application\UI\Form();
+        $form = new Nette\Application\UI\Form();
         $form->addMoney('money', 'Your cashflow:');
         $form->addSubmit('Merge');
         $form->onSuccess[] = callback($this, 'process');
         return $form;
     }
+```
 
 ## Configuration
 
@@ -73,6 +80,7 @@ Anywhere. (e.q. before you used in a form)
 
 ## Callbacks
 
+```php
     $input = $form->addMoney('money', 'Your cashflow:');
 
     $input->filterIn[] = $this->myFilterIn; 
@@ -80,6 +88,7 @@ Anywhere. (e.q. before you used in a form)
 
     $input->filterOut[] = $this->myFilterOut; 
     // fired on $input->getData()
+```php
 
 ## Transfer table
 
