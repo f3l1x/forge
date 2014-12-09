@@ -64,107 +64,109 @@ Josef Kyrian <josef.kyrian@firma.seznam.cz>
  */
 class CaptchaHTTP extends Captcha
 {
-	// {{{ _call()
-	/**
-	* Provede volani funkce na captcha server
-	*
-	* @param string $methodName               nazev metody
-	* @param array $params                    parametry
-	*
-	* @return mixed    vysledek volani
-	*/
-	protected function _call($methodName, $params = array())
-	{
-		$ch = curl_init(sprintf('http://%s:%d/%s?%s', $this->_serverHostname, $this->_serverPort, $methodName, http_build_query($params)));
-		if (!$ch) {
-			throw new Exception("Chyba volani curl_init");
-		}
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		if ($this->_proxyHostname) {
-			curl_setopt($ch, CURLOPT_PROXY, $this->_proxyHostname);
-			curl_setopt($ch, CURLOPT_PROXYPORT, $this->_proxyPort);
-		}
-		$response = curl_exec($ch);
-		$info = curl_getinfo($ch);
+    // {{{ _call()
+    /**
+     * Provede volani funkce na captcha server
+     *
+     * @param string $methodName nazev metody
+     * @param array $params parametry
+     *
+     * @return mixed    vysledek volani
+     */
+    protected function _call($methodName, $params = array())
+    {
+        $ch = curl_init(sprintf('http://%s:%d/%s?%s', $this->_serverHostname, $this->_serverPort, $methodName, http_build_query($params)));
+        if (!$ch) {
+            throw new Exception("Chyba volani curl_init");
+        }
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+        if ($this->_proxyHostname) {
+            curl_setopt($ch, CURLOPT_PROXY, $this->_proxyHostname);
+            curl_setopt($ch, CURLOPT_PROXYPORT, $this->_proxyPort);
+        }
+        $response = curl_exec($ch);
+        $info = curl_getinfo($ch);
 
-		return array(
-			'status' => $info['http_code'],
-			'data' => $response,
-		);
-	}
-	// }}}
-
-
-	// {{{ create()
-	/**
-	* Vytvori novou captchu a vrati hash
-	*
-	* @return string    hash
-	*/
-	public function create()
-	{
-		$result = $this->_call("captcha.create");
-
-		if (empty($result) || $result['status'] != 200) {
-			throw new Exception(sprintf("Chyba volani: %s", print_r($result, true)));
-		}
-
-		return $result['data'];
-	}
-	// }}}
+        return array(
+            'status' => $info['http_code'],
+            'data' => $response,
+        );
+    }
+    // }}}
 
 
-	// {{{ getImage()
-	/**
-	* Vrati captcha obrazek na zaklade hash
-	*
-	* @return string    url k obrazku
-	*/
-	public function getImage($hash)
-	{
-		return sprintf('http://%s:%d/%s?%s', $this->_serverHostname, $this->_serverPort, 'captcha.getImage', http_build_query(array('hash' => $hash)));
-	}
-	// }}}
+    // {{{ create()
+    /**
+     * Vytvori novou captchu a vrati hash
+     *
+     * @return string    hash
+     */
+    public function create()
+    {
+        $result = $this->_call("captcha.create");
+
+        if (empty($result) || $result['status'] != 200) {
+            throw new Exception(sprintf("Chyba volani: %s", print_r($result, TRUE)));
+        }
+
+        return $result['data'];
+    }
+    // }}}
 
 
-	// {{{ getAudio()
-	/**
-	* Vrati captcha zvuk na zaklade hash
-	*
-	* @return string    url k audiu
-	*/
-	public function getAudio($hash)
-	{
-		return sprintf('http://%s:%d/%s?%s', $this->_serverHostname, $this->_serverPort, 'captcha.getAudio', http_build_query(array('hash' => $hash)));
-	}
-	// }}}
+    // {{{ getImage()
+    /**
+     * Vrati captcha obrazek na zaklade hash
+     *
+     * @return string    url k obrazku
+     */
+    public function getImage($hash)
+    {
+        return sprintf('http://%s:%d/%s?%s', $this->_serverHostname, $this->_serverPort, 'captcha.getImage', http_build_query(array('hash' => $hash)));
+    }
+    // }}}
 
 
-	// {{{ check()
-	/**
-	* Vrati zda-li kod zadany uzivatelem souhlasi s captchou identifikovanou danym hashem
-	*  Pri chybnem zavolani teto funkce se hash zneplatni a je potreba znovu zavolat create
-	*
-	* @param string $hash                  hash
-	* @param string $code                  kod
-	*
-	* @return boolean    zda-li kod souhlasi
-	*/
-	public function check($hash, $code)
-	{
-		$result = $this->_call("captcha.check", array('hash' => $hash, 'code' => $code));
+    // {{{ getAudio()
+    /**
+     * Vrati captcha zvuk na zaklade hash
+     *
+     * @return string    url k audiu
+     */
+    public function getAudio($hash)
+    {
+        return sprintf('http://%s:%d/%s?%s', $this->_serverHostname, $this->_serverPort, 'captcha.getAudio', http_build_query(array('hash' => $hash)));
+    }
+    // }}}
 
-		if (empty($result) || (
-            $result['status'] != 200 &&
-            $result['status'] != 402 &&
-            $result['status'] != 403 &&
-            $result['status'] != 404)) {
-			throw new Exception(sprintf("Chyba volani: %s", print_r($result, true)));
-		}
 
-		return $result['status'] == 200;
-	}
-	// }}}
+    // {{{ check()
+    /**
+     * Vrati zda-li kod zadany uzivatelem souhlasi s captchou identifikovanou danym hashem
+     *  Pri chybnem zavolani teto funkce se hash zneplatni a je potreba znovu zavolat create
+     *
+     * @param string $hash hash
+     * @param string $code kod
+     *
+     * @return boolean    zda-li kod souhlasi
+     */
+    public function check($hash, $code)
+    {
+        $result = $this->_call("captcha.check", array('hash' => $hash, 'code' => $code));
+
+        if (empty($result) || (
+                $result['status'] != 200 &&
+                $result['status'] != 402 &&
+                $result['status'] != 403 &&
+                $result['status'] != 404)
+        ) {
+            throw new Exception(sprintf("Chyba volani: %s", print_r($result, TRUE)));
+        }
+
+        return $result['status'] == 200;
+    }
+    // }}}
 }
+
 // }}}
 ?>

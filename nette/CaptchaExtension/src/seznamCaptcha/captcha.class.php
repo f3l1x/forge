@@ -68,128 +68,129 @@ Josef Kyrian <josef.kyrian@firma.seznam.cz>
  */
 abstract class Captcha
 {
-	// {{{ properties
+    // {{{ properties
 
-	/**
-	 * Nastaveni server hostname
-	 *
-	 * @var string
-	 */
-	protected $_serverHostname;
+    /**
+     * Nastaveni server hostname
+     *
+     * @var string
+     */
+    protected $_serverHostname;
 
-	/**
-	 * Nastaveni server port
-	 *
-	 * @var int
-	 */
-	protected $_serverPort;
+    /**
+     * Nastaveni server port
+     *
+     * @var int
+     */
+    protected $_serverPort;
 
-	/**
-	 * Nastaveni proxy hostname
-	 *
-	 * @var string
-	 */
-	protected $_proxyHostname;
+    /**
+     * Nastaveni proxy hostname
+     *
+     * @var string
+     */
+    protected $_proxyHostname;
 
-	/**
-	 * Nastaveni proxy port
-	 *
-	 * @var int
-	 */
-	protected $_proxyPort;
+    /**
+     * Nastaveni proxy port
+     *
+     * @var int
+     */
+    protected $_proxyPort;
 
-	/**
-	 * Hash
-	 *
-	 * @var string
-	 */
-	protected $_hash;
+    /**
+     * Hash
+     *
+     * @var string
+     */
+    protected $_hash;
 
-	// }}}
-
-
-	// {{{ __construct()
-	/**
-	* Konstruktor
-	*
-	* @param string $captchaHostname              nazev serveru s captchou
-	* @param int $captchaPort                     port serveru s captchou
-	*/
-	public function __construct($captchaHostname, $captchaPort)
-	{
-		if (empty($captchaHostname)) {
-			throw new Exception("Argument captchaHostname musi byt zadan");
-		}
-		if (!is_integer($captchaPort)) {
-			throw new Exception("Argument captchaPort musi byt cele cislo");
-		}
-		
-		$this->_serverHostname = $captchaHostname;
-		$this->_serverPort = $captchaPort;
-		
-		$this->_proxyHostname = NULL;
-		$this->_proxyPort = NULL;
-		
-		$this->_hash = NULL;
-	}
-	// }}}
+    // }}}
 
 
-	// {{{ create()
-	/**
-	* Vytvori novou captchu a vrati hash
-	*/
-	abstract public function create();
-	// }}}
+    // {{{ __construct()
+    /**
+     * Konstruktor
+     *
+     * @param string $captchaHostname nazev serveru s captchou
+     * @param int $captchaPort port serveru s captchou
+     */
+    public function __construct($captchaHostname, $captchaPort)
+    {
+        if (empty($captchaHostname)) {
+            throw new Exception("Argument captchaHostname musi byt zadan");
+        }
+        if (!is_integer($captchaPort)) {
+            throw new Exception("Argument captchaPort musi byt cele cislo");
+        }
+
+        $this->_serverHostname = $captchaHostname;
+        $this->_serverPort = $captchaPort;
+
+        $this->_proxyHostname = NULL;
+        $this->_proxyPort = NULL;
+
+        $this->_hash = NULL;
+    }
+    // }}}
 
 
-	// {{{ getImage()
-	/**
-	* Vrati captcha obrazek na zaklade hash
-	*/
-	abstract public function getImage($hash);
-	// }}}
+    // {{{ create()
+    /**
+     * Vytvori novou captchu a vrati hash
+     */
+    abstract public function create();
+    // }}}
 
 
-	// {{{ getAudio()
-	/**
-	* Vrati captcha zvuk na zaklade hash
-	*/
-	abstract public function getAudio($hash);
-	// }}}
+    // {{{ getImage()
+    /**
+     * Vrati captcha obrazek na zaklade hash
+     */
+    abstract public function getImage($hash);
+    // }}}
 
 
-	// {{{ check()
-	/**
-	* Vrati zda-li kod zadany uzivatelem souhlasi s captchou identifikovanou danym hashem
-	*  Pri chybnem zavolani teto funkce se hash zneplatni a je potreba znovu zavolat create
-	*/
-	abstract public function check($hash, $code);
-	// }}}
+    // {{{ getAudio()
+    /**
+     * Vrati captcha zvuk na zaklade hash
+     */
+    abstract public function getAudio($hash);
+    // }}}
 
 
-	// {{{ setProxy()
-	/**
-	* Nastavi proxy
-	*
-	* @param string $hostname              nazev hostitele (NULL pro vypnuti proxy)
-	* @param int $port                     port (NULL pro vypnuti proxy)
-	*/
-	public function setProxy($hostname, $port)
-	{
-		if (isset($hostname) || isset($port)) {
-			if (empty($hostname)) {
-				throw new Exception("Argument hostname musi byt zadan");
-			}
-			if (!is_integer($port)) {
-				throw new Exception("Argument port musi byt cele cislo");
-			}
-		}
-		
-		$this->_proxyHostname = $hostname;
-		$this->_proxyPort = $port;
-	}
-	// }}}
+    // {{{ check()
+    /**
+     * Vrati zda-li kod zadany uzivatelem souhlasi s captchou identifikovanou danym hashem
+     *  Pri chybnem zavolani teto funkce se hash zneplatni a je potreba znovu zavolat create
+     */
+    abstract public function check($hash, $code);
+    // }}}
+
+
+    // {{{ setProxy()
+    /**
+     * Nastavi proxy
+     *
+     * @param string $hostname nazev hostitele (NULL pro vypnuti proxy)
+     * @param int $port port (NULL pro vypnuti proxy)
+     */
+    public function setProxy($hostname, $port)
+    {
+        if (isset($hostname) || isset($port)) {
+            if (empty($hostname)) {
+                throw new Exception("Argument hostname musi byt zadan");
+            }
+            if (!is_integer($port)) {
+                throw new Exception("Argument port musi byt cele cislo");
+            }
+        }
+
+        $this->_proxyHostname = $hostname;
+        $this->_proxyPort = $port;
+    }
+    // }}}
 }
+
 // }}}
 ?>

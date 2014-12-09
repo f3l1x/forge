@@ -68,138 +68,140 @@ Josef Kyrian <josef.kyrian@firma.seznam.cz>
  */
 class CaptchaXMLRPC extends Captcha
 {
-	// {{{ _call()
-	/**
-	* Provede volani funkce na captcha server
-	*
-	* @param string $methodName               nazev metody
-	* @param array $params                    parametry
-	*
-	* @return mixed    vysledek volani
-	*/
-	protected function _call($methodName, $params = array())
-	{
-		if (!function_exists('xmlrpc_encode_request')) {
-			throw new Exception("PHP XMLRPC extension neni nainstalovana");
-		}
+    // {{{ _call()
+    /**
+     * Provede volani funkce na captcha server
+     *
+     * @param string $methodName nazev metody
+     * @param array $params parametry
+     *
+     * @return mixed    vysledek volani
+     */
+    protected function _call($methodName, $params = array())
+    {
+        if (!function_exists('xmlrpc_encode_request')) {
+            throw new Exception("PHP XMLRPC extension neni nainstalovana");
+        }
 
-		$ch = curl_init(sprintf('http://%s:%d', $this->_serverHostname, $this->_serverPort));
-		if (!$ch) {
-			throw new Exception("Chyba volani curl_init");
-		}
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($ch, CURLOPT_POST, true);
-		if ($this->_proxyHostname) {
-			curl_setopt($ch, CURLOPT_PROXY, $this->_proxyHostname);
-			curl_setopt($ch, CURLOPT_PROXYPORT, $this->_proxyPort);
-		}
-		curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-			"Content-Type: text/xml",
-			"charset=UTF-8",
-		));
-		$request = xmlrpc_encode_request($methodName, $params, array('encoding' => 'UTF-8'));
-		curl_setopt($ch, CURLOPT_POSTFIELDS, $request);
-		$response = curl_exec($ch);
-		if ($response === false) {
-			throw new Exception("Chyba volani curl_exec");
-		}
-		$info = curl_getinfo($ch);
-		if ($info['http_code'] != 200) {
-			throw new Exception("Chyba volani curl_exec. HTTP status code ".$info['http_code']);
-		}
+        $ch = curl_init(sprintf('http://%s:%d', $this->_serverHostname, $this->_serverPort));
+        if (!$ch) {
+            throw new Exception("Chyba volani curl_init");
+        }
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+        curl_setopt($ch, CURLOPT_POST, TRUE);
+        if ($this->_proxyHostname) {
+            curl_setopt($ch, CURLOPT_PROXY, $this->_proxyHostname);
+            curl_setopt($ch, CURLOPT_PROXYPORT, $this->_proxyPort);
+        }
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            "Content-Type: text/xml",
+            "charset=UTF-8",
+        ));
+        $request = xmlrpc_encode_request($methodName, $params, array('encoding' => 'UTF-8'));
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $request);
+        $response = curl_exec($ch);
+        if ($response === FALSE) {
+            throw new Exception("Chyba volani curl_exec");
+        }
+        $info = curl_getinfo($ch);
+        if ($info['http_code'] != 200) {
+            throw new Exception("Chyba volani curl_exec. HTTP status code " . $info['http_code']);
+        }
 
-		$response = xmlrpc_decode($response, 'UTF-8');
+        $response = xmlrpc_decode($response, 'UTF-8');
 
-		if (empty($response) || xmlrpc_is_fault($response)) {
-			throw new Exception(sprintf("XMLRPC error: %s", print_r($response, true)));
-		}
-		return $response;
-	}
-	// }}}
-
-
-	// {{{ create()
-	/**
-	* Vytvori novou captchu a vrati hash
-	*
-	* @return string    hash
-	*/
-	public function create()
-	{
-		$result = $this->_call("captcha.create");
-
-		if (empty($result) || $result['status'] != 200) {
-			throw new Exception(sprintf("Chyba volani: %s", print_r($result, true)));
-		}
-
-		return $result['hash'];
-	}
-	// }}}
+        if (empty($response) || xmlrpc_is_fault($response)) {
+            throw new Exception(sprintf("XMLRPC error: %s", print_r($response, TRUE)));
+        }
+        return $response;
+    }
+    // }}}
 
 
-	// {{{ getImage()
-	/**
-	* Vrati captcha obrazek na zaklade hash
-	*
-	* @return string    binarni obrazkova data
-	*/
-	public function getImage($hash)
-	{
-		$result = $this->_call("captcha.getImage", array($hash));
+    // {{{ create()
+    /**
+     * Vytvori novou captchu a vrati hash
+     *
+     * @return string    hash
+     */
+    public function create()
+    {
+        $result = $this->_call("captcha.create");
 
-		if (empty($result) || $result['status'] != 200) {
-			throw new Exception(sprintf("Chyba volani: %s", print_r($result, true)));
-		}
+        if (empty($result) || $result['status'] != 200) {
+            throw new Exception(sprintf("Chyba volani: %s", print_r($result, TRUE)));
+        }
 
-		return $result['data']->scalar;
-	}
-	// }}}
-
-
-	// {{{ getAudio()
-	/**
-	* Vrati captcha zvuk na zaklade hash
-	*
-	* @return string    binarni audio data
-	*/
-	public function getAudio($hash)
-	{
-		$result = $this->_call("captcha.getAudio", array($hash));
-
-		if (empty($result) || $result['status'] != 200) {
-			throw new Exception(sprintf("Chyba volani: %s", print_r($result, true)));
-		}
-
-		return $result['data']->scalar;
-	}
-	// }}}
+        return $result['hash'];
+    }
+    // }}}
 
 
-	// {{{ check()
-	/**
-	* Vrati zda-li kod zadany uzivatelem souhlasi s captchou identifikovanou danym hashem
-	*  Pri chybnem zavolani teto funkce se hash zneplatni a je potreba znovu zavolat create
-	*
-	* @param string $hash                  hash
-	* @param string $code                  kod
-	*
-	* @return boolean    zda-li kod souhlasi
-	*/
-	public function check($hash, $code)
-	{
-		$result = $this->_call("captcha.check", array($hash, $code));
+    // {{{ getImage()
+    /**
+     * Vrati captcha obrazek na zaklade hash
+     *
+     * @return string    binarni obrazkova data
+     */
+    public function getImage($hash)
+    {
+        $result = $this->_call("captcha.getImage", array($hash));
 
-		if (empty($result) || (
-            $result['status'] != 200 &&
-            $result['status'] != 402 &&
-            $result['status'] != 403 &&
-            $result['status'] != 404)) {
-			throw new Exception(sprintf("Chyba volani: %s", print_r($result, true)));
-		}
+        if (empty($result) || $result['status'] != 200) {
+            throw new Exception(sprintf("Chyba volani: %s", print_r($result, TRUE)));
+        }
 
-		return $result['status'] == 200;
-	}
-	// }}}
+        return $result['data']->scalar;
+    }
+    // }}}
+
+
+    // {{{ getAudio()
+    /**
+     * Vrati captcha zvuk na zaklade hash
+     *
+     * @return string    binarni audio data
+     */
+    public function getAudio($hash)
+    {
+        $result = $this->_call("captcha.getAudio", array($hash));
+
+        if (empty($result) || $result['status'] != 200) {
+            throw new Exception(sprintf("Chyba volani: %s", print_r($result, TRUE)));
+        }
+
+        return $result['data']->scalar;
+    }
+    // }}}
+
+
+    // {{{ check()
+    /**
+     * Vrati zda-li kod zadany uzivatelem souhlasi s captchou identifikovanou danym hashem
+     *  Pri chybnem zavolani teto funkce se hash zneplatni a je potreba znovu zavolat create
+     *
+     * @param string $hash hash
+     * @param string $code kod
+     *
+     * @return boolean    zda-li kod souhlasi
+     */
+    public function check($hash, $code)
+    {
+        $result = $this->_call("captcha.check", array($hash, $code));
+
+        if (empty($result) || (
+                $result['status'] != 200 &&
+                $result['status'] != 402 &&
+                $result['status'] != 403 &&
+                $result['status'] != 404)
+        ) {
+            throw new Exception(sprintf("Chyba volani: %s", print_r($result, TRUE)));
+        }
+
+        return $result['status'] == 200;
+    }
+    // }}}
 }
+
 // }}}
 ?>

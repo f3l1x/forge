@@ -1,14 +1,15 @@
 <?php
 
-interface ICaptcha{
-	
-	function getControl();	
-	
-	function validate($hash, $responce);	
-	
-	function getErrors();
+interface ICaptcha
+{
 
-	function hasErrors();
-		
-	function addError($error);
+    function getControl();
+
+    function validate($hash, $responce);
+
+    function getErrors();
+
+    function hasErrors();
+
+    function addError($error);
 }
