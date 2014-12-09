@@ -2,9 +2,9 @@
 
 ## Info
 
-* @author Milan Felix Sulc
-* @license MIT
 * @version 1.1
+* @author Milan Felix Sulc <rkfelix@gmail.com>
+* @license MIT
 
 ## Usage
 
