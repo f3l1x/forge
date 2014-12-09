@@ -1,58 +1,73 @@
 <?php
 /**
- * Copyright (c) 2012 Milan Felix Sulc <rkfelix@gmail.com>
+ * Copyright (c) 2012-2014 Milan Felix Sulc <rkfelix@gmail.com>
  */
+
+namespace NettePlugins\Router;
 
 use Nette\Utils\Strings;
 
 /**
  * @author Milan Felix Sulc <rkfelix@gmail.com>
  * @licence MIT
- * @version 0.1
+ * @version 1.0
  */
-class CleverRouter extends \Nette\Object{
+class CleverRouter
+{
 
     /** @var array */
     private $routes = array();
 
     /**
-     * @param $key
-     * @param $value
+     * @param string $key
+     * @param string $value
      */
     public function add($key, $value)
     {
         $this->routes[$key] = $value;
     }
 
+    /** FILTERS ***************************************************************************************************** */
+
     /**
-     * @param $url
-     * @return array|null
+     * @param string $url
+     * @return mixed
      */
     public function urlIn($url)
     {
-        $url = $this->cleanUp($url);
-        if(isset($this->routes[$url])) {
-            return $this->routes[$url];
-        }
+        // Normalize URL
+        $url = $this->normalize($url);
+
+        // Exists alias?
+        if (isset($this->routes[$url])) return $this->routes[$url];
+
+        // Return original
         return $url;
     }
 
     /**
-     * @param $url
-     * @return mixed|string
+     * @param string $url
+     * @return mixed
      */
     public function urlOut($url)
     {
-        $url = $this->cleanUp($url);
-        $key = array_search($url, $this->routes);
-        return $key !== FALSE ? $key : $url;
+        // Normalize URL
+        $url = $this->normalize($url);
+
+        // Exists alias?
+        if (($key = array_search($url, $this->routes)) !== FALSE) return $key;
+
+        // Return original
+        return $url;
     }
+
+    /** HELPERS ***************************************************************************************************** */
 
     /**
      * @param $url
      * @return mixed|string
      */
-    public function cleanUp($url)
+    private function normalize($url)
     {
         $parts = explode('/', $url);
 
@@ -68,5 +83,5 @@ class CleverRouter extends \Nette\Object{
         $url = implode('/', $parts);
         return $url;
     }
-    
+
 }
