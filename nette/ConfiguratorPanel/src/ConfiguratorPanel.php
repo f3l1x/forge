@@ -20,11 +20,18 @@
 
 namespace Panel;
 
+use Latte\Engine;
+use Nette\Bridges\DITracy\ContainerPanel;
+use Nette\DI\Container;
+use Nette\Templating\FileTemplate;
+use Nette\Utils\Arrays;
 use Nette\Utils\Strings;
+use Tracy\Debugger;
+use Tracy\IBarPanel;
 
-class Configurator extends Nette\DI\Diagnostics\ContainerPanel implements \Nette\Diagnostics\IBarPanel
+class Configurator extends ContainerPanel implements IBarPanel
 {
-    /** @var \Nette\DI\Container */
+    /** @var Container */
     private $context;
 
     /** @var array */
@@ -63,7 +70,7 @@ NkWfQvSpenyZnIQqXAPwGgh3NmOjXHkCcE2j0RwHd44RJ06dLedAoJQ4KFh1t9ttofu+pb29HR8s
 fc4g2nS128xQHTsMfPMAA3Vo6k2AP6ccKskHn9etiwgP/7PKN2/UHjKZTB29PT0vb9Zd29JQd9nw
 ZGAFXnRQMKfF3d41OFBvNtgs75ymN12vbly/enjxLZCTp07LQnVVZRJ7FqXlFfZItxUBMUzihXns
 TeWRXNJsKCkzmmsvnWNjWqAY++8E+D9l/iWb/xf0Q4ABALuHnKJqedMoAAAAAElFTkSuQmCC">' .
-            'Configurator';
+        'Configurator';
     }
 
 
@@ -76,8 +83,8 @@ TeWRXNJsKCkzmmsvnWNjWqAY++8E+D9l/iWb/xf0Q4ABALuHnKJqedMoAAAAAElFTkSuQmCC">' .
     function getPanel()
     {
         ob_start();
-        $template = new \Nette\Templating\FileTemplate(dirname(__FILE__) . '/configurator.panel.latte');
-        $template->registerFilter(new \Nette\Latte\Engine());
+        $template = new FileTemplate(dirname(__FILE__) . '/configurator.panel.latte');
+        $template->registerFilter(new Engine());
         $template->parameters = $this->context->params;
         unset($template->parameters['nette']); // ??!
         $template->factories = $this->getFactories();
@@ -104,9 +111,9 @@ TeWRXNJsKCkzmmsvnWNjWqAY++8E+D9l/iWb/xf0Q4ABALuHnKJqedMoAAAAAElFTkSuQmCC">' .
     /**
      * Registers panel to Debug bar
      */
-    static function register(\Nette\DI\Container $context)
+    static function register(Container $context)
     {
-        \Nette\Diagnostics\Debugger::addPanel(new self($context));
+        Debugger::getBar()->addPanel(new self($context));
     }
 
     /**
@@ -117,7 +124,7 @@ TeWRXNJsKCkzmmsvnWNjWqAY++8E+D9l/iWb/xf0Q4ABALuHnKJqedMoAAAAAElFTkSuQmCC">' .
         foreach ($this->context->getReflection()->getMethods() as $method) {
             if (strpos($method, "SystemContainer") !== FALSE) {
                 $match = Strings::match($method, "#.+::([a-zA-Z0-9_]+)#");
-                $res = \Nette\Utils\Arrays::get((array) $match, 1, NULL);
+                $res = Arrays::get((array)$match, 1, NULL);
                 $parameters = $this->getMethodParameters($method->getParameters());
                 if (strpos($res, "createServiceNette") !== FALSE) {
                     $this->netteServices[] = $this->buildFunction($res, $parameters);
@@ -134,21 +141,21 @@ TeWRXNJsKCkzmmsvnWNjWqAY++8E+D9l/iWb/xf0Q4ABALuHnKJqedMoAAAAAElFTkSuQmCC">' .
 
     private function getMethodParameters($parameters)
     {
-        if(count($parameters) <= 0) return NULL;
+        if (count($parameters) <= 0) return NULL;
         $params = array();
-        foreach($parameters as $parameter) {
-            $params[] = "$".$parameter->getName();
+        foreach ($parameters as $parameter) {
+            $params[] = "$" . $parameter->getName();
         }
         return implode(', ', $params);
     }
 
     private function buildFunction($func, $params)
     {
-        return $func . '(' .$params. ')';
+        return $func . '(' . $params . ')';
     }
 
     /**
-     * @return \Nette\DI\Container
+     * @return Container
      */
     public function getContext()
     {
