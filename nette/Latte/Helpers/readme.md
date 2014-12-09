@@ -1,4 +1,4 @@
-## Latte helpers
+# Latte Helpers
 
 Custom helpers for your templates.
 
@@ -29,7 +29,7 @@ public function createTemplate(UI\Control $control)
 {
     // ...
 
-    $latte = $this->latteFactory->creat();
+    $latte = $this->latteFactory->create();
     $latte->addFilter('mailto', ['NettePlugins\Helpers\Helpers', 'mailto']);
 
     // ...

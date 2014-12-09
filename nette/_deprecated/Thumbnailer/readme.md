@@ -1,6 +1,6 @@
-# Thumbator
+# Thumbnailer [deprecated]
 
-Component for making
+Component for making image thumbs.
 
 ## Usage
 

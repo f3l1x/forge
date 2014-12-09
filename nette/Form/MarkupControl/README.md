@@ -1,4 +1,4 @@
-## Markup Control
+# MarkupControl for Nette/Forms
 
 Add HTML to your form.
 

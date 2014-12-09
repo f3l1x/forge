@@ -1,4 +1,4 @@
-# Thumbator
+# Thumbator [deprecated]
 
 Easy-use util for resizing images on website.
 

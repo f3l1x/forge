@@ -1,4 +1,4 @@
-# LatteExtension
+# Latte sExtension [deprecated]
 
 Small extension for Nette Framework to register your macros.
 

@@ -1,7 +1,6 @@
-# FbTools 1.0
+# FbTools 1.0 [deprecated]
 
-![FbTools](https://raw.github.com/f3l1x/nette-plugins/master/FbTools/logo.png)
-
+![FbTools](https://raw.githubusercontent.com/f3l1x/Nette-Plugins/master/_deprecated/FbTools/logo.png)
 Old collection of facebook widgets.
 
 ## Requirements

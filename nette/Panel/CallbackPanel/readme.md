@@ -1,6 +1,6 @@
 # Callback Panel
 
-![Callback Panel](https://raw.github.com/f3l1x/nette-plugins/master/CallbackPanel/callback.png)
+![Callback Panel](https://raw.githubusercontent.com/f3l1x/Nette-Plugins/master/Panel/CallbackPanel/callback.png)
 
 ## Info
 

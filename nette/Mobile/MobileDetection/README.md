@@ -1,4 +1,4 @@
-## Mobile Detection
+# Mobile Detection
 
 For checking mobile devices.
 

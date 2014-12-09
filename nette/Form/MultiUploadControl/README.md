@@ -1,4 +1,4 @@
-# Multi file upload component for Nette forms
+# MultiUploadControl for Nette/Forms
 
 ## Info
 

@@ -1,4 +1,4 @@
-# Easy Js Confirm [deprecated]
+# Easy Confirm [deprecated]
 
 Confirm before event.
 

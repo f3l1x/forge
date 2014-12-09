@@ -1,4 +1,4 @@
-## Latte macros
+# Latte Macros
 
 ## Info
 
@@ -37,7 +37,7 @@ public function createTemplate(UI\Control $control)
 {
     // ...
 
-    $latte = $this->latteFactory->creat();
+    $latte = $this->latteFactory->create();
     $latte->onCompile[] = function(Engine $latte) {
         NettePlugins\Macros\Macros::install($latte->getCompiler());
     };

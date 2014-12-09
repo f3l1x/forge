@@ -1,4 +1,4 @@
-# Money Control for Nette Forms
+# MoneyControl for Nette/Forms
 
 Add money control.
 

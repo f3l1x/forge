@@ -1,8 +1,8 @@
 #FbTools 2.0
 
-![FbTools](https://raw.github.com/f3l1x/nette-plugins/master/FbToolsNS/logo.png)
+![FbTools](https://raw.github.com/f3l1x/Nette-Plugins/tree/master/Social/Facebook/logo.png)
 
-Collection of facebook components override for Nette 2.0.
+Collection of facebook components override for Nette 2.2.
 
 ##Usage
 
