@@ -1,4 +1,7 @@
 <?php
+/**
+ * Copyright (c) 2012-2014 Milan Felix Sulc <rkfelix@gmail.com>
+ */
 
 namespace NettePlugins\Panels\CallbackPanel;
 
