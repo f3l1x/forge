@@ -20,14 +20,14 @@ Small utility for creating GA accepted parameters to url.
 
 ```php
     // Source, medium, campaign
-    $campaign = new Social\GoogleAnalytics\Campaign\Campaign('newsletter', 'website', 'april13');
+    $campaign = new NettePlugins\Social\Google\Analytics\Campaign('newsletter', 'website', 'april13');
     $this->link('Card:detail', $campaign->build());
 
     // Source, medium, campaign, term, content
-    $campaign = new Social\GoogleAnalytics\Campaign\('newsletter', 'website', 'april13', 'term1', 'content');
+    $campaign = new NettePlugins\Social\Google\Analytics\Campaign('newsletter', 'website', 'april13', 'term1', 'content');
     $this->link('Product:detail', $campaign->build());
 
     // Factory (same args as previous)
-    $link = Social\GoogleAnalytics\Campaign\Campaign::create('newsletter', 'website', 'april13');
+    $link = NettePlugins\Social\Google\Analytics\Campaign::create('newsletter', 'website', 'april13');
     $this->link('Foto:detail', $link);
 ```

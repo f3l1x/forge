@@ -8,18 +8,19 @@
 
 ## Factory
 
-    public function createComponentGoogleButton() {
-        $button = new GooglePlusone();
-        $button->setHtml5(true);
+```php
+    protected function createComponentPlusone() {
+        $button = new NettePlugins\Social\Google\PlusOne();
+        $button->setMode($button::MODE_HTML5);
         $button->setUrl('www.nette.org');
 
         return $button;
     }
-
+```
 
 ## Template
 
     Script in <head /> or before </body>
-    {googleButton:javascript}
+    {plusone:javascript}
 
-    Button: {googleButton}
+    Button: {plusone}

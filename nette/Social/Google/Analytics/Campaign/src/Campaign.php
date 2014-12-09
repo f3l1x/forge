@@ -3,14 +3,16 @@
  * Copyright (c) 2013-2014 Milan Felix Sulc <rkfelix@gmail.com>
  */
 
-namespace Social\GoogleAnalytics\Campaign;
+namespace NettePlugins\Social\GoogleAnalytics;
 
 use Nette\InvalidStateException;
 
 /**
  * @author Milan Felix Sulc <rkfelix@gmail.com>
+ * @author Petr Stuchl4n3k Stuchlik <stuchl4n3k@gmail.com>
  * @licence MIT
  * @version 1.2
+ *
  * @see http://support.google.com/bin/answer.py?hl=cs&answer=1033867&rd=1
  */
 class Campaign

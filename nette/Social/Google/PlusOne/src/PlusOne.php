@@ -3,7 +3,7 @@
  * Copyright (c) 2012 Milan Felix Sulc <rkfelix@gmail.com>
  */
 
-namespace Social\Google\PlusOne;
+namespace NettePlugins\Social;
 
 use Nette\Application\UI\Control;
 use Nette\Utils\Html;
@@ -11,8 +11,9 @@ use Nette\Utils\Html;
 /**
  * Google +1 component
  *
- * @author Milan Felix Sulc
- * @author Petr Stuchl4n3k Stuchlik
+ * @author Milan Felix Sulc <rkfelix@gmail.com>
+ * @author Petr Stuchl4n3k Stuchlik <stuchl4n3k@gmail.com>
+ * @licence MIT
  * @version 1.3
  */
 class PlusOne extends Control
@@ -45,7 +46,7 @@ class PlusOne extends Control
     /** @var string|null */
     private $callback = NULL;
 
-    /** @var */
+    /** @var string */
     private $url;
 
     /** @var int */
@@ -60,8 +61,8 @@ class PlusOne extends Control
     /** SETTERS/GETTERS ********************************************************************************************* */
 
     /**
-     * @param $annotation
-     * @return GooglePlusone
+     * @param string $annotation
+     * @return self
      */
     public function setAnnotation($annotation)
     {
@@ -78,8 +79,8 @@ class PlusOne extends Control
     }
 
     /**
-     * @param $asynchronous
-     * @return GooglePlusone
+     * @param string $asynchronous
+     * @return self
      */
     public function setAsynchronous($asynchronous)
     {
@@ -96,8 +97,8 @@ class PlusOne extends Control
     }
 
     /**
-     * @param $callback
-     * @return GooglePlusone
+     * @param string $callback
+     * @return self
      */
     public function setCallback($callback)
     {
@@ -114,26 +115,26 @@ class PlusOne extends Control
     }
 
     /**
-     * @param $html5
-     * @return GooglePlusone
+     * @param int $mode
+     * @return self
      */
-    public function setMode($html5)
+    public function setMode($mode)
     {
-        $this->mode = $html5;
+        $this->mode = $mode;
         return $this;
     }
 
     /**
-     * @return boolean
+     * @return int
      */
-    public function isMode()
+    public function getMode()
     {
         return $this->mode;
     }
 
     /**
-     * @param $lang
-     * @return GooglePlusone
+     * @param string $lang
+     * @return self
      */
     public function setLang($lang)
     {
@@ -150,8 +151,8 @@ class PlusOne extends Control
     }
 
     /**
-     * @param $size
-     * @return GooglePlusone
+     * @param string $size
+     * @return self
      */
     public function setSize($size)
     {
@@ -168,8 +169,8 @@ class PlusOne extends Control
     }
 
     /**
-     * @param $url
-     * @return GooglePlusone
+     * @param string $url
+     * @return self
      */
     public function setUrl($url)
     {
@@ -194,8 +195,8 @@ class PlusOne extends Control
      */
     public function render()
     {
-        // Checks for html5 way..
-        if ($this->mode == self::HTML5) {
+        // Checks for html5 mode
+        if ($this->mode == self::MODE_HTML5) {
             $el = Html::el('div class=g-plusone');
         } else {
             $el = Html::el('g:plusone');
