@@ -9,6 +9,7 @@ Shortcut for throwing default error exceptions (403, 404, 405, 410, 500).
 
 ## Usecase
 
+```php
     // Show error 404 and default message "Page Not Found"
     $container->router[] = new Route('oldUrl', 'BadRequest:e404');
 
@@ -21,5 +22,6 @@ Shortcut for throwing default error exceptions (403, 404, 405, 410, 500).
     	'action' => 'error403',
     	'message' => 'My Page Not Found',
 	));
+```
 
 Thanks for testing..
