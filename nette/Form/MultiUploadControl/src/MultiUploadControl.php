@@ -3,18 +3,22 @@
  * Multi file upload component for Nette Forms
  *
  * @see http://forum.nette.org/cs/12717-upload-vice-souboru-file
- * @copyright Copyright (c) 2012 netrunner
- * @copyright Copyright (c) 2012 Milan Felix Sulc <rkfelix@gmail.com>
+ * @copyright Copyright (c) 2012 Netrunner
+ * @copyright Copyright (c) 2012-2014 Milan Felix Sulc <rkfelix@gmail.com>
  */
-namespace Nette\Forms\Controls;
+
+namespace NettePlugins\Forms\Controls;
 
 use Nette;
+use Nette\Forms\Container;
+use Nette\Forms\Controls\UploadControl;
 use Nette\Http;
+use Nette\Utils\Validators;
 
 /**
  * @author Milan Felix Sulc
  * @license MIT
- * @version 1.0
+ * @version 1.1
  */
 class MultiUploadControl extends UploadControl
 {
@@ -37,7 +41,7 @@ class MultiUploadControl extends UploadControl
      */
     public function getControl()
     {
-        return parent::getControl()->multiple(TRUE);
+        return parent::getControl()->setMultiple(TRUE);
     }
 
     /**
@@ -127,7 +131,7 @@ class MultiUploadControl extends UploadControl
     public static function validateRange(UploadControl $control, $range)
     {
         $files = count($control->getValue());
-        return \Nette\Utils\Validators::isInRange($files, $range);
+        return Validators::isInRange($files, $range);
     }
 
     /**
@@ -210,14 +214,16 @@ class MultiUploadControl extends UploadControl
     }
 
     /**
+     * Register MultiUploadControl method
+     *
      * @param string $methodName
      * @return void
      */
     public static function register($methodName = "addMultiUpload")
     {
-        \Nette\Application\UI\Form::extensionMethod($methodName, function (\Nette\Application\UI\Form $form, $name, $label = NULL) {
-            $form[$name] = new \Nette\Forms\Controls\MultiUploadControl($label);
-            return $form[$name];
+        Container::extensionMethod($methodName, function (Container $container, $name, $label = NULL) {
+            $container[$name] = new MultiUploadControl($label);
+            return $container[$name];
         });
     }
 }
