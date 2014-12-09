@@ -1,6 +1,11 @@
 <?php
+/**
+ * Copyright (c) 2012-2014 Milan Felix Sulc <rkfelix@gmail.com>
+ */
 
-use Nette\Latte\CompileException;
+namespace NettePlugins\LatteExtension;
+
+use Nette\DI\CompilerExtension;
 
 /**
  * Extension for Latte
