@@ -4,7 +4,8 @@ Shortcut for throwing default error exceptions (403, 404, 405, 410, 500).
 
 ## Info
 
-* @author Milan Felix Sulc
+* @version 1.0
+* @author Milan Felix Sulc <rkfelix@gmail.com>
 * @license MIT
 
 ## Usecase

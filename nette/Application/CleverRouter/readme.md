@@ -4,5 +4,6 @@ Small utils helps you build cool urls.
 
 ## Info
 
-* @author Milan Felix Sulc
+* @version 1.0
+* @author Milan Felix Sulc <rkfelix@gmail.com>
 * @license MIT
