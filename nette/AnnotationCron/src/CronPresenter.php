@@ -1,6 +1,14 @@
 <?php
 
-class CronPresenter extends BasePresenter
+use Nette\Application\ApplicationException;
+use Nette\Application\UI\Presenter;
+use Nette\Caching\Cache;
+use Nette\Loaders\RobotLoader;
+use Nette\Reflection\Method;
+use Nette\Utils\Strings;
+use Tracy\Debugger;
+
+class CronPresenter extends Presenter
 {
 
     const TOKEN = 1234;
@@ -8,7 +16,7 @@ class CronPresenter extends BasePresenter
     /** @var array */
     private $methods = array();
 
-    /** @var \Nette\Caching\Cache */
+    /** @var Cache */
     private $cache;
 
     public function startup()
@@ -17,7 +25,7 @@ class CronPresenter extends BasePresenter
 
         // Validating part
         if (!$this->validate()) {
-            throw new \Nette\Application\ApplicationException('Bad token');
+            throw new ApplicationException('Bad token');
         }
 
         // Booting, analyzing
@@ -28,12 +36,12 @@ class CronPresenter extends BasePresenter
     }
 
     /**
-     * @return Nette\Caching\Cache
+     * @return Cache
      */
     public function getCache()
     {
         if (!$this->cache) {
-            $this->cache = new \Nette\Caching\Cache($this->context->cacheStorage, 'cron');
+            $this->cache = new Cache($this->context->cacheStorage, 'cron');
         }
 
         return $this->cache;
@@ -41,14 +49,15 @@ class CronPresenter extends BasePresenter
 
     /**
      * Validate user permission
+     *
      * @return bool
      */
     private function validate()
     {
         if ($this->getParameter('token') == self::TOKEN) {
-            return true;
+            return TRUE;
         }
-        return false;
+        return FALSE;
     }
 
     /**
@@ -66,9 +75,9 @@ class CronPresenter extends BasePresenter
     {
         foreach ($methods as $method) {
 
-            \Nette\Diagnostics\Debugger::barDump($method->annotations, $method->name);
+            Debugger::barDump($method->annotations, $method->name);
             $instance = $this->context->createInstance($method->class);
-            callback($instance, $method->name)->invokeArgs(array($this->context, $this->getParameter()));
+            callback($instance, $method->name)->invokeArgs(array($this->context, $this->getParameters()));
         }
     }
 
@@ -80,17 +89,17 @@ class CronPresenter extends BasePresenter
      */
     public function createMethodList()
     {
-        /** @var $robotLoader \Nette\Loaders\RobotLoader */
+        /** @var $robotLoader RobotLoader */
         $robotLoader = $this->context->getService('robotLoader');
 
         foreach ($robotLoader->getIndexedClasses() as $class => $file) {
 
-            if (\Nette\Utils\Strings::match($file, "~\Nette~")) continue;
+            if (Strings::match($file, "~\Nette~")) continue;
 
             $creflection = new Nette\Reflection\ClassType($class);
 
             foreach ($creflection->getMethods() as $method) {
-                $mreflection = new \Nette\Reflection\Method($class, $method->getName());
+                $mreflection = new Method($class, $method->getName());
 
                 if ($mreflection->hasAnnotation('cron')) {
                     $m = new stdClass();
