@@ -2,7 +2,12 @@
 /**
  * Copyright (c) 2012 Milan Felix Sulc <rkfelix@gmail.com>
  */
-namespace Thumbnailer;
+
+namespace NettePlugins\Thumbnailer;
+
+use Nette\Http\FileUpload;
+use Nette\Utils\ArrayHash;
+use Nette\Utils\Image;
 
 /**
  * @author Milan Felix Sulc <rkfelix@gmail.com>
@@ -63,7 +68,7 @@ class Thumbnailer extends \Nette\Object
     /**
      * @param FileUpload $file
      */
-    public function process(\Nette\Http\FileUpload $file)
+    public function process(FileUpload $file)
     {
 
         // check
@@ -88,9 +93,9 @@ class Thumbnailer extends \Nette\Object
         }
     }
 
-    public function thumbate(\Nette\Http\FileUpload $file, Thumb $thumb)
+    public function thumbate(FileUpload $file, Thumb $thumb)
     {
-        /** @var $image \Nette\Image */
+        /** @var $image Image */
         $image = $file->toImage();
 
         $dimension = $thumb->getDimension();
@@ -108,7 +113,7 @@ class Thumbnailer extends \Nette\Object
         $path = Utils::dirs($this->repository, $thumb->getPath(), $filename);
 
         // Store image data
-        $this->images[] = \Nette\ArrayHash::from(array(
+        $this->images[] = ArrayHash::from(array(
             'path' => Utils::dirs($this->repository, $thumb->getPath()),
             'fullpath' => $path,
             'filename' => $filename,

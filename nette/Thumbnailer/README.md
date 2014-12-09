@@ -10,7 +10,7 @@ Component for making
 
         # Thumbator
         thumbator:
-            class: Thumbator\Thumbator
+            class: NettePlugins\Thumbator\Thumbator
             setup:
               - setRepository(%wwwDir%/data)
 

@@ -2,7 +2,8 @@
 /**
  * Copyright (c) 2012 Milan Felix Sulc <rkfelix@gmail.com>
  */
-namespace Thumbnailer;
+
+namespace NettePlugins\Thumbnailer;
 
 use Nette\Utils\Strings;
 

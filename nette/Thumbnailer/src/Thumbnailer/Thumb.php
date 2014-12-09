@@ -2,7 +2,10 @@
 /**
  * Copyright (c) 2012 Milan Felix Sulc <rkfelix@gmail.com>
  */
-namespace Thumbnailer;
+
+namespace NettePlugins\Thumbnailer;
+
+use Nette\InvalidArgumentException;
 
 /**
  * @author Milan Felix Sulc <rkfelix@gmail.com>
@@ -54,12 +57,12 @@ class Thumb extends \Nette\Object
             $this->path = $path;
             $this->flags = $flags;
         } else {
-            throw new \Nette\InvalidArgumentException('Width or height must be a number');
+            throw new InvalidArgumentException('Width or height must be a number');
         }
     }
 
     /**
-     * @param \Dimension $dimension
+     * @param Dimension $dimension
      */
     public function setDimension($dimension)
     {
@@ -67,7 +70,7 @@ class Thumb extends \Nette\Object
     }
 
     /**
-     * @return \Dimension
+     * @return Dimension
      */
     public function getDimension()
     {

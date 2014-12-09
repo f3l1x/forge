@@ -1,17 +1,21 @@
 <?php
 
-use \Nette\Diagnostics\Debugger;
-use \Thumbnailer\Thumb;
-use \Thumbnailer\Thumbnailer;
+use Nette\Application\UI\Form;
+use Nette\Application\UI\Presenter;
+use NettePlugins\Thumbnailer\Thumb;
+use NettePlugins\Thumbnailer\Thumbnailer;
+use Tracy\Debugger;
 
-class HomepagePresenter extends BasePresenter
+class HomepagePresenter extends Presenter
 {
 
-    public function actionDefault() {
+    public function actionDefault()
+    {
     }
 
-    public function createComponentForm() {
-        $form = new \Nette\Application\UI\Form();
+    public function createComponentForm()
+    {
+        $form = new Form();
         $form->addUpload('picture', 'obrazek');
         $form->addSubmit('ok', 'upload');
         $form->onSuccess[] = callback($this, 'process');
@@ -19,7 +23,8 @@ class HomepagePresenter extends BasePresenter
         return $form;
     }
 
-    public function process(\Nette\Forms\Form $form) {
+    public function process(\Nette\Forms\Form $form)
+    {
         if ($form->isSuccess()) {
 
             /** @var Thumbnailer */
@@ -38,8 +43,8 @@ class HomepagePresenter extends BasePresenter
             $thumbator->addThumb($thumb5);
 
             // Success handler
-            $thumbator->onSuccess[] = function($t) {
-               Debugger::barDump('Sucess handler');
+            $thumbator->onSuccess[] = function ($t) {
+                Debugger::barDump('Sucess handler');
             };
 
             $thumbator->process($form->values->picture);

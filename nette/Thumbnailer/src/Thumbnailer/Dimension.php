@@ -1,8 +1,12 @@
 <?php
 /**
- * Copyright (c) 2012 Milan Felix Sulc <rkfelix@gmail.com>
+ * Copyright (c) 2012-2014 Milan Felix Sulc <rkfelix@gmail.com>
  */
-namespace Thumbnailer;
+
+namespace NettePlugins\Thumbnailer;
+
+use Nette\InvalidArgumentException;
+use Nette\Utils\Image;
 
 /**
  * @author Milan Felix Sulc <rkfelix@gmail.com>
@@ -19,21 +23,21 @@ class Dimension extends \Nette\Object
     private $height = 0;
 
     /** @var int */
-    private $flag = \Nette\Image::FILL;
+    private $flag = Image::FILL;
 
     /**
      * @param int $width
      * @param int $height
      * @param int $flag
      */
-    public function __construct($width, $height, $flag = \Nette\Image::FILL)
+    public function __construct($width, $height, $flag = Image::FILL)
     {
         if ($width > 0 && $height > 0) {
             $this->width = $width;
             $this->height = $height;
             $this->flag = $flag;
         } else {
-            throw new \Nette\InvalidArgumentException('Width or height must be a number');
+            throw new InvalidArgumentException('Width or height must be a number');
         }
     }
 
