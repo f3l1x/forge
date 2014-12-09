@@ -5,7 +5,7 @@ Small Latte helper based on Smarty idea to protect your email address.
 ## Info
 
 * @version 1.3
-* @author Milan Felix Sulc
+* @author Milan Felix Sulc <rkfelix@gmail.com>
 * @license MIT
 
 ## Template
