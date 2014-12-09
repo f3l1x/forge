@@ -6,10 +6,12 @@ For checking mobile devices.
 
 * @author Milan Felix Sulc
 * @license MIT
+* @version 1.1
 
 ## Usage
 
-	if( MobileDetection::isMobile() ) {
+```php
+	if(MobileDetection::isMobile()) {
 		// mobile routing
 		$router[] = new Route('index.php', 'Mobile:Homepage:default', Route::ONE_WAY);
 		$router[] = new Route('<presenter>/<action>[/<id>]', 'Mobile:Homepage:default');
@@ -18,3 +20,4 @@ For checking mobile devices.
 		$router[] = new Route('index.php', 'Classic:Homepage:default', Route::ONE_WAY);
 		$router[] = new Route('<presenter>/<action>[/<id>]', 'Classic:Homepage:default');
 	}
+```
