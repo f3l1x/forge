@@ -90,7 +90,7 @@ $input->filterIn[] = $this->myFilterIn;
 
 $input->filterOut[] = $this->myFilterOut; 
 // fired on $input->getData()
-```php
+```
 
 ## Transfer table
 
