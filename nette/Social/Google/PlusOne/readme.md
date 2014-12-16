@@ -5,19 +5,20 @@
 * @version 2.0
 * @author Milan Felix Sulc
 * @license MIT
+* @doc https://developers.google.com/+/web/+1button/
 
 ## Settings
-| Type   | Field             | Default               | Setter/Getter | Info                     |
-|--------|-------------------|-----------------------|---------------|--------------------------|
-| string | $size             | standard              | yes/yes       |                          |
-| string | $annotation       | inline                | yes/yes       | inline/bubble/none       |
-| string | $callback         | NULL                  | yes/yes       |                          |
-| string | $url              | NULL                  | yes/yes       |                          |
-| int    | $mode             | default               | yes/yes       | default/explicit/dynamic |
-| int    | $width            | 300                   | yes/yes       |                          |
-| string | $lang             | cs                    | yes/yes       |                          |
-| Html   | $elementPrototype | div class="g-plusone" | yes/yes       | html prototype           |
-| array  | $properties       | []                    |               |                          |
+| Type   | Field               | Default               | Setter/Getter | Info                     |
+|--------|---------------------|-----------------------|---------------|--------------------------|
+| string | `$size`             | standard              | yes/yes       |                          |
+| string | `$annotation`       | inline                | yes/yes       | inline/bubble/none       |
+| string | `$callback`         | NULL                  | yes/yes       |                          |
+| string | `$url`              | NULL                  | yes/yes       |                          |
+| int    | `$mode`             | default               | yes/yes       | default/explicit/dynamic |
+| int    | `$width`            | 300                   | yes/yes       |                          |
+| string | `$lang`             | cs                    | yes/yes       |                          |
+| Html   | `$elementPrototype` | div class="g-plusone" | yes/yes       | html prototype           |
+| array  | `$properties`       | []                    | yes/yes       |                          |
 
 ## Factory
 
