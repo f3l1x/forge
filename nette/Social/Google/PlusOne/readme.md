@@ -7,16 +7,17 @@
 * @license MIT
 
 ## Settings
-| Field      | Default               | Setter/Getter | Info                     |
-|------------|-----------------------|---------------|--------------------------|
-| size       |        standard       | yes/yes       |                          |
-| annotation |         inline        | yes           | inline/bubble/none       |
-| callback   |          NULL         | yes           |                          |
-| url        |          NULL         | yes           |                          |
-| mode       |        default        | yes           | default/explicit/dynamic |
-| width      |          300          | yes           |                          |
-| lang       |           cs          | yes           |                          |
-| element    | div class="g-plusone" | yes           | html prototype           |
+| Type   | Field             | Default               | Setter/Getter | Info                     |
+|--------|-------------------|-----------------------|---------------|--------------------------|
+| string | $size             | standard              | yes/yes       |                          |
+| string | $annotation       | inline                | yes/yes       | inline/bubble/none       |
+| string | $callback         | NULL                  | yes/yes       |                          |
+| string | $url              | NULL                  | yes/yes       |                          |
+| int    | $mode             | default               | yes/yes       | default/explicit/dynamic |
+| int    | $width            | 300                   | yes/yes       |                          |
+| string | $lang             | cs                    | yes/yes       |                          |
+| Html   | $elementPrototype | div class="g-plusone" | yes/yes       | html prototype           |
+| array  | $properties       | []                    |               |                          |
 
 ## Factory
 

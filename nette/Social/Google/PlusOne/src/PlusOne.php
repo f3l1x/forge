@@ -16,6 +16,16 @@ use Nette\Utils\Validators;
  * @author Petr Stuchl4n3k Stuchlik <stuchl4n3k@gmail.com>
  * @licence MIT
  * @version 2.0
+ *
+ * @property string $size
+ * @property string $annotation
+ * @property string $callback
+ * @property string $url
+ * @property int    $mode
+ * @property int    $width
+ * @property string $lang
+ * @property Html   $elementPrototype
+ * @property array  $properties
  */
 class PlusOne extends Control
 {
@@ -45,8 +55,8 @@ class PlusOne extends Control
     /** @var string */
     public $annotation = self::ANNOTATION_INLINE;
 
-    /** @var string|null */
-    private $callback = NULL;
+    /** @var string */
+    private $callback;
 
     /** @var string */
     private $url;
@@ -62,6 +72,9 @@ class PlusOne extends Control
 
     /** @var Html */
     private $element;
+
+    /** @var array */
+    private $properties = [];
 
     function __construct()
     {
@@ -167,7 +180,7 @@ class PlusOne extends Control
      */
     public function setWidth($width)
     {
-        $this->width = $width;
+        $this->width = intval($width);
         return $this;
     }
 
@@ -195,6 +208,35 @@ class PlusOne extends Control
         return $this->element;
     }
 
+    /**
+     * @return array
+     */
+    public function getProperties()
+    {
+        return $this->properties;
+    }
+
+    /**
+     * @param array $properties
+     * @return self
+     */
+    public function setProperties(array $properties)
+    {
+        $this->properties = $properties;
+        return $this;
+    }
+
+    /**
+     * @param string $name
+     * @param string $value
+     * @return self
+     */
+    public function addProperty($name, $value)
+    {
+        $this->properties[$name] = $value;
+        return $this;
+    }
+
     /** RENDERERS *********************************************************** */
 
     /**
@@ -206,7 +248,7 @@ class PlusOne extends Control
     public function render($url = NULL)
     {
         // Get HTML element
-        $el = $this->element;
+        $el = $this->getElementPrototype();
         $el->size = $this->size;
         $el->annotation = $this->annotation;
 
@@ -226,6 +268,13 @@ class PlusOne extends Control
         // Set callback, if filled
         if ($this->callback != NULL) {
             $el->callback = $this->callback;
+        }
+
+        // Set properties as data attributes
+        foreach ($this->getProperties() as $key => $value) {
+            if ($value !== NULL && !empty($value)) {
+                $el->{"data-$key"} = $value;
+            }
         }
 
         return $el;
