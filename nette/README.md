@@ -38,7 +38,7 @@ Welcome in my humble repository of nette plugins / tools / stuff.
 
 * [Facebook](http://github.com/f3l1x/Nette-Plugins/tree/master/Social/Facebook)
 * [Google +1](http://github.com/f3l1x/Nette-Plugins/tree/master/Social/Google/PlusOne)
-* [Google/Analytics/Campaign](http://github.com/f3l1x/Nette-Plugins/tree/master/Social/Google/Analytics/Campaign)
+* [GoogleAnalytics - Campaign](http://github.com/f3l1x/Nette-Plugins/tree/master/Social/Google/Analytics/Campaign)
 * [Twitter](http://github.com/f3l1x/Nette-Plugins/tree/master/Social/Twitter)
               
 ## Others

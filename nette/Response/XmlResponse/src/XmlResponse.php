@@ -2,6 +2,7 @@
 /**
  * Copyright (c) 2012-2014 Milan Felix Sulc <rkfelix@gmail.com>
  */
+
 namespace NettePlugins\Response\XmlResponse;
 
 use Nette;

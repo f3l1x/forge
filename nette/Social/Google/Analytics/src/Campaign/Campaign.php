@@ -3,7 +3,7 @@
  * Copyright (c) 2013-2014 Milan Felix Sulc <rkfelix@gmail.com>
  */
 
-namespace NettePlugins\Social\GoogleAnalytics;
+namespace NettePlugins\Social\Google\Analytics;
 
 use Nette\InvalidStateException;
 
