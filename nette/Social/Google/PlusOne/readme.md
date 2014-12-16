@@ -49,7 +49,7 @@ protected function createComponentPlusone() {
 
 Place before `</body>` or `</head>`.
 
-{control plusone:js}
+`{control plusone:js}`
 
 ### Render button
 

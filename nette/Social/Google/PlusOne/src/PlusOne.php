@@ -36,8 +36,8 @@ class PlusOne extends Control
     const MODE_EXPLICIT = 2;
     const MODE_DYNAMIC = 3;
 
-    /** Google +1 URL */
-    const GOOGLE_PLUSONE_URL = 'https://apis.google.com/js/platform.js';
+    /** Google platform URL */
+    const GOOGLE_PLATFORM_URL = 'https://apis.google.com/js/platform.js';
 
     /** @var string */
     public $size = self::SIZE_STANDARD;
@@ -148,7 +148,7 @@ class PlusOne extends Control
      */
     public function setUrl($url)
     {
-        Validators::isUrl($url);
+        Validators::assert($url, 'string|url');
         $this->url = $url;
         return $this;
     }
@@ -212,7 +212,7 @@ class PlusOne extends Control
 
         // Set given URL or filled url
         if ($url != NULL) {
-            Validators::isUrl($url);
+            Validators::assert($url, 'string|url');
             $el->href = $url;
         } else {
             $el->href = $this->url;
@@ -240,7 +240,7 @@ class PlusOne extends Control
     {
         if ($this->mode == self::MODE_DEFAULT) {
             $el = Html::el('script type="text/javascript" async defer');
-            $el->src = self::GOOGLE_PLUSONE_URL;
+            $el->src = self::GOOGLE_PLATFORM_URL;
             $el->add("{lang: '" . $this->lang . "'}");
 
             return $el;
@@ -249,7 +249,7 @@ class PlusOne extends Control
             $wrapper = Html::el();
 
             $el = Html::el('script type="text/javascript" async defer');
-            $el->src = self::GOOGLE_PLUSONE_URL;
+            $el->src = self::GOOGLE_PLATFORM_URL;
             $el->add("{lang: '" . $this->lang . "', parsetags: 'explicit'}");
             $wrapper->add($el);
 
@@ -262,7 +262,7 @@ class PlusOne extends Control
         } else if ($this->mode == self::MODE_DYNAMIC) {
             $el = Html::el('script type="text/javascript"');
             $el->add("window.___gcfg = {lang: '" . $this->lang . "'};");
-            $el->add("(function(){var po=document.createElement('script');po.type='text/javascript';po.async=true;po.src='" . self::GOOGLE_PLUSONE_URL . "';vars=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(po, s);})();");
+            $el->add("(function(){var po=document.createElement('script');po.type='text/javascript';po.async=true;po.src='" . self::GOOGLE_PLATFORM_URL . "';vars=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(po, s);})();");
 
             return $el;
         }
