@@ -45,11 +45,16 @@ protected function createComponentPlusone() {
 
 ## Template
 
-Script in <head /> or before </body>
-{plusone:js}
+### Render javascript
 
-Button: {plusone}
+Place before `</body>` or `</head>`.
 
-Button: {plusone, $url}
+{control plusone:js}
 
-Button: {plusone, 'www.seznam.com'}
+### Render button
+
+Button #1: `{control plusone}`
+
+Button #2: `{control plusone, $url}`
+
+Button #3: `{control plusone, 'www.seznam.com'}`
