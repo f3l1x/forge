@@ -15,9 +15,10 @@
 ### NEON
 
 ```neon
-nette.latteFactory:
-        macros:
-            - NettePlugins\Macros\Macros::install
+nette
+        latte:
+                macros:
+                        - NettePlugins\Macros\Macros::install
 ```
 
 ```neon
