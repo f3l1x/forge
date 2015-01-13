@@ -1,0 +1,27 @@
+{
+  "name": "f3l1x/nette-plugins",
+  "type": "library",
+  "description": "Plugins, features, tweaks and other stuff to Nette Framework",
+  "license": "GNU",
+  "homepage": "http://github.com/f3l1x/Nette-Plugins",
+  "authors": [
+    {
+      "name": "Milan Felix Sulc",
+      "homepage": "http://jfx.cz"
+    }
+  ],
+  "require": {
+    "php": ">= 5.4",
+    "nette/forms": "2.2.*",
+    "nette/utils": "2.2.*",
+    "nette/application": "2.2.*",
+    "tracy/tracy": "2.2.*",
+    "latte/latte": "2.2.*"
+  },
+  "autoload": {
+    "classmap": ["src/"]
+  },
+  "config": {
+    "vendor-dir": "vendor"
+  }
+}

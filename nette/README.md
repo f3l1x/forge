@@ -1,56 +1,59 @@
 # Nette Plugins
 
+[![Downloads this Month](https://img.shields.io/packagist/dm/f3l1x/nette-plugins.svg?style=flat)](https://packagist.org/packages/f3l1x/nette-plugins)
+[![Latest stable](https://img.shields.io/packagist/v/f3l1x/nette-plugins.svg?style=flat)](https://packagist.org/packages/f3l1x/nette-plugins)
+
 Welcome in my humble repository of nette plugins / tools / stuff.
 
 ## Panels
 
-* [CallbackPanel](http://github.com/f3l1x/Nette-Plugins/tree/master/Panel/CallbackPanel)
+* [CallbackPanel](http://github.com/f3l1x/Nette-Plugins/tree/master/src/Panel/CallbackPanel)
 
 ## Latte
 
-* [Helpers](http://github.com/f3l1x/Nette-Plugins/tree/master/Latte/Helpers)
-* [Macros](http://github.com/f3l1x/Nette-Plugins/tree/master/Latte/Macros)
+* [Helpers](http://github.com/f3l1x/Nette-Plugins/tree/master/src/Latte/Helpers)
+* [Macros](http://github.com/f3l1x/Nette-Plugins/tree/master/src/Latte/Macros)
 
 ## Application
 
-* [BadRequestPresenter](http://github.com/f3l1x/Nette-Plugins/tree/master/Application/BadRequestPresenter)
-* [CleverRouter](http://github.com/f3l1x/Nette-Plugins/tree/master/Application/CleverRouter)
+* [BadRequestPresenter](http://github.com/f3l1x/Nette-Plugins/tree/master/src/Application/BadRequestPresenter)
+* [CleverRouter](http://github.com/f3l1x/Nette-Plugins/tree/master/src/Application/CleverRouter)
 
 ## Responses
 
-* [XmlResponse](http://github.com/f3l1x/Nette-Plugins/tree/master/Response/XmlResponse)
+* [XmlResponse](http://github.com/f3l1x/Nette-Plugins/tree/master/src/Response/XmlResponse)
 
 ## Mobile
 * [MobilniPlatby](http://github.com/f3l1x/Mobilni-platby)
-* [MobileDetection](http://github.com/f3l1x/Nette-Plugins/tree/master/Mobile/MobileDetection)
-* [MobileRoute](http://github.com/f3l1x/Nette-Plugins/tree/master/Mobile/MobileRoute)
+* [MobileDetection](http://github.com/f3l1x/Nette-Plugins/tree/master/src/Mobile/MobileDetection)
+* [MobileRoute](http://github.com/f3l1x/Nette-Plugins/tree/master/src/Mobile/MobileRoute)
 
 ## Form (controls)
 
-* [MarkupControl](http://github.com/f3l1x/Nette-Plugins/tree/master/Form/MarkupControl)
-* [MoneyControl](http://github.com/f3l1x/Nette-Plugins/tree/master/Form/MoneyControl)
-* [MultiUploadControl](http://github.com/f3l1x/Nette-Plugins/tree/master/Form/MultiUploadControl)
+* [MarkupControl](http://github.com/f3l1x/Nette-Plugins/tree/master/src/Form/MarkupControl)
+* [MoneyControl](http://github.com/f3l1x/Nette-Plugins/tree/master/src/Form/MoneyControl)
+* [MultiUploadControl](http://github.com/f3l1x/Nette-Plugins/tree/master/src/Form/MultiUploadControl)
 
 ## Images
 * [Thumbator](https://github.com/f3l1x/Thumbator)
 
 ## Socials
 
-* [Facebook](http://github.com/f3l1x/Nette-Plugins/tree/master/Social/Facebook)
-* [Google +1](http://github.com/f3l1x/Nette-Plugins/tree/master/Social/Google/PlusOne)
-* [GoogleAnalytics - Campaign](http://github.com/f3l1x/Nette-Plugins/tree/master/Social/Google/Analytics/Campaign)
-* [Twitter](http://github.com/f3l1x/Nette-Plugins/tree/master/Social/Twitter)
+* [Facebook](http://github.com/f3l1x/Nette-Plugins/tree/master/src/Social/Facebook)
+* [Google +1](http://github.com/f3l1x/Nette-Plugins/tree/master/src/Social/Google/PlusOne)
+* [GoogleAnalytics - Campaign](https://github.com/f3l1x/Nette-Plugins/tree/master/src/Social/Google/Analytics/src/Campaign)
+* [Twitter](http://github.com/f3l1x/Nette-Plugins/tree/master/src/Social/Twitter)
               
 ## Others
 
 ### Deprecated
 
-* [AnnotationCron](http://github.com/f3l1x/Nette-Plugins/tree/master/_deprecated/AnnotationCron)
-* [CaptchaExtension](http://github.com/f3l1x/Nette-Plugins/tree/master/_deprecated/CaptchaExtension)
-* [Classgen](http://github.com/f3l1x/Nette-Plugins/tree/master/_deprecated/Classgen)
-* [ConfiguratorPanel](http://github.com/f3l1x/Nette-Plugins/tree/master/_deprecated/ConfiguratorPanel)
-* [FbTools](http://github.com/f3l1x/Nette-Plugins/tree/master/_deprecated/FbTools)
-* [EasyJsConfirm](http://github.com/f3l1x/Nette-Plugins/tree/master/_deprecated/EasyJsConfirm)
-* [Thumbnailer](http://github.com/f3l1x/Nette-Plugins/tree/master/_deprecated/Thumbnailer)
-* [Thumbator](http://github.com/f3l1x/Nette-Plugins/tree/master/_deprecated/Thumbator)
-* [LatteExtension](http://github.com/f3l1x/Nette-Plugins/tree/master/_deprecated/LatteExtension)
+* [AnnotationCron](http://github.com/f3l1x/Nette-Plugins/tree/master/src/_deprecated/AnnotationCron)
+* [CaptchaExtension](http://github.com/f3l1x/Nette-Plugins/tree/master/src/_deprecated/CaptchaExtension)
+* [Classgen](http://github.com/f3l1x/Nette-Plugins/tree/master/src/_deprecated/Classgen)
+* [ConfiguratorPanel](http://github.com/f3l1x/Nette-Plugins/tree/master/src/_deprecated/ConfiguratorPanel)
+* [FbTools](http://github.com/f3l1x/Nette-Plugins/tree/master/src/_deprecated/FbTools)
+* [EasyJsConfirm](http://github.com/f3l1x/Nette-Plugins/tree/master/src/_deprecated/EasyJsConfirm)
+* [Thumbnailer](http://github.com/f3l1x/Nette-Plugins/tree/master/src/_deprecated/Thumbnailer)
+* [Thumbator](http://github.com/f3l1x/Nette-Plugins/tree/master/src/_deprecated/Thumbator)
+* [LatteExtension](http://github.com/f3l1x/Nette-Plugins/tree/master/src/_deprecated/LatteExtension)
