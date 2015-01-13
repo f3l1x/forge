@@ -3,7 +3,7 @@
   "type": "library",
   "description": "Plugins, features, tweaks and other stuff to Nette Framework",
   "license": "GNU",
-  "homepage": "http://github.com/f3l1x/Nette-Plugins",
+  "homepage": "https://github.com/f3l1x/Nette-Plugins",
   "authors": [
     {
       "name": "Milan Felix Sulc",
