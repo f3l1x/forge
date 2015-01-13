@@ -16,9 +16,9 @@
 
 ```neon
 nette
-        latte:
-                macros:
-                        - NettePlugins\Macros\Macros::install
+    latte:
+        macros:
+            - NettePlugins\Macros\Macros::install
 ```
 
 ```neon
