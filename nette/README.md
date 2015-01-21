@@ -1,7 +1,7 @@
 # Nette Plugins
 
-[![Downloads this Month](https://img.shields.io/packagist/dm/f3l1x/nette-plugins.svg?style=flat)](https://packagist.org/packages/f3l1x/nette-plugins)
-[![Latest stable](https://img.shields.io/packagist/v/f3l1x/nette-plugins.svg?style=flat)](https://packagist.org/packages/f3l1x/nette-plugins)
+[![Downloads this Month](https://img.shields.io/packagist/dm/f3l1x/Nette-Plugins.svg?style=flat)](https://packagist.org/packages/f3l1x/Nette-Plugins)
+[![Latest stable](https://img.shields.io/packagist/v/f3l1x/Nette-Plugins.svg?style=flat)](https://packagist.org/packages/f3l1x/Nette-Plugins)
 
 Welcome in my humble repository of nette plugins / tools / stuff.
 
