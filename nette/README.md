@@ -1,15 +1,18 @@
 # Nette Plugins
 
-[![Downloads this Month](https://img.shields.io/packagist/dm/f3l1x/Nette-Plugins.svg?style=flat)](https://packagist.org/packages/f3l1x/Nette-Plugins)
 [![Latest stable](https://img.shields.io/packagist/v/f3l1x/Nette-Plugins.svg?style=flat)](https://packagist.org/packages/f3l1x/Nette-Plugins)
 
 Welcome in my humble repository of nette plugins / tools / stuff.
+
+Most of subprojects are no more developed. 
+
+See more on **[Minetro](http://github.com/minetro)** projects.
 
 ## Panels
 
 * [CallbackPanel](http://github.com/f3l1x/Nette-Plugins/tree/master/src/Panel/CallbackPanel)
 
-## Latte
+## Latte [[Minetro/Latte-Email](http://github.com/minetro/latte-email)]
 
 * [Helpers](http://github.com/f3l1x/Nette-Plugins/tree/master/src/Latte/Helpers)
 * [Macros](http://github.com/f3l1x/Nette-Plugins/tree/master/src/Latte/Macros)
@@ -28,7 +31,7 @@ Welcome in my humble repository of nette plugins / tools / stuff.
 * [MobileDetection](http://github.com/f3l1x/Nette-Plugins/tree/master/src/Mobile/MobileDetection)
 * [MobileRoute](http://github.com/f3l1x/Nette-Plugins/tree/master/src/Mobile/MobileRoute)
 
-## Form (controls)
+## Form (controls) [[Minetro/Forms](http://github.com/minetro/forms)]
 
 * [MarkupControl](http://github.com/f3l1x/Nette-Plugins/tree/master/src/Form/MarkupControl)
 * [MoneyControl](http://github.com/f3l1x/Nette-Plugins/tree/master/src/Form/MoneyControl)
@@ -37,13 +40,17 @@ Welcome in my humble repository of nette plugins / tools / stuff.
 ## Images
 * [Thumbator](https://github.com/f3l1x/Thumbator)
 
-## Socials
+## Socials [[Minetro/Social](http://github.com/minetro/social)]
 
 * [Facebook](http://github.com/f3l1x/Nette-Plugins/tree/master/src/Social/Facebook)
 * [Google +1](http://github.com/f3l1x/Nette-Plugins/tree/master/src/Social/Google/PlusOne)
 * [GoogleAnalytics - Campaign](https://github.com/f3l1x/Nette-Plugins/tree/master/src/Social/Google/Analytics/src/Campaign)
 * [Twitter](http://github.com/f3l1x/Nette-Plugins/tree/master/src/Social/Twitter)
-              
+         
+## Micro 
+
+* [Micro/Website](http://github.com/minetro/micro-website-module)
+
 ## Others
 
 ### Deprecated
