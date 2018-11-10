@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "name": "planette-sandbox-v2",
+  "builds": [
+    {
+      "src": "www/index.php",
+      "use": "@now/php"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/",
+      "dest": "/www/index.php"
+    }
+  ]
+}
