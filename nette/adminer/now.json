@@ -1,0 +1,7 @@
+{
+  "version": 2,
+  "name": "planette-nette-adminer",
+  "builds": [
+    { "src": "index.php", "use": "@now/php" }
+  ]
+}

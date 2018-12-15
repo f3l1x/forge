@@ -17,11 +17,11 @@ RUN echo '@community http://nl.alpinelinux.org/alpine/v3.8/community' >> /etc/ap
         php7-openssl@community \
         php7-session@community
 
-RUN	curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 RUN composer create-project nette/sandbox /srv
 
 RUN apk del git curl && \
-	rm -rf /var/cache/apk/*
+    rm -rf /var/cache/apk/*
 
 CMD php -S 0.0.0.0:3000 -t /srv/www

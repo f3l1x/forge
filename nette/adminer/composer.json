@@ -1,0 +1,5 @@
+{
+    "require": {
+        "dg/adminer-custom": "^1.16"
+    }
+}

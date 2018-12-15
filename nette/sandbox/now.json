@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "name": "planette-nette-sandbox",
+  "builds": [
+    { "src": "www/index.php", "use": "@now/php" },
+    { "src": "www/checker/index.php", "use": "@now/php" }
+  ],
+  "routes": [
+    { "src": "/", "dest": "/www/index.php" },
+    { "src": "/checker/", "dest": "/www/checker/index.php" }
+  ]
+}

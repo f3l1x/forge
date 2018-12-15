@@ -1,19 +1,13 @@
-# NOW.sh + Nette
+# Nette Playground
 
-Tryout of the now.sh deployment tool with preconfigured Nette projects.
+Tryout of the now.sh deployment tool with preconfigured Nette projects and examples.
 
-## v1
+## Nette
 
-This is legacy version of now.sh deployment (https://zeit.co/docs/v1).
-
-Projects:
-
-- [Nette sandbox](v1/sandbox) [demo http://planette-sandbox-v1.now.sh]
-
-## v2
-
-This is new version of now.sh deployment (https://zeit.co/docs/v2).
-
-Projects:
-
-- [Nette sandbox](v2/sandbox)
+| Project       | Description            | URL      |
+|---------------|------------------------|----------|
+| [sandbox](nette/sandbox-v1) | Nette sandbox deployed to now.sh v1. | https://planette-nette-sandbox-v1.now.sh |
+| [sandbox](nette/sandbox) | Nette sandbox deployed to now.sh. | https://planette-nette-sandbox.now.sh |
+| [tracy](nette/tracy) | Tracy exception. | https://planette-nette-tracy.now.sh |
+| [checker](nette/checker) | Nette Requirements Checker. | https://planette-nette-checker.now.sh |
+| [adminer](nette/adminer) | Adminer Custom by @dg. | https://planette-nette-adminer.now.sh |
