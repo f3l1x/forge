@@ -1,0 +1,7 @@
+{
+  "version": 2,
+  "name": "packagist",
+  "routes": [
+    { "src": "/(.*)", "dest": "http://f3l1x.docker4u.cz/$1" }
+  ]
+}
