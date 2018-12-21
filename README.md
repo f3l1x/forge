@@ -2,7 +2,7 @@
 
 Tryout of the now.sh deployment tool with preconfigured Nette projects and examples.
 
-## Nette
+## Projects
 
 | Project       | Description            | URL      |
 |---------------|------------------------|----------|
@@ -11,3 +11,6 @@ Tryout of the now.sh deployment tool with preconfigured Nette projects and examp
 | [tracy](nette/tracy) | Tracy exception. | https://planette-nette-tracy.now.sh |
 | [checker](nette/checker) | Nette Requirements Checker. | https://planette-nette-checker.now.sh |
 | [adminer](nette/adminer) | Adminer Custom by @dg. | https://planette-nette-adminer.now.sh |
+| [packagist](planette/packagist) | [experimental] packagist mirror. | https://packagist.now.sh |
+| [php:latest](planette/php) | PHP environment. | https://planette-php.now.sh |
+| [php:canary](planette/php-canary) | PHP canary environment. | https://planette-php-canary.now.sh |

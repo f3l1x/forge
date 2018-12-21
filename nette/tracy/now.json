@@ -1,6 +1,7 @@
 {
   "version": 2,
   "name": "planette-nette-tracy",
+  "alias": ["planette-nette-tracy.now.sh"],
   "builds": [
     { "src": "index.php", "use": "@now/php" }
   ]

@@ -1,6 +1,7 @@
 {
   "version": 2,
   "name": "planette-nette-sandbox",
+  "alias": ["planette-nette-sandbox.now.sh"],
   "builds": [
     { "src": "www/index.php", "use": "@now/php" },
     { "src": "www/checker/index.php", "use": "@now/php" }

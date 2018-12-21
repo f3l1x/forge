@@ -1,0 +1,8 @@
+{
+    "version": 2,
+    "name": "planette-php-canary",
+    "alias": ["planette-php-canary.now.sh"],
+    "builds": [
+      { "src": "index.php", "use": "@now/php@canary" }
+    ]
+  }

@@ -1,5 +1,6 @@
 {
     "version": 1,
     "name": "planette-nette-sandbox-v1",
+    "alias": ["planette-nette-sandbox-v1.now.sh"],
     "type": "docker"
 }
