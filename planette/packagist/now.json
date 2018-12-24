@@ -3,6 +3,6 @@
   "name": "packagist",
   "alias": ["packagist.now.sh"],
   "routes": [
-    { "src": "/(.*)", "dest": "http://f3l1x.docker4u.cz/$1" }
+    { "src": "/(.*)", "dest": "http://f3l1x.dev4u.cz/$1" }
   ]
 }
