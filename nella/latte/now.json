@@ -1,0 +1,7 @@
+{
+  "version": 2,
+  "name": "nella-latte",
+  "builds": [
+    { "src": "index.php", "use": "@now/php" }
+  ]
+}

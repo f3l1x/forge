@@ -1,0 +1,5 @@
+{
+  "require": {
+    "nette/security": "^2.4.4"
+  }
+}

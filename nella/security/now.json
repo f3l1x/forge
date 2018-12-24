@@ -1,0 +1,7 @@
+{
+  "version": 2,
+  "name": "nella-security",
+  "builds": [
+    { "src": "index.php", "use": "@now/php" }
+  ]
+}
