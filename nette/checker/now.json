@@ -1,7 +1,7 @@
 {
   "version": 2,
   "name": "planette-nette-checker",
-  "alias": ["planette-nette-checker.now.sh"],
+  "alias": ["nette-checker.planette.io"],
   "builds": [
     { "src": "index.php", "use": "@now/php" }
   ]
