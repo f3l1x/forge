@@ -2,7 +2,8 @@
   "version": 2,
   "name": "planette-nette-adminer-dg",
   "alias": ["adminer-dg.planette.io"],
+  "scope": "planette",
   "builds": [
-    { "src": "index.php", "use": "@now/php" }
+    { "src": "index.php", "use": "@juicyfx/php" }
   ]
 }

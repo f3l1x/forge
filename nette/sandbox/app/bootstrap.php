@@ -4,11 +4,13 @@ require __DIR__ . '/../vendor/autoload.php';
 
 $configurator = new Nette\Configurator;
 
+$tempDir = '/tmp';
+
 $configurator->setDebugMode(TRUE); // enable for your remote IP
-$configurator->enableTracy("/tmp");
+$configurator->enableTracy($tempDir);
 
 $configurator->setTimeZone('Europe/Prague');
-$configurator->setTempDirectory("/tmp");
+$configurator->setTempDirectory($tempDir);
 
 $configurator->addConfig(__DIR__ . '/config/config.neon');
 $configurator->addConfig(__DIR__ . '/config/config.local.neon');

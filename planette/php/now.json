@@ -3,6 +3,6 @@
     "name": "planette-php",
     "alias": ["php.planette.io"],
     "builds": [
-      { "src": "index.php", "use": "@now/php" }
+      { "src": "index.php", "use": "@juicyfx/php" }
     ]
   }

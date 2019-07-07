@@ -3,6 +3,6 @@
     "name": "planette-php-canary",
     "alias": ["php-canary.planette.io"],
     "builds": [
-      { "src": "index.php", "use": "@now/php@canary" }
+      { "src": "index.php", "use": "@juicyfx/php" }
     ]
   }

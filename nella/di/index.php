@@ -8,7 +8,7 @@ use Nette\Neon\Neon;
 require_once __DIR__ . '/vendor/autoload.php';
 require_once __DIR__ . '/utils.php';
 
-$tempDir = getenv('NOW_PHP_SCRIPT') ? '/tmp' : __DIR__ . '/temp';
+$tempDir = '/tmp';
 
 $containerLoader = new ContainerLoader($tempDir, true);
 $containerClass = $containerLoader->load(function (Compiler $compiler): void {

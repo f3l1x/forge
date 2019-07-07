@@ -1,0 +1,8 @@
+{
+    "version": 2,
+    "name": "planette-filemanager",
+    "scope": "planette",
+    "builds": [
+      { "src": "*.php", "use": "@juicyfx/php@canary", "config": { "mode": "server" }}
+    ]
+  }

@@ -1,6 +1,6 @@
 {
 	"require": {
-		"php": ">=7.1",
+		"php": "^7.3",
 		"nette/application": "^2.4.4",
 		"nette/bootstrap": "^2.4.3",
 		"nette/caching": "^2.5",

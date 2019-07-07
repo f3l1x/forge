@@ -1,7 +1,8 @@
 {
   "version": 2,
   "name": "nella-security",
+  "scope": "planette",
   "builds": [
-    { "src": "index.php", "use": "@now/php" }
+    { "src": "index.php", "use": "@juicyfx/php" }
   ]
 }
