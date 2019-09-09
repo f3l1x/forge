@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "name": "nella-pwd",
+  "scope": "planette",
+  "builds": [
+    { "src": "api/password.php", "use": "now-php" },
+    { "src": "index.html", "use": "@now/static" }
+  ]
+}

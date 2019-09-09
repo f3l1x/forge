@@ -3,6 +3,6 @@
     "name": "planette-filemanager",
     "scope": "planette",
     "builds": [
-      { "src": "*.php", "use": "@juicyfx/php@canary", "config": { "mode": "server" }}
+      { "src": "*.php", "use": "@now/php@canary", "config": { "mode": "server" }}
     ]
   }

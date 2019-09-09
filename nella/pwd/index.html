@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Password Tools</title>
+</head>
+
+<body>
+    <h1>Generate password hash using sodium</h1>
+
+    <form method="POST" action="/api/password.php">
+        <fieldset>
+            <legend>Password</legend>
+            Your pw <input name="password" size=10>
+            <input type="submit" value="Hash">
+        </fieldset>
+    </form>
+</body>
+
+</html>
