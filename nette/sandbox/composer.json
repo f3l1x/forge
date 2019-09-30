@@ -15,7 +15,9 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"App\\": "app"
+			"App\\Model\\": "app/model",
+			"App\\Forms\\": "app/forms",
+			"App\\Presenters\\": "app/presenters"
 		}
 	}
 }

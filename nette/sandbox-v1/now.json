@@ -1,6 +1,8 @@
 {
-    "version": 1,
-    "name": "planette-nette-sandbox-v1",
-    "alias": ["nette-sandbox-v1.planette.io"],
-    "type": "docker"
+  "version": 1,
+  "name": "planette-nette-sandbox-v1",
+  "alias": [
+    "nette-sandbox-v1.zeit.planette.io"
+  ],
+  "type": "docker"
 }

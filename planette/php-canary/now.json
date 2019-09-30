@@ -1,8 +1,0 @@
-{
-    "version": 2,
-    "name": "planette-php-canary",
-    "alias": ["php-canary.planette.io"],
-    "builds": [
-      { "src": "index.php", "use": "@juicyfx/php" }
-    ]
-  }

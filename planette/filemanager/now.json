@@ -1,8 +1,11 @@
 {
-    "version": 2,
-    "name": "planette-filemanager",
-    "scope": "planette",
-    "builds": [
-      { "src": "*.php", "use": "@now/php@canary", "config": { "mode": "server" }}
-    ]
-  }
+  "version": 2,
+  "name": "planette-filemanager",
+  "scope": "planette",
+  "builds": [
+    {
+      "src": "*.php",
+      "use": "now-php"
+    }
+  ]
+}

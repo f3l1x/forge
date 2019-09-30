@@ -1,17 +1,24 @@
 {
   "version": 2,
   "name": "planette-nette-sandbox",
-  "alias": ["nette-sandbox.planette.io"],
+  "alias": [
+    "nette-sandbox.zeit.planette.io"
+  ],
   "scope": "planette",
-  "builds": [
-    { "src": "www/index.php", "use": "@juicyfx/php" },
-    { "src": "www/checker/index.php", "use": "@juicyfx/php" }
-  ],
-  "routes": [
-    { "src": "/", "dest": "/www/index.php" },
-    { "src": "/checker/", "dest": "/www/checker/index.php" }
-  ],
-  "env": {
-    "NOW_ENV": "true"
-  }
+	"builds": [
+		{ "src": "www/index.php", "use": "now-php"},
+		{ "src": "www/checker/index.php", "use": "now-php"},
+		{ "src": "www/css/*.*", "use": "@now/static" },
+		{ "src": "www/dist/*.*", "use": "@now/static" },
+		{ "src": "www/img/*.*", "use": "@now/static" },
+		{ "src": "www/js/*.*", "use": "@now/static" },
+		{ "src": "www/vendor/**/*.*", "use": "@now/static" }
+	],
+	"routes": [
+		{ "src": "/css/(.*)",  "dest": "/www/css/$1" },
+		{ "src": "/images/(.*)",  "dest": "/www/images/$1" },
+		{ "src": "/js/(.*)",  "dest": "/www/img/$1" },
+		{ "src": "/checker/(.*)",  "dest": "/www/checker/index.php" },
+		{ "src": "/(.*)",  "dest": "/www/index.php" }
+	]
 }

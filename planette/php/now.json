@@ -1,8 +1,14 @@
 {
-    "version": 2,
-    "name": "planette-php",
-    "alias": ["php.planette.io"],
-    "builds": [
-      { "src": "index.php", "use": "@juicyfx/php" }
-    ]
-  }
+  "version": 2,
+  "name": "planette-php",
+  "scope": "planette",
+  "alias": [
+    "php.zeit.planette.io"
+  ],
+  "builds": [
+    {
+      "src": "index.php",
+      "use": "now-php"
+    }
+  ]
+}

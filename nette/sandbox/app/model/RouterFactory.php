@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Router;
+namespace App\Model;
 
 use Nette;
 use Nette\Application\Routers\Route;

@@ -1,9 +1,14 @@
 {
   "version": 2,
   "name": "planette-nette-tracy",
-  "alias": ["tracy.planette.io"],
+  "alias": [
+    "tracy.zeit.planette.io"
+  ],
   "scope": "planette",
   "builds": [
-    { "src": "*.php", "use": "@juicyfx/php@canary", "config": { "v": "7.4", "mode": "server" } }
+    {
+      "src": "*.php",
+      "use": "now-php"
+    }
   ]
 }

@@ -1,9 +1,14 @@
 {
   "version": 2,
   "name": "planette-nette-checker",
-  "alias": ["nette-checker.planette.io"],
+  "alias": [
+    "nette-checker.zeit.planette.io"
+  ],
   "scope": "planette",
   "builds": [
-    { "src": "index.php", "use": "@juicyfx/php@canary", "config": {"mode": "server"} }
+    {
+      "src": "index.php",
+      "use": "now-php"
+    }
   ]
 }

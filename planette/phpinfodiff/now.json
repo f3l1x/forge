@@ -1,8 +1,11 @@
 {
-    "version": 2,
-    "name": "planette-phpinfodiff",
-    "scope": "planette",
-    "builds": [
-      { "src": "*.php", "use": "@juicyfx/php@canary", "config": { "mode": "fpm" }}
-    ]
-  }
+  "version": 2,
+  "name": "planette-phpinfodiff",
+  "scope": "planette",
+  "builds": [
+    {
+      "src": "*.php",
+      "use": "now-php"
+    }
+  ]
+}
