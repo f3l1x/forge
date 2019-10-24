@@ -1,8 +1,8 @@
 {
   "version": 2,
   "name": "planette-nette-adminer",
-  "alias": ["adminer.zeit.planette.io"],
-  "scope": "planette",
+  "alias": ["adminer.forge.jfx.cz"],
+  "scope": "juicyfx",
   "builds": [
     { "src": "index.php", "use": "now-php" }
   ]

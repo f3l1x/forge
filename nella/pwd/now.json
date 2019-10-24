@@ -1,7 +1,7 @@
 {
   "version": 2,
   "name": "nella-pwd",
-  "scope": "planette",
+  "scope": "juicyfx",
   "builds": [
     { "src": "api/password.php", "use": "now-php" },
     { "src": "index.html", "use": "@now/static" }

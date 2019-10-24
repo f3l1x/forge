@@ -1,9 +1,9 @@
 {
   "version": 2,
   "name": "planette-php",
-  "scope": "planette",
+  "scope": "juicyfx",
   "alias": [
-    "php.zeit.planette.io"
+    "php.forge.jfx.cz"
   ],
   "builds": [
     {

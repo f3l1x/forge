@@ -2,7 +2,7 @@
   "version": 1,
   "name": "planette-nette-sandbox-v1",
   "alias": [
-    "nette-sandbox-v1.zeit.planette.io"
+    "nette-sandbox-v1.forge.jfx.cz"
   ],
   "type": "docker"
 }

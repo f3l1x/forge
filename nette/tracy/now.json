@@ -2,9 +2,9 @@
   "version": 2,
   "name": "planette-nette-tracy",
   "alias": [
-    "tracy.zeit.planette.io"
+    "tracy.forge.jfx.cz"
   ],
-  "scope": "planette",
+  "scope": "juicyfx",
   "builds": [
     {
       "src": "*.php",

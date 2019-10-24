@@ -2,9 +2,9 @@
   "version": 2,
   "name": "planette-nette-sandbox",
   "alias": [
-    "nette-sandbox.zeit.planette.io"
+    "nette-sandbox.forge.jfx.cz"
   ],
-  "scope": "planette",
+  "scope": "juicyfx",
 	"builds": [
 		{ "src": "www/index.php", "use": "now-php"},
 		{ "src": "www/checker/index.php", "use": "now-php"},
