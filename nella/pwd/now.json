@@ -1,7 +1,8 @@
 {
   "version": 2,
-  "name": "nella-pwd",
+  "name": "forge-nella-pwd",
   "scope": "juicyfx",
+  "alias": ["nella-pwd.forge.jfx.cz"],
   "builds": [
     { "src": "api/password.php", "use": "now-php" },
     { "src": "index.html", "use": "@now/static" }

@@ -1,8 +1,9 @@
 {
   "version": 2,
-  "name": "nella-di",
+  "name": "forge-nella-di",
   "scope": "juicyfx",
+  "alias": ["nella-di.forge.jfx.cz"],
   "builds": [
-    { "src": "index.php", "use": "@juicyfx/php" }
+    { "src": "index.php", "use": "now-php" }
   ]
 }

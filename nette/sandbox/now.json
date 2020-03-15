@@ -1,9 +1,7 @@
 {
   "version": 2,
-  "name": "planette-nette-sandbox",
-  "alias": [
-    "nette-sandbox.forge.jfx.cz"
-  ],
+  "name": "forge-nette-sandbox",
+  "alias": ["nella-sandbox.forge.jfx.cz"],
   "scope": "juicyfx",
 	"builds": [
 		{ "src": "www/index.php", "use": "now-php"},

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "name": "planette-nette-adminer",
+  "name": "forge-adminer",
   "alias": ["adminer.forge.jfx.cz"],
   "scope": "juicyfx",
   "builds": [

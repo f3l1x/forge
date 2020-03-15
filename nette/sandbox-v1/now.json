@@ -1,8 +1,6 @@
 {
   "version": 1,
-  "name": "planette-nette-sandbox-v1",
-  "alias": [
-    "nette-sandbox-v1.forge.jfx.cz"
-  ],
+  "name": "forge-nette-sandbox-v1",
+  "alias": ["nette-sandbox-v1.forge.jfx.cz"],
   "type": "docker"
 }

@@ -4,7 +4,7 @@ require __DIR__ . '/../vendor/autoload.php';
 
 $configurator = new Nette\Configurator;
 
-$tempDir = '/tmp';
+$tempDir = $_ENV['NOW_REGION'] ? '/tmp' : __DIR__ . '/../temp';
 
 $configurator->setDebugMode(TRUE); // enable for your remote IP
 $configurator->enableTracy($tempDir);

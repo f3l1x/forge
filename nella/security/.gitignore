@@ -1,2 +1,10 @@
+# PHP
 /vendor
+
+# App
 /temp
+
+# ZEIT
+/.now
+
+.now

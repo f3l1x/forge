@@ -1,13 +1,11 @@
 {
   "version": 2,
-  "name": "planette-php",
+  "name": "forge-filemanager",
   "scope": "juicyfx",
-  "alias": [
-    "php.forge.jfx.cz"
-  ],
+  "alias": ["filemanger.forge.jfx.cz"],
   "builds": [
     {
-      "src": "index.php",
+      "src": "*.php",
       "use": "now-php"
     }
   ]

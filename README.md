@@ -16,16 +16,15 @@ Tryout of the [ZEIT Now](https://zeit.co) deployment tool with preconfigured [Ne
 
 | Project       | Description            | URL      |
 |---------------|------------------------|----------|
-| [sandbox](nette/sandbox) | Nette sandbox. | https://nette-sandbox.forge.jfx.cz |
-| [tracy](nette/tracy) | Tracy exception. | https://tracy.forge.jfx.cz |
-| [checker](nette/checker) | Nette Requirements Checker. | https://nette-checker.forge.jfx.cz |
-| [adminer](nette/adminer) | Adminer by @vrana. | https://adminer.forge.jfx.cz |
-| [adminer](nette/adminer-dg) | Adminer Custom by @dg. | https://adminer-dg.forge.jfx.cz |
-| [php:latest](planette/php) | PHP environment. | https://php.forge.jfx.cz |
-
-**Deprecated**
-
-| Project       | Description            | URL      |
-|---------------|------------------------|----------|
-| [sandbox](nette/sandbox) | Nette sandbox ZEIT Now v1  | https://nette-sandbox-v1.forge.jfx.cz |
-| [packagist](planette/packagist) | [experimental] packagist mirror. | https://packagist.now.sh |
+| [adminer](adminer) | Adminer by @vrana. | https://adminer.forge.jfx.cz |
+| [adminer-dg](adminer-dg) | Adminer Custom by @dg. | https://adminer-dg.forge.jfx.cz |
+| [filemanager](filemanager) | PHP file manager. | https://filemanager.forge.jfx.cz |
+| [php](php) | PHP environment. | https://php.forge.jfx.cz |
+| [phpinfodiff](phpinfodiff) | phpinfo diff. | https://phpinfodiff.forge.jfx.cz |
+| [nella/di](nella/di) | Nette/DI dumper. | https://nella-di.forge.jfx.cz |
+| [nella/latte](nella/latte) | Latte dumper. | https://nella-latte.forge.jfx.cz |
+| [nella/pwd](nella/pwd) | Password generator (sodium) . | https://nella-pwd.forge.jfx.cz |
+| [nella/security](nella/security) | Password generator (nette/security). | https://nella-security.forge.jfx.cz |
+| [nette/sandbox](nette/sandbox) | Nette sandbox. | https://nette-sandbox.forge.jfx.cz |
+| [nette/tracy](nette/tracy) | Tracy exception. | https://nette-tracy.forge.jfx.cz |
+| [nette/checker](nette/checker) | Nette Requirements Checker. | https://nette-checker.forge.jfx.cz |

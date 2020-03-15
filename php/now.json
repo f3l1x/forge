@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "name": "planette-phpinfodiff",
+  "name": "forge-php",
   "scope": "juicyfx",
+  "alias": ["php.forge.jfx.cz"],
   "builds": [
     {
-      "src": "*.php",
+      "src": "index.php",
       "use": "now-php"
     }
   ]

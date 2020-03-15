@@ -1,7 +1,8 @@
 {
   "version": 2,
-  "name": "planette-filemanager",
+  "name": "forge-phpinfodiff",
   "scope": "juicyfx",
+  "alias": ["phpinfodiff.forge.jfx.cz"],
   "builds": [
     {
       "src": "*.php",

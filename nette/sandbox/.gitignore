@@ -1,6 +1,13 @@
-log/*
-temp/*
 !.gitignore
 !.htaccess
 !web.config
-vendor
+
+# APP
+/log/*
+/temp/*
+
+# PHP
+/vendor
+
+# ZEIT
+/.now

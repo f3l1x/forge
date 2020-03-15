@@ -1,9 +1,7 @@
 {
   "version": 2,
-  "name": "planette-nette-tracy",
-  "alias": [
-    "tracy.forge.jfx.cz"
-  ],
+  "name": "forge-nette-tracy",
+  "alias": ["nette-tracy.forge.jfx.cz"],
   "scope": "juicyfx",
   "builds": [
     {
