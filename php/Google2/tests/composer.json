@@ -1,0 +1,14 @@
+{
+  "name": "contributte/google",
+	"type": "library",
+	"description": "Google related code",
+	"autoload": {
+		"psr-4": {
+			"Contributte\\Google\\": "src",
+			"Tests\\Contributte\\Google\\": "tests"
+		}
+	},
+  "require": {
+		"nette/http": "~3.0.1"
+  }
+}

@@ -1,0 +1,23 @@
+<?php
+/** @var \Contributte\Google\Sso $sso */
+?>
+<h1>Google</h1>
+<div class="tracy-inner">
+    <div class="tracy-inner-container">
+        <?php if (!$sso->isAuthenticated()) : ?>
+            Not authenticated.
+        <?php else: ?>
+            <?php $profile = $sso->getProfile() ?>
+            <table>
+                <tr><th>Email:</th><td>c</td></tr>
+                <tr><th>Name:</th><td><?= $profile->getFamilyName(); ?> <?= $profile->getGivenName(); ?></td></tr>
+                <tr><th>Gender:</th><td><?= $profile->getGender(); ?></td></tr>
+                <tr><th>Locale:</th><td><?= $profile->getLocale(); ?></td></tr>
+                <tr><th>Id:</th><td><?= $profile->getId(); ?></td></tr>
+                <tr><th>Hd:</th><td><?= $profile->getHd(); ?></td></tr>
+                <tr><th>Verified:</th><td><?= (bool) $profile->getVerifiedEmail() ?></td></tr>
+                <tr><th>Image:</th><td><img src="<?= $profile->getPicture() ?>" alt="user picture" width="150"/></td></tr>
+            </table>
+        <?php endif; ?>
+    </div>
+</div>

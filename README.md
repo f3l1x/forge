@@ -1,7 +1,7 @@
-<h1 align=center>Juicy(fx) forge 🔥</h1>
+<h1 align=center>Forge by Felix 🔥</h1>
 
 <p align=center>
-Incubator of promising pet projects and testing tools.
+Incubator of promising pet projects.
 </p>
 
 <p align=center>
@@ -10,21 +10,24 @@ Incubator of promising pet projects and testing tools.
 
 -----
 
-Tryout of the [ZEIT Now](https://zeit.co) deployment tool with preconfigured [Nette](https://nette.org) projects and other tools.
+## Serverless
 
-## Projects
+Tryout of the [Vercel](https://vercel.com) deployment tool with preconfigured [Nette](https://nette.org) projects and other tools.
 
 | Project       | Description            | URL      |
 |---------------|------------------------|----------|
-| [adminer](adminer) | Adminer by @vrana. | https://adminer.forge.jfx.cz |
-| [adminer-dg](adminer-dg) | Adminer Custom by @dg. | https://adminer-dg.forge.jfx.cz |
-| [filemanager](filemanager) | PHP file manager. | https://filemanager.forge.jfx.cz |
-| [php](php) | PHP environment. | https://php.forge.jfx.cz |
-| [phpinfodiff](phpinfodiff) | phpinfo diff. | https://phpinfodiff.forge.jfx.cz |
-| [nella/di](nella/di) | Nette/DI dumper. | https://nella-di.forge.jfx.cz |
-| [nella/latte](nella/latte) | Latte dumper. | https://nella-latte.forge.jfx.cz |
-| [nella/pwd](nella/pwd) | Password generator (sodium) . | https://nella-pwd.forge.jfx.cz |
-| [nella/security](nella/security) | Password generator (nette/security). | https://nella-security.forge.jfx.cz |
-| [nette/sandbox](nette/sandbox) | Nette sandbox. | https://nette-sandbox.forge.jfx.cz |
-| [nette/tracy](nette/tracy) | Tracy exception. | https://nette-tracy.forge.jfx.cz |
-| [nette/checker](nette/checker) | Nette Requirements Checker. | https://nette-checker.forge.jfx.cz |
+| [adminer](serverless/adminer) | Adminer by @vrana. | https://adminer.forge.jfx.cz |
+| [adminer-dg](serverless/adminer-dg) | Adminer Custom by @dg. | https://adminer-dg.forge.jfx.cz |
+| [filemanager](serverless/filemanager) | PHP file manager. | https://filemanager.forge.jfx.cz |
+| [php](serverless/php) | PHP environment. | https://php.forge.jfx.cz |
+| [phpinfodiff](serverless/phpinfodiff) | phpinfo diff. | https://phpinfodiff.forge.jfx.cz |
+| [nella/di](serverless/nella/di) | Nette/DI dumper. | https://nella-di.forge.jfx.cz |
+| [nella/latte](serverless/nella/latte) | Latte dumper. | https://nella-latte.forge.jfx.cz |
+| [nella/pwd](serverless/nella/pwd) | Password generator (sodium) . | https://nella-pwd.forge.jfx.cz |
+| [nella/security](serverless/nella/security) | Password generator (nette/security). | https://nella-security.forge.jfx.cz |
+| [nette/sandbox](serverless/nette/sandbox) | Nette sandbox. | https://nette-sandbox.forge.jfx.cz |
+| [nette/tracy](serverless/nette/tracy) | Tracy exception. | https://nette-tracy.forge.jfx.cz |
+| [nette/checker](serverless/nette/checker) | Nette Requirements Checker. | https://nette-checker.forge.jfx.cz |
+
+## PHP
+
