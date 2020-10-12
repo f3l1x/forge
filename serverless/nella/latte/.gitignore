@@ -4,5 +4,5 @@
 # App
 /temp
 
-# ZEIT
-/.now
+# Vercel
+.vercel

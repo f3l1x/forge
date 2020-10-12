@@ -1,9 +1,0 @@
-{
-  "version": 2,
-  "name": "forge-adminer-dg",
-  "alias": ["adminer-dg.forge.jfx.cz"],
-  "scope": "juicyfx",
-  "builds": [
-    { "src": "index.php", "use": "now-php" }
-  ]
-}

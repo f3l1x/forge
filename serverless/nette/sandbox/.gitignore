@@ -9,5 +9,5 @@
 # PHP
 /vendor
 
-# ZEIT
-/.now
+# Vercel
+.vercel

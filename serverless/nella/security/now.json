@@ -1,9 +1,0 @@
-{
-  "version": 2,
-  "name": "forge-nella-security",
-  "scope": "juicyfx",
-  "alias": ["nella-security.forge.jfx.cz"],
-  "builds": [
-    { "src": "index.php", "use": "now-php" }
-  ]
-}

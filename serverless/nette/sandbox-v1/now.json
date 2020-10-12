@@ -1,6 +1,0 @@
-{
-  "version": 1,
-  "name": "forge-nette-sandbox-v1",
-  "alias": ["nette-sandbox-v1.forge.jfx.cz"],
-  "type": "docker"
-}
