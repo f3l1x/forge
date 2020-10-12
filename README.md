@@ -14,26 +14,27 @@ Incubator of promising pet projects.
 
 Tryout of the [Vercel](https://vercel.com) deployment tool with preconfigured [Nette](https://nette.org) projects and other tools.
 
-| Project                                     	| Description                          	|
-|---------------------------------------------	|--------------------------------------	|
-| [adminer](serverless/adminer)               	| Adminer by @vrana.                   	|
-| [adminer-dg](serverless/adminer-dg)         	| Adminer Custom by @dg.               	|
-| [filemanager](serverless/filemanager)       	| PHP file manager.                    	|
-| [php](serverless/php)                       	| PHP environment.                     	|
-| [phpinfodiff](serverless/phpinfodiff)       	| phpinfo diff.                        	|
-| [nella/di](serverless/nella/di)             	| Nette/DI dumper.                     	|
-| [nella/latte](serverless/nella/latte)       	| Latte dumper.                        	|
-| [nella/pwd](serverless/nella/pwd)           	| Password generator (sodium) .        	|
-| [nella/security](serverless/nella/security) 	| Password generator (nette/security). 	|
-| [nette/sandbox](serverless/nette/sandbox)   	| Nette sandbox.                       	|
-| [nette/tracy](serverless/nette/tracy)       	| Tracy exception.                     	|
-| [nette/checker](serverless/nette/checker)   	| Nette Requirements Checker.          	|
+| Project                                      | Description                           |
+|--------------------------------------------- |-------------------------------------- |
+| [adminer](serverless/adminer)                | Adminer by @vrana.                    |
+| [adminer-dg](serverless/adminer-dg)          | Adminer Custom by @dg.                |
+| [filemanager](serverless/filemanager)        | PHP file manager.                     |
+| [php](serverless/php)                        | PHP environment.                      |
+| [phpinfodiff](serverless/phpinfodiff)        | phpinfo diff.                         |
+| [nella/di](serverless/nella/di)              | Nette/DI dumper.                      |
+| [nella/latte](serverless/nella/latte)        | Latte dumper.                         |
+| [nella/pwd](serverless/nella/pwd)            | Password generator (sodium) .         |
+| [nella/security](serverless/nella/security)  | Password generator (nette/security).  |
+| [nette/sandbox](serverless/nette/sandbox)    | Nette sandbox.                        |
+| [nette/tracy](serverless/nette/tracy)        | Tracy exception.                      |
+| [nette/checker](serverless/nette/checker)    | Nette Requirements Checker.           |
+| [nette/cve](serverless/nette/cve)            | Nette Requirements Checker.           |
 
 ## PHP
 
-| Project                                	| Description          	|
-|----------------------------------------	|----------------------	|
-| [config](php/config)                   	| Configuration class. 	|
-| [google](php/google)                   	| Google Oauth2.       	|
-| [google-calendar](php/google-calendar) 	| Google Calendar SDK. 	|
-| [latte](php/latte)                     	| Latte renderer.      	|
+| Project                                 | Description           |
+|---------------------------------------- |---------------------- |
+| [config](php/config)                    | Configuration class.  |
+| [google](php/google)                    | Google Oauth2.        |
+| [google-calendar](php/google-calendar)  | Google Calendar SDK.  |
+| [latte](php/latte)                      | Latte renderer.       |
