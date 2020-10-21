@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  debian: 
+    image: dockette/web:debian
+    ports:
+      - 8000:80
+    volumes:
+      - index.php:/srv/www/index.php
+
+  alpine: 
+    image: dockette/web
+    #image: dockette/web:alpine
+    ports:
+      - 9000:80
+    volumes:
+      - index.php:/srv/www/index.php
