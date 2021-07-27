@@ -1,0 +1,13 @@
+{
+  "name": "webkitty-electron-top",
+  "version": "1.0.0",
+  "author": "Felix",
+  "private": true,
+  "main": "main.js",
+  "devDependencies": {
+    "electron": "^11.2.2"
+  },
+  "scripts": {
+    "dev": "NODE_ENV=development electron ."
+  }
+}

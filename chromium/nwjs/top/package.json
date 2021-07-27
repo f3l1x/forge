@@ -1,0 +1,22 @@
+{
+  "name": "webkitty-nwjs-top",
+  "version": "1.0.0",
+  "author": "Felix",
+  "private": true,
+  "main": "index.html",
+  "chromium-args": "--enable-logging=stderr --allow-file-access-from-files",
+  "window": {
+    "id": "webkitty-nwjs-top",
+    "title": "NW.js > Top",
+    "position": "center",
+    "min_width": 800,
+    "min_height": 600,
+    "frame": false
+  },
+  "devDependencies": {
+    "nw-builder": "^3.5.7"
+  },
+  "scripts": {
+    "dev": "NODE_ENV=development nwbuild -r ."
+  }
+}

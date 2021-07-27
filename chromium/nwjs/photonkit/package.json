@@ -1,0 +1,29 @@
+{
+  "name": "webkitty-photonkit",
+  "version": "1.0.0",
+  "author": "Felix",
+  "private": true,
+  "main": "index.html",
+  "chromium-args": "--enable-logging=stderr --allow-file-access-from-files",
+  "window": {
+    "id": "webkitty-photonkit",
+    "title": "Webkitty Photon",
+    "position": "center",
+    "min_width": 800,
+    "min_height": 600,
+    "frame": false
+  },
+  "dependencies": {
+    "bootstrap": "^4.6.0",
+    "photonkit": "^0.1.2",
+    "vue": "^2.6.12"
+  },
+  "devDependencies": {
+    "nw-builder": "^3.5.7",
+    "cross-env": "^7.0.3"
+  },
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development nwbuild -r .",
+    "build": "cross-env NODE_ENV=production node build/build.js"
+  }
+}

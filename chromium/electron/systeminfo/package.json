@@ -1,0 +1,29 @@
+{
+  "name": "webkitty-electron-systeminfo",
+  "version": "1.0.0",
+  "author": "Felix",
+  "private": true,
+  "main": "main.js",
+  "devDependencies": {
+    "electron": "^11.2.2",
+    "electron-builder": "^22.9.1"
+  },
+  "dependencies": {
+    "systeminformation": "^5.0.9",
+    "vue": "^2.6.12"
+  },
+  "build": {
+    "appId": "webkitty.electron.systeminfo",
+    "mac": {},
+    "win": {
+      "target": "zip"
+    },
+    "linux": {
+      "target": "zip"
+    }
+  },
+  "scripts": {
+    "dev": "NODE_ENV=development electron .",
+    "build": "electron-builder"
+  }
+}

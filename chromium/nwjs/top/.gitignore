@@ -1,0 +1,6 @@
+# NPM
+/node_modules
+
+# NW.js
+/dist
+/tmp

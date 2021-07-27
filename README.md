@@ -38,3 +38,13 @@ Tryout of the [Vercel](https://vercel.com) deployment tool with preconfigured [N
 | [google](php/google)                    | Google Oauth2.        |
 | [google-calendar](php/google-calendar)  | Google Calendar SDK.  |
 | [latte](php/latte)                      | Latte renderer.       |
+
+## Chromium
+
+| Project                                          | Description                                       |
+|------------------------------------------------- |-------------------------------------------------- |
+| [nwjs/top](chromium/nwjs/top)                    | Example of system top call                        |
+| [nwjs/photonkit](chromium/nwjs/photonkit)        | Example of PhotonKit UI components                |
+| [nwjs/vue-raw](chromium/nwjs/vue-raw)            | Example of Vue framework                          |
+| [electron/top](chromium/nwjs/top)                | Example of system top call                        |
+| [electron/systeminfo](chromium/nwjs/systeminfo)  | Example of `systeminformation` package            |

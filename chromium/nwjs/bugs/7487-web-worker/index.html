@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<h1>Web Worker Bug</h1>
+
+<button onclick="nw.Window.get().reload()">Click To Reload</button>
+
+<script>
+    nw.Window.get().showDevTools();
+
+    const worker = new Worker('/worker.js');
+    worker.onmessage = e => console.log('main process', e.data);
+    worker.postMessage('HEY!');
+</script>
+</body>
+</html>
