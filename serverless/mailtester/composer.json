@@ -1,0 +1,5 @@
+{
+  "require": {
+    "contributte/mail": "^0.5.0"
+  }
+}
