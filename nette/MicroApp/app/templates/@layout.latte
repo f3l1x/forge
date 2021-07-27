@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="{$basePath}/favicon.ico">
+
+    <title>{block #title}Minetro Micro Website{/block}</title>
+    <link href="{$basePath}/dist/bootstrap.min.css" rel="stylesheet">
+    <link href="{$basePath}/dist/bootstrap-theme.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="header">
+            <nav>
+                <ul class="nav nav-pills pull-right">
+                    <li role="presentation" n:class="$url == 'default' ? active"><a href="{url 'default'}">Home</a></li>
+                    <li role="presentation" n:class="$url == 'about' ? active"><a href="{link 'Micro:Website:Page:', 'url' => 'about'}">About #1</a></li>
+                    <li role="presentation" n:class="$url == 'about' ? active"><a href="{mlink 'url' => 'about'}">About #2</a></li>
+                </ul>
+            </nav>
+            <h3 class="text-muted">Project name</h3>
+        </div>
+
+        <div class="jumbotron">
+            <h1>Jumbotron heading</h1>
+            <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+        </div>
+
+        {include #content}
+
+        <footer class="footer">
+            <p>&copy; Company {=date('Y')}</p>
+        </footer>
+
+    </div> <!-- /container -->
+
+    <script src="{$basePath}/dist/bootstrap.min.js"></script>
+</body>
+</html>

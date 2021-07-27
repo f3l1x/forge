@@ -1,0 +1,60 @@
+#
+# Nette Config
+#
+# @author Milan Felix Sulc <sulcmil@gmail.com>
+#
+# COMMON SECTION ===============================================================
+common:
+    php:
+        date.timezone: Europe/Prague
+        # session.save_path: %tempDir%/session
+        # zlib.output_compression: true
+
+    # Common parameters
+    parameters:
+
+    # Common constants
+    constants:
+
+    # Include more configs
+    includes:
+
+    # Nette section
+    latte:
+        xhtml: FALSE
+
+        macros:
+            - Minetro\Micro\Latte\Macros::install
+            - Minetro\Micro\Modules\Website\Latte\Macros::install
+
+    application:
+        catchExceptions: %productionMode%
+        errorPresenter: Error
+        mapping:
+            Micro: Minetro\Micro\Modules\*\Presenters\*Presenter
+
+    di:
+        debugger: %debugMode%
+
+    tracy:
+        email: sulcmil@gmail.com
+        strictMode: TRUE
+
+# DEVELOPMENT SECTION ==========================================================
+development < common:
+
+    services:
+        # Disable latte caching in DEV mode
+        latte.latteFactory:
+            setup:
+                - setTempDirectory(null)
+
+# PRODUCTION SECTION ===========================================================
+production < common:
+
+    parameters:
+        database:
+            host: localhost
+
+# CONSOLE SECTION ==============================================================
+console < common:

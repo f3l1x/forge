@@ -1,0 +1,12 @@
+{
+  "autoload": {
+    "classmap": ["src/"],
+    "files": ["src/shortcuts.php"]
+  },
+  "require": {
+    "php": ">= 5.5",
+    "nette/application": ">2.3.0",
+    "nette/di": ">=2.3.0",
+    "tracy/tracy": ">=2.2.0"
+  }
+}

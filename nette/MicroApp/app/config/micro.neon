@@ -1,0 +1,26 @@
+#
+# minetro Config
+#
+# @author Milan Felix Sulc <sulcmil@gmail.com>
+#
+extensions:
+    website: Minetro\Micro\Modules\Website\DI\WebsiteExtension
+
+# minetro ========================================================================
+website:
+    # Settings
+    config:
+        templates: %appDir%/templates
+
+    # List of routes
+    routes:
+        - Minetro\Micro\Modules\Website\Routers\WebsiteRouter
+
+    # List of closures (a.k.a presenters)
+    closures:
+        - Minetro\Micro\Modules\Website\Closures\StaticPageClosure
+        - Minetro\Micro\Modules\Website\Closures\ErrorPageClosure
+
+# OTHER SERVICES ===============================================================
+services:
+

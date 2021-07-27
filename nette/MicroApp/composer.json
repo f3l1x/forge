@@ -1,0 +1,14 @@
+{
+  "require": {
+    "php": ">= 5.5",
+    "minetro/micro-website-module": "~0.2.0",
+    "nette/bootstrap": ">=2.3.0",
+    "nette/robot-loader": ">=2.3.0",
+    "nette/mail": ">=2.3.0",
+    "nette/safe-stream": ">=2.3.0",
+    "nette/application": ">=2.3.0",
+    "nette/di": ">=2.3.0",
+    "tracy/tracy": ">=2.3.0",
+    "latte/latte": ">=2.3.0"
+  }
+}
