@@ -1,0 +1,21 @@
+{
+  "name": "projectte/projectte",
+  "description": "Composer plugin allows manage multiple project instance dependencies",
+  "type": "composer-plugin",
+  "license": "MIT",
+  "require": {
+    "php": ">=7.1.0",
+    "composer-plugin-api": "^1.1"
+  },
+  "require-dev": {
+    "composer/composer": "~1.6.3"
+  },
+  "autoload": {
+    "psr-4": {
+      "Projectte\\": "src"
+    }
+  },
+  "extra": {
+    "class": "Projectte\\ProjecttePlugin"
+  }
+}
