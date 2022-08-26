@@ -1,0 +1,58 @@
+{
+  "name": "contributte/advisories",
+  "description": "Collection of Nette advisories",
+  "keywords": ["contributte", "nette", "advisories"],
+  "type": "library",
+  "license": ["MIT"],
+  "homepage": "https://github.com/contributte/advisories",
+  "authors": [
+    {
+      "name": "Milan Felix Sulc",
+      "homepage": "https://f3l1x.io"
+    }
+  ],
+  "require": {
+    "php": ">= 5.6"
+  },
+  "require-dev": {
+    "ninjify/qa": "^0.4.0",
+    "ninjify/nunjuck": "^0.2.0",
+    "nette/application": "~2.4.9",
+    "nette/di": "~2.4.10"
+  },
+  "autoload": {
+    "psr-4": {
+      "Contributte\\Advisories\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\Fixtures\\": "tests/fixtures"
+    }
+  },
+  "scripts": {
+    "qa": [
+      "linter src tests",
+      "codesniffer src tests"
+    ],
+    "tester": [
+      "tester -s -p php --colors 1 -C tests/cases"
+    ],
+    "coverage": [
+      "tester -s -p php --colors 1 -C -d extension=xdebug.so --coverage ./coverage.xml --coverage-src ./src tests/cases"
+    ],
+    "phpstan-install": [
+      "mkdir -p temp/phpstan",
+      "composer require -d temp/phpstan phpstan/phpstan:0.8.5",
+      "composer require -d temp/phpstan phpstan/phpstan-nette:0.8.3"
+    ],
+    "phpstan": [
+      "temp/phpstan/vendor/bin/phpstan analyse -l 7 -c phpstan.neon src"
+    ]
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "0.1.x-dev"
+    }
+  }
+}
