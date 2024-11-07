@@ -48,3 +48,16 @@ Tryout of the [Vercel](https://vercel.com) deployment tool with preconfigured [N
 | [nwjs/vue-raw](chromium/nwjs/vue-raw)            | Example of Vue framework                          |
 | [electron/top](chromium/nwjs/top)                | Example of system top call                        |
 | [electron/systeminfo](chromium/nwjs/systeminfo)  | Example of `systeminformation` package            |
+
+# Undefined
+
+| Project                                      | Description                           |
+|--------------------------------------------- |-------------------------------------- |
+| [cvut/cipher](undefined/cvut)                   | CVUT homework caesar cipher           |
+| [cvut/formatovac](undefined/cvut)                   | CVUT homework text formatter           |
+| [cvut/mastermind](undefined/cvut)                   | CVUT homework master mind           |
+| [cvut/omo](undefined/cvut)                   | CVUT homework OMO           |
+| [cvut/pointer](undefined/pointer)                   | CVUT homework C++ pointers           |
+| [gps/distance](undefined/gps)                   | GPS distance measure in SQL          |
+| [gps/parser](undefined/gps)                   | GPS lot & lat parsers           |
+| [webexpo13/google](undefined/webexpo13)                   | WebExpo13 Google Challenge           |
